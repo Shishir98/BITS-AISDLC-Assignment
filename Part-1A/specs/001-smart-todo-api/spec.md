@@ -8,6 +8,8 @@
 
 **Version**: 1.3.0
 
+**Approved**: 2026-11-12
+
 **Input**: User description: "Create a deterministic task-management API with task CRUD, tag filtering, priority sorting, JSON persistence, and validated task-status transitions."
 
 ## Clarifications
@@ -688,8 +690,8 @@ minimum required coverage; additional focused tests MAY be added.
 
 | Version | Date | Change |
 |---|---|---|
-| 1.3.0 | 2026-11-12 | **Proposed; pending human review.** Clarify submitted versus authoritative harness artifacts, exact-digest verification and D-01 blocking, add the controlled instruction-file inventory, separate Bandit execution from human disposition, and update AC/NFR traceability without changing the existing requirement or acceptance-criterion counts. |
-| 1.2.2 | 2026-11-11 | **Proposed; pending human review.** Specify the exact error-detail schema, empty-array behavior, deterministic ordering, OpenAPI shape, and updated traceability/success criteria. |
+| 1.3.0 | 2026-11-12 | **Approved 2026-11-12.** Clarify submitted versus authoritative harness artifacts, exact-digest verification and D-01 blocking, add the controlled instruction-file inventory, separate Bandit execution from human disposition, and update AC/NFR traceability without changing the existing requirement or acceptance-criterion counts. |
+| 1.2.2 | 2026-11-11 | **Proposed; superseded by approved v1.3.0 on 2026-11-12.** Specify the exact error-detail schema, empty-array behavior, deterministic ordering, OpenAPI shape, and updated traceability/success criteria. |
 | 1.2.1 | 2026-11-11 | Made malformed-store request-time validation explicit; aligned sequential determinism, concurrent serialization, ID assignment, persistence rollback, acceptance criteria, test mappings, and success criteria. |
 | 1.2.0 | 2026-11-11 | Clarified in-process concurrent mutation serialization and malformed-store runtime behavior; added or updated acceptance, test, and success-criteria coverage. |
 | 1.1.0 | 2026-11-11 | Added PATCH malformed-JSON statuses, persisted-record validation, repository hygiene/security review, protected harness baselines, separated human decision gates, and updated traceability. |

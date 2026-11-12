@@ -90,11 +90,11 @@ replaced file moved or absent at its original path. Atomic visibility and crash
 durability are distinct claims; neither is established by this research for the
 supported Windows setup. D-05 in `plan.md` remains an implementation blocker.
 
-## Proposed Error Detail Contract (Pending Human Approval)
+## Approved Error Detail Contract (Specification v1.3.0)
 
-The proposed v1.2.2 specification amendment defines each `error.details` item
+The approved v1.3.0 specification defines each `error.details` item
 as an object with exactly three required string fields: `field`, `code`, and
 `message`. Errors without field-level information use `[]`. Sort details
 ascending by field path, then by `code` and `message` for ties. This model is
-provisional until human approval; it does not add fields to the task model or
-change the existing error envelope/codes.
+approved on 2026-11-12; it does not add fields to the task model or change the
+existing error envelope/codes.

@@ -5,10 +5,12 @@
 
 **Status**: ACCEPT
 
-**Planning basis**: The constitution remains pending human approval. Feature
-specification v1.3.0 is a proposed revision that carries forward the pending
-v1.2.2 error-detail changes and adds the reviewed harness/instruction-inventory
-clarifications; it also remains pending human approval.
+**Approved**: 2026-11-12
+
+**Planning basis**: Constitution v1.1.0, feature specification v1.3.0, and this
+implementation plan have human approval dated 2026-11-12. The approved plan and
+research record the dependency versions below. D-01 and D-05 remain independent
+open technical blockers and are not resolved by artifact approval.
 
 ## Summary
 
@@ -44,7 +46,7 @@ workspace.
 
 | Principle | Plan alignment |
 |---|---|
-| I. Specification-First Development | This plan is derived from the current artifacts as the user authorized. Their stored approval statuses remain pending; implementation must wait for formal approval. |
+| I. Specification-First Development | This plan follows the human-approved constitution v1.1.0 and feature specification v1.3.0, both approved on 2026-11-12. The approved planning set records the dependency versions below. D-01 and D-05 remain separate technical blockers. |
 | II. Clean Architecture | Routes depend on the service; the service depends on domain rules and a repository boundary; persistence does not depend on API code. |
 | III. Deterministic Behaviour | Sequential requests from identical persisted state produce identical results. Concurrent mutation serialization follows NFR-007; request-to-ID assignment is unspecified. |
 | IV. API Contract Integrity | OpenAPI design mirrors the documented endpoints, status codes, response shapes, and error envelope. |
@@ -56,12 +58,12 @@ workspace.
 | X. Traceability and Evidence | Part-1A includes `evidence/` organization. The runner generates local evidence copies and retains authoritative evidence in its protected store. |
 | XI. Human Accountability | Automated results never choose ACCEPT/REJECT; a human security review and a separate explicit final decision are required. |
 
-**Gate result**: Architecture is aligned for planning. Before implementation,
-record approval of the constitution and feature specification, approve or
-decline the proposed v1.3.0 specification changes (including the carried-forward
-error-detail proposal), establish the protected runner identity/access controls,
-and resolve the Windows replacement blocker. This plan does not change the
-pending status of either governing artifact.
+**Gate result**: Human approval of constitution v1.1.0, feature specification
+v1.3.0, and this plan was recorded on 2026-11-12. The artifact, specification
+version, error-details, and dependency-version approval checks in T003 are
+satisfied. This does not assert that approval preceded implementation, and it
+does not resolve D-01 or D-05: the protected runner boundary and Windows
+atomic-visibility requirement remain open implementation blockers.
 
 ## Proposed Architecture
 
@@ -333,7 +335,7 @@ store is authoritative. Runner-generated results must not be manually edited.
 |---|---|---|
 | D-01 | **Open implementation blocker** | Part-1A must contain `.harness/`, `tests/`, and `evidence/` as submitted, untrusted repository copies. The human/assignment owner must establish and verify a separately administered Windows identity/ACL or protected CI, then independently review and enroll the canonical runner, tests, controls, `.harness/instruction-files.json`, inventoried files, and their exact digests through an out-of-band approval register. The first authoritative invocation starts from the canonical protected runner; only verified immutable snapshots execute. Location alone is not protection. If the separate identity/ACL or protected CI boundary cannot be demonstrated, D-01 remains blocked. |
 | D-02 | **Resolved for planning** | `create_app(store_path: Path | None = None)` explicit path takes precedence; otherwise use non-empty `SMART_TODO_STORE_PATH`; if absent, default to `data/tasks.json` relative to the process working directory. Resolve path at app creation; do not load store then. `.gitignore` excludes `/data/`; any custom path must also be outside tracked files or ignored. |
-| D-03 | **Proposed specification amendment; pending human approval** | v1.3.0 carries forward the pending v1.2.2 error-detail proposal (exact string fields `field`, `code`, and `message`; `details: []` without field-level information; deterministic ordering) and proposes explicit harness-copy trust boundaries, Bandit human disposition, and a controlled instruction-file inventory. Do not treat any proposed change as approved until human review. |
+| D-03 | **Resolved by approved specification v1.3.0 (2026-11-12)** | The approved v1.3.0 specification includes the error-details schema (exact string fields `field`, `code`, and `message`; `details: []` without field-level information; deterministic ordering), harness-copy trust boundaries, Bandit human disposition, and controlled instruction-file inventory. |
 | D-04 | **Resolved for planning; commit gate remains** | `pyproject.toml` and `uv.lock` are generated in Part-1A using uv; include both in project commits. The Windows CPython 3.12 resolution selected FastAPI 0.162.4, Pydantic 2.14.3, pytest 9.2.0, HTTPX 0.28.1, Ruff 0.17.4, Bandit 1.9.4, and Uvicorn 0.54.0. Review the dependency/lock diff before implementation; see `research.md`. |
 | D-05 | **Open implementation blocker** | `os.replace` has no documented Windows atomic-visibility guarantee. `ReplaceFileW` and `MoveFileExW` are possible Windows APIs, but reviewed Microsoft documentation does not establish the required guarantee; `ReplaceFileW` documents failure states that can leave the replaced file moved/missing. Do not claim atomic visibility or crash durability. Preserve the existing requirement and block implementation until a compliant supported approach is verified or a human explicitly amends the specification. |
 

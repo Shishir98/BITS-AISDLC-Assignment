@@ -4,7 +4,7 @@
 **Created**: 2026-11-11
 **Feature**: [spec.md](../spec.md)
 
-**Review Ownership**: Specification-author review; human approval of the draft remains pending.
+**Review Ownership**: Specification-author review; the current feature specification v1.3.0 was approved on 2026-11-12.
 **Marker Semantics**: `[x]` means the specification-quality check passed. It does not mean the feature is implemented or accepted.
 
 ## Content Quality
@@ -45,7 +45,8 @@
   narrowed here because the user explicitly required Python 3.12, FastAPI,
   Pydantic, and endpoint-level API behavior. These are stated as project
   constraints or externally observable contracts, not as implementation steps.
-- This checklist assesses specification quality only. Human review is pending;
-  no implementation, plan, or task list has been created.
+- This checklist assesses specification quality only and was prepared against
+  an earlier specification draft; the current feature specification v1.3.0
+  was approved on 2026-11-12.
 - Specification version 1.1.0 records the targeted corrections in the change
-  history; the draft remains pending human approval.
+  history; it was superseded by approved v1.3.0 on 2026-11-12.

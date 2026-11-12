@@ -5,13 +5,13 @@
 **Prerequisites**: `plan.md`, `spec.md`, `research.md`, `data-model.md`,
 `test-strategy.md`, and `contracts/openapi.yaml`.
 
-**Planning basis**: This task list does not assert that the constitution or
-feature specification is approved. The constitution records pending human
-approval and spec v1.3.0 records pending human review; no approval records have
-been verified in the project artifacts. T003 is a mandatory governance gate:
-verify actual human records before relying on either artifact, and record only
-dates present in those records. Do not infer or invent ratification or approval
-dates. D-01 and D-05 remain explicit blocking gates.
+**Planning basis**: Human approval was recorded on 2026-11-12 for constitution
+v1.1.0, feature specification v1.3.0, and the implementation plan. The approved
+plan/research record contains the exact dependency versions, and approved
+specification v1.3.0 establishes the error-details schema; T003 is complete.
+This approval record does not establish a protected trust boundary or resolve
+the Windows atomic-visibility requirement. D-01 and D-05 remain explicit
+blocking gates.
 
 **Tests**: Required. Every acceptance criterion AC-001 through AC-029 maps to
 the corresponding AT-001 through AT-029 test in `test-strategy.md`. Test changes
@@ -32,9 +32,10 @@ started until its named decision/dependency is resolved and verified.
 
 **Purpose**: Confirm dependency configuration and create the required assignment
 project structure without adding application behavior. T002 may proceed
-independently; T001 is blocked on T003 approval.
+independently. T003 approval is recorded; T001 remains unchecked until its
+dependency setup and lockfile verification work is completed.
 
-- [ ] T001 BLOCKED (T003) Create or complete `pyproject.toml` only after T003 verifies actual human approval of the project and the exact package-version set: FastAPI 0.162.4, Pydantic 2.14.3, pytest 9.2.0, HTTPX 0.28.1, Ruff 0.17.4, Bandit 1.9.4, and Uvicorn 0.54.0. Generate `uv.lock`, verify the active interpreter and dependency resolution target Python 3.12, then run `uv lock --check --python 3.12` and `uv sync --locked`. Record the approved dependencies in `pyproject.toml`, `uv.lock`, and `specs/001-smart-todo-api/research.md`. Before T003, only read-only environment inspection (for example, `python --version` and `uv --version`) is permitted; do not create or modify either project file or install project dependencies.
+- [ ] T001 Create or complete `pyproject.toml` only after T003 verifies actual human approval of the project and the exact package-version set: FastAPI 0.162.4, Pydantic 2.14.3, pytest 9.2.0, HTTPX 0.28.1, Ruff 0.17.4, Bandit 1.9.4, and Uvicorn 0.54.0. Generate `uv.lock`, verify the active interpreter and dependency resolution target Python 3.12, then run `uv lock --check --python 3.12` and `uv sync --locked`. Record the approved dependencies in `pyproject.toml`, `uv.lock`, and `specs/001-smart-todo-api/research.md`. Before T003 was completed, only read-only environment inspection (for example, `python --version` and `uv --version`) was permitted; do not create or modify either project file or install project dependencies.
 - [x] T002 [P] Create the planned `src/`, `tests/`, `.harness/`, and `evidence/` directory structure from `plan.md`; preserve runtime-data and local-environment exclusions in `.gitignore`.
 
 ## Phase 2: Foundational Gates
@@ -42,10 +43,10 @@ independently; T001 is blocked on T003 approval.
 **Purpose**: Resolve governance and trust prerequisites before any user-story
 implementation or authoritative test execution.
 
-- [ ] T003 BLOCKED (human governance): Verify actual human ratification/approval records for `.specify/memory/constitution.md` and `specs/001-smart-todo-api/spec.md`; verify approval of the exact dependency versions recorded in `specs/001-smart-todo-api/plan.md` and `research.md`; update statuses only when supported by actual records, record only dates explicitly present, and confirm which specification version/error-details schema is approved. Do not assume proposed v1.3.0 or the dependency list is approved, and do not invent dates.
+- [x] T003 Verify the human approval recorded on 2026-11-12 for constitution v1.1.0, feature specification v1.3.0, and the implementation plan. Confirm the plan/research dependency set (FastAPI 0.162.4, Pydantic 2.14.3, pytest 9.2.0, HTTPX 0.28.1, Ruff 0.17.4, Bandit 1.9.4, and Uvicorn 0.54.0) and the approved v1.3.0 error-details schema. This records the user's explicit approval in this interaction; it is not a protected approval-register reference. D-01 and D-05 remain separate blocked gates.
 - [ ] T004 [P] BLOCKED (D-01): Establish and verify the separate trusted Windows identity/ACL or protected CI environment; provision the canonical bootstrap runner from an administrator-controlled source independent of the repository; and establish the protected trust store, staging/evidence access controls, and out-of-band human administration channel. Confirm the coding-agent identity cannot administer the trusted boundary. This task establishes the protected environment only; T028-T036 create the untrusted runner and validation files, and T037-T038 review and enroll them. Do not treat repository location outside `src/` or the workspace as protection.
 - [ ] T005 [P] BLOCKED (D-05): Resolve the Windows atomic-visibility requirement using supported-platform evidence documented in `specs/001-smart-todo-api/research.md` and `plan.md`. Do not claim `os.replace`, `ReplaceFileW`, or `MoveFileExW` meets the requirement without evidence. If no compliant approach is established, keep persistence implementation blocked pending an explicit human-approved specification amendment.
-- [ ] T006 BLOCKED (T003): Verify `specs/001-smart-todo-api/contracts/openapi.yaml` against the human-approved `specs/001-smart-todo-api/spec.md`; confirm the approved error-details schema and every documented endpoint/status-code set, including existing error contracts. Correct the OpenAPI contract only to match the actually approved specification; if approval or the error-details amendment is unresolved, stop without treating a proposal as approved.
+- [ ] T006 Verify `specs/001-smart-todo-api/contracts/openapi.yaml` against the human-approved `specs/001-smart-todo-api/spec.md`; confirm the approved error-details schema and every documented endpoint/status-code set, including existing error contracts. Correct the OpenAPI contract only to match the actually approved specification; if approval or the error-details amendment is unresolved, stop without treating a proposal as approved.
 - [ ] T007 BLOCKED (T003-T006): Create the architecture scaffolding and application factory in `src/smart_todo/app.py`, `src/smart_todo/api/`, `src/smart_todo/domain/`, and `src/smart_todo/persistence/`; define the repository port separately from its JSON implementation and install application/API error translation; accept an explicit `Path`, otherwise use `SMART_TODO_STORE_PATH`, then `data/tasks.json`, without loading the store during app creation.
 
 ## Phase 3: User Story 4 - Keep Tasks Across Restarts (Priority: P1)
