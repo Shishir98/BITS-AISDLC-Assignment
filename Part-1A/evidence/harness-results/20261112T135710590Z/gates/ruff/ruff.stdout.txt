@@ -1,0 +1,2 @@
+Command: "C:\Users\User\.local\bin\uv.exe" run --active --locked --no-sync --directory "C:\Users\User\AppData\Local\Temp\smart-todo-final-d29e13d44a09459a861bae6ebcc0b86d\20261112T135710590Z\staged-candidate" ruff check src tests
+Ruff exit code: 0

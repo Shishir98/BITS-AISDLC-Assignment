@@ -1,0 +1,1081 @@
+{
+  "schemaVersion": 1,
+  "runId": "20261112T173619145Z",
+  "candidateDigest": "be351d3fb9f591814de8c41e2573fe0da5a0219281e597ed1a73b9f74bb27c0c",
+  "generatedAt": "2026-11-12T17:45:12.685966+00:00",
+  "bundleDigest": "dfebb0e8a668a5cc75c4163588101429935adc4884d87d16cd38f91a58afd981",
+  "files": [
+    {
+      "path": "candidate-manifest.json",
+      "sha256": "64141cd718b2b56f3c4deabbc6f7298f7e47ca7ecef3cdd523a945df879aba21"
+    },
+    {
+      "path": "failures/governance-boundary.txt",
+      "sha256": "cfa7faef3b15f7d3b9a00e939432933eb35999e4223c9307f04c2a6e3ee7cca4"
+    },
+    {
+      "path": "failures/human-review-and-decision.txt",
+      "sha256": "da89641384f1eee5851837da27265ec01fdea9156792f2a5c6771bba396c1365"
+    },
+    {
+      "path": "failures/instruction-inventory.txt",
+      "sha256": "ad5195af64d1726f48653e459788a28371aedffa2fb2fc98af407e365962625f"
+    },
+    {
+      "path": "failures/pytest-and-traceability.txt",
+      "sha256": "2144d6f175ab67466b78fefa07962a997463adf32c0450b8c4b0b9b5667c5699"
+    },
+    {
+      "path": "failures/windows-persistence-readiness.txt",
+      "sha256": "6b3269a5bcbb8b91ec38ad3d48a87b0e9ade3217926046e6ef40d7989b6445ab"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-analyze/SKILL.md",
+      "sha256": "bc5c24e6bbadf90f58e52d351c9ea22d502257ffb584694a9a46cf592dd78033"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-checklist/SKILL.md",
+      "sha256": "f846c702c2a83777ab6806decbfaecb9d7f48b15f48bebb2db1d5f06bc6775dc"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-clarify/SKILL.md",
+      "sha256": "c0ab0a24043c37e03db3251a261d9250da95bb1ab5f69b51f6beedf009900c48"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-constitution/SKILL.md",
+      "sha256": "9ba37cfc2ad0d64dcaf4816f85405376f9e671ef485220dbcbb8ed002aa93036"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-converge/SKILL.md",
+      "sha256": "c73faaef7cd7cbf8b5f5b3a378f5b583b4b878fa6add039d0dc30f5617baa5ef"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-implement/SKILL.md",
+      "sha256": "47bfb14d191d970e63b1acd362a9570baadea947daa1b3b747c3305aa0bd85cc"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-plan/SKILL.md",
+      "sha256": "cef8c4f2cdecc92b2069ba9e0cc3f921d0f87915caa1d8bc023dbc665e02904f"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-specify/SKILL.md",
+      "sha256": "f27c66b20968981c98ec65e67f279c3c5b3ac833016d0c3879b1e9aadc1361c9"
+    },
+    {
+      "path": "final-snapshot/.github/skills/speckit-tasks/SKILL.md",
+      "sha256": "2236ce1193fc122ee791c4f646aac11a341096670f1ea9aa5424b78148d9b44a"
+    },
+    {
+      "path": "final-snapshot/.gitignore",
+      "sha256": "d9503c3a13ddeb02b2ab9f2477be8a7a7c38e9f2bc698850960bdfd31a893fa9"
+    },
+    {
+      "path": "final-snapshot/.harness/README.md",
+      "sha256": "3ecf81320be2be44c4235b119f696468c0c320640873b0c6c5dabc3b8b24f64b"
+    },
+    {
+      "path": "final-snapshot/.harness/hygiene.ps1",
+      "sha256": "bdc96aefe099d5f244d80cf582afc40e2b41aef6f5b6042a33f4e25c73f77ca3"
+    },
+    {
+      "path": "final-snapshot/.harness/instruction-files.json",
+      "sha256": "70288856f74700d29faa993fb6a2700d254aaac27010e2345de416ac96c70f79"
+    },
+    {
+      "path": "final-snapshot/.harness/lint.ps1",
+      "sha256": "92aac6050d34a4a9c6989b45e167eac68c24d4baae0133ae7cfd3c4c3002d8b5"
+    },
+    {
+      "path": "final-snapshot/.harness/mandatory-checks.json",
+      "sha256": "2aafe21ab224feb40f183ef6c55bfe12d4a9bf7104a22352261a7cd996f9a1d3"
+    },
+    {
+      "path": "final-snapshot/.harness/run.ps1",
+      "sha256": "d311b41030d05ea0fc3da22b49c53ec25c29ecb8cd0efffbd3de07d49d0782d7"
+    },
+    {
+      "path": "final-snapshot/.harness/security.ps1",
+      "sha256": "f04e4b23169a46f2fe032e99d5aea4ba9b606deedb9b45d4344ec8febd588bdc"
+    },
+    {
+      "path": "final-snapshot/.harness/test.ps1",
+      "sha256": "3361e34a3a864d7611a852b0e58bcd0e13d3c7f9357336c08741bdbf75eff8e7"
+    },
+    {
+      "path": "final-snapshot/.specify/.gitignore",
+      "sha256": "0a61c5378b0bb2e0f85babff99c8b166f2170a2c12378cd17d929aa19296ec88"
+    },
+    {
+      "path": "final-snapshot/.specify/feature.json",
+      "sha256": "645ce2d99ee4ffad347cb2c6d0d454ee7b9d08b41204fd047dbf1290e8383b3e"
+    },
+    {
+      "path": "final-snapshot/.specify/init-options.json",
+      "sha256": "b2b21d8acfd7684e17e5448f718d90be389f098e2c8ad9948812804765490a34"
+    },
+    {
+      "path": "final-snapshot/.specify/integration.json",
+      "sha256": "be24ab7114874dda62954d35e9a32212ab96a0582cb1d5eb65fb7bfd5236addd"
+    },
+    {
+      "path": "final-snapshot/.specify/integrations/copilot.manifest.json",
+      "sha256": "9860d552c293edfd5fd1f565eeaf44f6aeb98e35696e3b0aad360f6380b9e1ea"
+    },
+    {
+      "path": "final-snapshot/.specify/integrations/speckit.manifest.json",
+      "sha256": "d56ea94e50785aedf4d2690c1a1466bf8e414bf243d87c5c714e29e15fb231c4"
+    },
+    {
+      "path": "final-snapshot/.specify/memory/.constitution-template.json",
+      "sha256": "8fc4b39294bae0c10d59547ad7d415b6f0e890d656cbf7171dd567f4e9054711"
+    },
+    {
+      "path": "final-snapshot/.specify/memory/constitution.md",
+      "sha256": "5b4400754b9957c4930e4e665bff5633fed65e976dd4ba6948dce99d1b2ac9cc"
+    },
+    {
+      "path": "final-snapshot/.specify/scripts/powershell/check-prerequisites.ps1",
+      "sha256": "b5b522bd3ee99a490903cc0acb2ded41c662c5f18b9b587f44755a883aeb90d2"
+    },
+    {
+      "path": "final-snapshot/.specify/scripts/powershell/common.ps1",
+      "sha256": "c4816519ffb0b930427559b3ec729ef04a56162f4ef334958c8c50a3f92def9d"
+    },
+    {
+      "path": "final-snapshot/.specify/scripts/powershell/create-new-feature.ps1",
+      "sha256": "481c7368541a816b1679e5ed65fa9e5aea84b09f8be3a02ff8a340e3b48dd58a"
+    },
+    {
+      "path": "final-snapshot/.specify/scripts/powershell/resolve-template.ps1",
+      "sha256": "e49c565a09902e4ebd4b5a51c4e014d5067fdee5b1592f15cb44ef31f430d745"
+    },
+    {
+      "path": "final-snapshot/.specify/scripts/powershell/setup-plan.ps1",
+      "sha256": "5939ef98418e8dc8cc722ef53ba359fc814f3d2a9fd7620f04e8d145a7041f1a"
+    },
+    {
+      "path": "final-snapshot/.specify/scripts/powershell/setup-tasks.ps1",
+      "sha256": "d286da96d5b7e0075daa56e834fc1e1eb5beaddbc7e06d3ba898d0e9c071c50a"
+    },
+    {
+      "path": "final-snapshot/.specify/templates/checklist-template.md",
+      "sha256": "856532b3cb66171c662cc16f16b31a5856e4655a8666aad1e545bbfc7f603ca1"
+    },
+    {
+      "path": "final-snapshot/.specify/templates/constitution-template.md",
+      "sha256": "ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+    },
+    {
+      "path": "final-snapshot/.specify/templates/plan-template.md",
+      "sha256": "7e637502d41eccf0ca672496636365691fdca62ef37b27ec07fcb412dbfa90d4"
+    },
+    {
+      "path": "final-snapshot/.specify/templates/spec-template.md",
+      "sha256": "3945437fc35cd30a5b2bf7beea680337c3516826d3efa5a6b92c4a7eca1ba28e"
+    },
+    {
+      "path": "final-snapshot/.specify/templates/tasks-template.md",
+      "sha256": "fc29a233f6f5a27ca31f1aa46b596af6500c627441c6e62b2bc4a1d721525842"
+    },
+    {
+      "path": "final-snapshot/.specify/workflows/speckit/workflow.yml",
+      "sha256": "177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+    },
+    {
+      "path": "final-snapshot/.specify/workflows/workflow-registry.json",
+      "sha256": "0fa48306db832e38d8cf1953d8efb1257189529a550284425fe95ff46783af45"
+    },
+    {
+      "path": "final-snapshot/pyproject.toml",
+      "sha256": "cbaec1a90614ac701f4d0f72b9399fd79f52db85c2514618b821368930c81020"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/checklists/requirements.md",
+      "sha256": "01602db25c9e3801951336d35d9d2d89e2650b52c1ff8c1ad9ee7fec2d6acc50"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/contracts/openapi.yaml",
+      "sha256": "19e0039e31bf0d22ccabeb23d0831ac466b798386de5f59a89ea1d65c43cb1c2"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/data-model.md",
+      "sha256": "aba2462c29ea222b2b019709901d24ce71972f03a04466515f3d109e68a13826"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/plan.md",
+      "sha256": "57dff3f9a8fa63c8e73e0b1621d06e0269520e6373898f38b1c5c16568de14df"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/quickstart.md",
+      "sha256": "e0b622db78222f79e66666607667e5efba97f9a12e1e611266076681fd7c12ab"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/research.md",
+      "sha256": "77d5e97fdda293a9749852c724a6c2df30ca3daaa77b17c0530ff9aefd2e8d0b"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/spec.md",
+      "sha256": "2e6cf53958da33bbc4b943a334b2d2a0d55084e74ed395c23807ca70ab896a61"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/tasks.md",
+      "sha256": "90017973620f0f797cccb31a92251fc9a9c3b5c0fcec556338eec6d91113a3d9"
+    },
+    {
+      "path": "final-snapshot/specs/001-smart-todo-api/test-strategy.md",
+      "sha256": "43c53024a14578680c59d55936f7e16505a4491fcf8412b01b2bd1bab3f2bcb9"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/__init__.py",
+      "sha256": "3aca91fe66697bd093ecfbc3480c8ec4ca38c27e083117ccbf887f9db6a0a169"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/api/__init__.py",
+      "sha256": "d7604a3e8a4790d88d816f226170960c075a2200e3b9b73d2ca13de50e276b36"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/api/errors.py",
+      "sha256": "ea85b466df460ee1c93b4e269a4d2033eddffd7ab70dace05854067a7423a538"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/api/routes.py",
+      "sha256": "e4c077f433651f543ff7a6fcf3235dc6682759104abc98929cbd8b97cfe46bfe"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/api/schemas.py",
+      "sha256": "5d9a476b70a52f5cd5be68c22fe290c8a23bcf4bbf4c1a0071ecdb2ca1f6b6e0"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/app.py",
+      "sha256": "bde3bbe5b38f84828d586337ddae67a006b854b24aedfd442107c56b52358d02"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/domain/__init__.py",
+      "sha256": "e913b959fc438a83b6493087b4ac3725450790dc91323f08ee4de9dd2803329a"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/domain/errors.py",
+      "sha256": "82d1abbc57f72adf0200a582d0ebc80e8a1abc026c8edf6a9745ff118d3f6ba1"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/domain/models.py",
+      "sha256": "d08b848861ae0170f021d184e6115531dbc85cde29c20dcdb3c38fe2f248ff38"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/domain/ports.py",
+      "sha256": "07b1b5162322627b7404cd6379ff89a20eccda1979e2626e68d82b0d125b0abd"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/domain/service.py",
+      "sha256": "086e9ea98d5187dea8f7920cd23c7eb91cb494be54ca9044fe5dcb8843ed0382"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/persistence/__init__.py",
+      "sha256": "7b73241347aa42d570333c6309b3f160e39e15f7afab450e8b4af7830f0d26e9"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/persistence/errors.py",
+      "sha256": "70739a9abb82b3a36acf7c316ab4fe15e9ecdef76efa5373db2e6dba58b84a1a"
+    },
+    {
+      "path": "final-snapshot/src/smart_todo/persistence/json_repository.py",
+      "sha256": "3739012e0aff9bdc76ffcda770ba7ae7a7d85439fec3985dd1ca0734dc7e254e"
+    },
+    {
+      "path": "final-snapshot/tests/api_contract/test_determinism.py",
+      "sha256": "bad65f8b54b02d0d26b0597e819db65cc0e76d41b32851a6174d63a71bf77ef9"
+    },
+    {
+      "path": "final-snapshot/tests/api_contract/test_endpoint_contract.py",
+      "sha256": "35525425f53b575879ce291b7a40d2afe9018f9f48f7aaf0d68caff529f83064"
+    },
+    {
+      "path": "final-snapshot/tests/api_contract/test_legacy_api.py",
+      "sha256": "4b9b8bfe8ec9da3dba5c863c0a7ba714dbe52b9e46268746bbc0d339d8e3a314"
+    },
+    {
+      "path": "final-snapshot/tests/api_contract/test_status_transitions.py",
+      "sha256": "8cce2f1c95b95cc1f56d5114614b6a2a5138f9bdc9a87b262e116d7f0e47092a"
+    },
+    {
+      "path": "final-snapshot/tests/api_contract/test_task_crud.py",
+      "sha256": "e93c9304dd925389575a92ab9bf8964e1b61defc3c902c59767faeeb91f7b3d7"
+    },
+    {
+      "path": "final-snapshot/tests/api_contract/test_task_queries.py",
+      "sha256": "4271b24059502aca1251db6be7be366f7208f05311d94f51fc05bbf1d611cb33"
+    },
+    {
+      "path": "final-snapshot/tests/concurrency/test_concurrent_mutations.py",
+      "sha256": "1fa5fde569fbf1931dd64720046e6bb1b95f74313d4f604f0928b4baa5a12c1e"
+    },
+    {
+      "path": "final-snapshot/tests/conftest.py",
+      "sha256": "82dd25fc556fcb0db942299a37fe556047cd13cbc98e778042a8d4ba1f6242b5"
+    },
+    {
+      "path": "final-snapshot/tests/error_handling/test_request_validation.py",
+      "sha256": "6e7d83d0b043813807d9635a692fb96e95c97f7cdc87bd5dfc3fefd6a67ea57d"
+    },
+    {
+      "path": "final-snapshot/tests/harness_integrity/test_architecture.py",
+      "sha256": "16e1726364006312079955dba6f1a2338bacf208d094bee0733b8bd588564121"
+    },
+    {
+      "path": "final-snapshot/tests/harness_integrity/test_repository_hygiene.py",
+      "sha256": "9a38d7bf30a1796e3348b6c0c09338809f8758c2b5eaacfdf864a07678da823f"
+    },
+    {
+      "path": "final-snapshot/tests/harness_integrity/test_runner_boundaries.py",
+      "sha256": "9ac25550ec16f657938867df4500acf1db47d055e0e1308681fc6b54a52c83eb"
+    },
+    {
+      "path": "final-snapshot/tests/persistence/test_json_repository.py",
+      "sha256": "6a538e0af3220c57a1563a767e521746d760948e27add81fba9cc2db612e44cc"
+    },
+    {
+      "path": "final-snapshot/tests/unit/test_id_allocation.py",
+      "sha256": "9f10dce8f7b1fca2607ceddf58d11cc17b73f23a42db5e4a5cff718316570d1d"
+    },
+    {
+      "path": "final-snapshot/uv.lock",
+      "sha256": "2a9762c545fa993622c3098b4590fa2c6cd27d15a095e149d023a50bb17da82e"
+    },
+    {
+      "path": "gates/bandit/bandit.json",
+      "sha256": "ef4e8414db0622a73fb7983edee72bf50dab8d3560edd3f7a9fb07a611b33271"
+    },
+    {
+      "path": "gates/bandit/bandit.stderr.txt",
+      "sha256": "e12427b29236c5877c1ce4af0591147ee8c5cb45de59de1b7186477628299e24"
+    },
+    {
+      "path": "gates/bandit/bandit.stdout.txt",
+      "sha256": "ef4e8414db0622a73fb7983edee72bf50dab8d3560edd3f7a9fb07a611b33271"
+    },
+    {
+      "path": "gates/bandit/security.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gates/bandit/security.stdout.txt",
+      "sha256": "97961103ec5f67e6d31f1644c4abec14745aab1df1ee01e2ed8a1cc79cca10b1"
+    },
+    {
+      "path": "gates/pytest-and-traceability/junit.xml",
+      "sha256": "bb40f10015c4ba4748cf3f613a43e0aface547841c1453b18df9531f0dcbad19"
+    },
+    {
+      "path": "gates/pytest-and-traceability/pytest-collection.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gates/pytest-and-traceability/pytest-collection.stdout.txt",
+      "sha256": "8848b7131081d3f7814e1ff5d9414ff8ce2760c894821e04e1003d19d7e7eb06"
+    },
+    {
+      "path": "gates/pytest-and-traceability/pytest.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gates/pytest-and-traceability/pytest.stdout.txt",
+      "sha256": "4cf0b1cc02d7a0cfe512e15cb9b8ee2b744b49c4b7ef89b400d9c7e05fe8cb80"
+    },
+    {
+      "path": "gates/pytest-and-traceability/tests.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gates/pytest-and-traceability/tests.stdout.txt",
+      "sha256": "65520e56a7b2e6cb8cbc059ec211b7a1de50a2de4e2e714aa63c1347318ea912"
+    },
+    {
+      "path": "gates/pytest-and-traceability/traceability.csv",
+      "sha256": "9955483267ed5ede1a94818c44958d9122569f1974de967f5ad57e887e6743f2"
+    },
+    {
+      "path": "gates/pytest-and-traceability/traceability.json",
+      "sha256": "d511dee2d259a8c1cc1a3e3113d253398093d83a868602f208d0dadfc24242a5"
+    },
+    {
+      "path": "gates/repository-hygiene/hygiene.json",
+      "sha256": "9a06627a6178cf34c9e8f94f724f431ae2451e5bf01428fc394e7ef1b41f6891"
+    },
+    {
+      "path": "gates/repository-hygiene/hygiene.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gates/repository-hygiene/hygiene.stdout.txt",
+      "sha256": "f3e1d878df7d8d0447c9f3f361d4b8d4544765a561740b4be4cf72667a50da71"
+    },
+    {
+      "path": "gates/repository-hygiene/synthetic-scanner-fixtures/.env.synthetic",
+      "sha256": "1b30e5e0ba4ca44389f65f0442df6fd43a70f07178d02903323ceedb6caa8df5"
+    },
+    {
+      "path": "gates/repository-hygiene/synthetic-scanner-fixtures/synthetic-credentials.txt",
+      "sha256": "9f3384e1df5fc90abfd8bae79c6c19e19f60aaec6dc241ebbd9f5417f010196e"
+    },
+    {
+      "path": "gates/repository-hygiene/synthetic-scanner-fixtures/synthetic-private-key.pem",
+      "sha256": "fbe554d0bc5202b5b6e37c746514d72228123d44b61caea5eab85afaf8e86c84"
+    },
+    {
+      "path": "gates/ruff/ruff.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gates/ruff/ruff.stdout.txt",
+      "sha256": "e742c62bcb8e299eae63ba8439e47edf98bdb811e5ece80f98e878d9ad9407dd"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-analyze/SKILL.md",
+      "sha256": "bc5c24e6bbadf90f58e52d351c9ea22d502257ffb584694a9a46cf592dd78033"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-checklist/SKILL.md",
+      "sha256": "f846c702c2a83777ab6806decbfaecb9d7f48b15f48bebb2db1d5f06bc6775dc"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-clarify/SKILL.md",
+      "sha256": "c0ab0a24043c37e03db3251a261d9250da95bb1ab5f69b51f6beedf009900c48"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-constitution/SKILL.md",
+      "sha256": "9ba37cfc2ad0d64dcaf4816f85405376f9e671ef485220dbcbb8ed002aa93036"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-converge/SKILL.md",
+      "sha256": "c73faaef7cd7cbf8b5f5b3a378f5b583b4b878fa6add039d0dc30f5617baa5ef"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-implement/SKILL.md",
+      "sha256": "47bfb14d191d970e63b1acd362a9570baadea947daa1b3b747c3305aa0bd85cc"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-plan/SKILL.md",
+      "sha256": "cef8c4f2cdecc92b2069ba9e0cc3f921d0f87915caa1d8bc023dbc665e02904f"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-specify/SKILL.md",
+      "sha256": "f27c66b20968981c98ec65e67f279c3c5b3ac833016d0c3879b1e9aadc1361c9"
+    },
+    {
+      "path": "initial-snapshot/.github/skills/speckit-tasks/SKILL.md",
+      "sha256": "2236ce1193fc122ee791c4f646aac11a341096670f1ea9aa5424b78148d9b44a"
+    },
+    {
+      "path": "initial-snapshot/.gitignore",
+      "sha256": "d9503c3a13ddeb02b2ab9f2477be8a7a7c38e9f2bc698850960bdfd31a893fa9"
+    },
+    {
+      "path": "initial-snapshot/.harness/README.md",
+      "sha256": "3ecf81320be2be44c4235b119f696468c0c320640873b0c6c5dabc3b8b24f64b"
+    },
+    {
+      "path": "initial-snapshot/.harness/hygiene.ps1",
+      "sha256": "bdc96aefe099d5f244d80cf582afc40e2b41aef6f5b6042a33f4e25c73f77ca3"
+    },
+    {
+      "path": "initial-snapshot/.harness/instruction-files.json",
+      "sha256": "70288856f74700d29faa993fb6a2700d254aaac27010e2345de416ac96c70f79"
+    },
+    {
+      "path": "initial-snapshot/.harness/lint.ps1",
+      "sha256": "92aac6050d34a4a9c6989b45e167eac68c24d4baae0133ae7cfd3c4c3002d8b5"
+    },
+    {
+      "path": "initial-snapshot/.harness/mandatory-checks.json",
+      "sha256": "2aafe21ab224feb40f183ef6c55bfe12d4a9bf7104a22352261a7cd996f9a1d3"
+    },
+    {
+      "path": "initial-snapshot/.harness/run.ps1",
+      "sha256": "d311b41030d05ea0fc3da22b49c53ec25c29ecb8cd0efffbd3de07d49d0782d7"
+    },
+    {
+      "path": "initial-snapshot/.harness/security.ps1",
+      "sha256": "f04e4b23169a46f2fe032e99d5aea4ba9b606deedb9b45d4344ec8febd588bdc"
+    },
+    {
+      "path": "initial-snapshot/.harness/test.ps1",
+      "sha256": "3361e34a3a864d7611a852b0e58bcd0e13d3c7f9357336c08741bdbf75eff8e7"
+    },
+    {
+      "path": "initial-snapshot/.specify/.gitignore",
+      "sha256": "0a61c5378b0bb2e0f85babff99c8b166f2170a2c12378cd17d929aa19296ec88"
+    },
+    {
+      "path": "initial-snapshot/.specify/feature.json",
+      "sha256": "645ce2d99ee4ffad347cb2c6d0d454ee7b9d08b41204fd047dbf1290e8383b3e"
+    },
+    {
+      "path": "initial-snapshot/.specify/init-options.json",
+      "sha256": "b2b21d8acfd7684e17e5448f718d90be389f098e2c8ad9948812804765490a34"
+    },
+    {
+      "path": "initial-snapshot/.specify/integration.json",
+      "sha256": "be24ab7114874dda62954d35e9a32212ab96a0582cb1d5eb65fb7bfd5236addd"
+    },
+    {
+      "path": "initial-snapshot/.specify/integrations/copilot.manifest.json",
+      "sha256": "9860d552c293edfd5fd1f565eeaf44f6aeb98e35696e3b0aad360f6380b9e1ea"
+    },
+    {
+      "path": "initial-snapshot/.specify/integrations/speckit.manifest.json",
+      "sha256": "d56ea94e50785aedf4d2690c1a1466bf8e414bf243d87c5c714e29e15fb231c4"
+    },
+    {
+      "path": "initial-snapshot/.specify/memory/.constitution-template.json",
+      "sha256": "8fc4b39294bae0c10d59547ad7d415b6f0e890d656cbf7171dd567f4e9054711"
+    },
+    {
+      "path": "initial-snapshot/.specify/memory/constitution.md",
+      "sha256": "5b4400754b9957c4930e4e665bff5633fed65e976dd4ba6948dce99d1b2ac9cc"
+    },
+    {
+      "path": "initial-snapshot/.specify/scripts/powershell/check-prerequisites.ps1",
+      "sha256": "b5b522bd3ee99a490903cc0acb2ded41c662c5f18b9b587f44755a883aeb90d2"
+    },
+    {
+      "path": "initial-snapshot/.specify/scripts/powershell/common.ps1",
+      "sha256": "c4816519ffb0b930427559b3ec729ef04a56162f4ef334958c8c50a3f92def9d"
+    },
+    {
+      "path": "initial-snapshot/.specify/scripts/powershell/create-new-feature.ps1",
+      "sha256": "481c7368541a816b1679e5ed65fa9e5aea84b09f8be3a02ff8a340e3b48dd58a"
+    },
+    {
+      "path": "initial-snapshot/.specify/scripts/powershell/resolve-template.ps1",
+      "sha256": "e49c565a09902e4ebd4b5a51c4e014d5067fdee5b1592f15cb44ef31f430d745"
+    },
+    {
+      "path": "initial-snapshot/.specify/scripts/powershell/setup-plan.ps1",
+      "sha256": "5939ef98418e8dc8cc722ef53ba359fc814f3d2a9fd7620f04e8d145a7041f1a"
+    },
+    {
+      "path": "initial-snapshot/.specify/scripts/powershell/setup-tasks.ps1",
+      "sha256": "d286da96d5b7e0075daa56e834fc1e1eb5beaddbc7e06d3ba898d0e9c071c50a"
+    },
+    {
+      "path": "initial-snapshot/.specify/templates/checklist-template.md",
+      "sha256": "856532b3cb66171c662cc16f16b31a5856e4655a8666aad1e545bbfc7f603ca1"
+    },
+    {
+      "path": "initial-snapshot/.specify/templates/constitution-template.md",
+      "sha256": "ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+    },
+    {
+      "path": "initial-snapshot/.specify/templates/plan-template.md",
+      "sha256": "7e637502d41eccf0ca672496636365691fdca62ef37b27ec07fcb412dbfa90d4"
+    },
+    {
+      "path": "initial-snapshot/.specify/templates/spec-template.md",
+      "sha256": "3945437fc35cd30a5b2bf7beea680337c3516826d3efa5a6b92c4a7eca1ba28e"
+    },
+    {
+      "path": "initial-snapshot/.specify/templates/tasks-template.md",
+      "sha256": "fc29a233f6f5a27ca31f1aa46b596af6500c627441c6e62b2bc4a1d721525842"
+    },
+    {
+      "path": "initial-snapshot/.specify/workflows/speckit/workflow.yml",
+      "sha256": "177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+    },
+    {
+      "path": "initial-snapshot/.specify/workflows/workflow-registry.json",
+      "sha256": "0fa48306db832e38d8cf1953d8efb1257189529a550284425fe95ff46783af45"
+    },
+    {
+      "path": "initial-snapshot/pyproject.toml",
+      "sha256": "cbaec1a90614ac701f4d0f72b9399fd79f52db85c2514618b821368930c81020"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/checklists/requirements.md",
+      "sha256": "01602db25c9e3801951336d35d9d2d89e2650b52c1ff8c1ad9ee7fec2d6acc50"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/contracts/openapi.yaml",
+      "sha256": "19e0039e31bf0d22ccabeb23d0831ac466b798386de5f59a89ea1d65c43cb1c2"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/data-model.md",
+      "sha256": "aba2462c29ea222b2b019709901d24ce71972f03a04466515f3d109e68a13826"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/plan.md",
+      "sha256": "57dff3f9a8fa63c8e73e0b1621d06e0269520e6373898f38b1c5c16568de14df"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/quickstart.md",
+      "sha256": "e0b622db78222f79e66666607667e5efba97f9a12e1e611266076681fd7c12ab"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/research.md",
+      "sha256": "77d5e97fdda293a9749852c724a6c2df30ca3daaa77b17c0530ff9aefd2e8d0b"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/spec.md",
+      "sha256": "2e6cf53958da33bbc4b943a334b2d2a0d55084e74ed395c23807ca70ab896a61"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/tasks.md",
+      "sha256": "90017973620f0f797cccb31a92251fc9a9c3b5c0fcec556338eec6d91113a3d9"
+    },
+    {
+      "path": "initial-snapshot/specs/001-smart-todo-api/test-strategy.md",
+      "sha256": "43c53024a14578680c59d55936f7e16505a4491fcf8412b01b2bd1bab3f2bcb9"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/__init__.py",
+      "sha256": "3aca91fe66697bd093ecfbc3480c8ec4ca38c27e083117ccbf887f9db6a0a169"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/api/__init__.py",
+      "sha256": "d7604a3e8a4790d88d816f226170960c075a2200e3b9b73d2ca13de50e276b36"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/api/errors.py",
+      "sha256": "ea85b466df460ee1c93b4e269a4d2033eddffd7ab70dace05854067a7423a538"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/api/routes.py",
+      "sha256": "e4c077f433651f543ff7a6fcf3235dc6682759104abc98929cbd8b97cfe46bfe"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/api/schemas.py",
+      "sha256": "5d9a476b70a52f5cd5be68c22fe290c8a23bcf4bbf4c1a0071ecdb2ca1f6b6e0"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/app.py",
+      "sha256": "bde3bbe5b38f84828d586337ddae67a006b854b24aedfd442107c56b52358d02"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/domain/__init__.py",
+      "sha256": "e913b959fc438a83b6493087b4ac3725450790dc91323f08ee4de9dd2803329a"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/domain/errors.py",
+      "sha256": "82d1abbc57f72adf0200a582d0ebc80e8a1abc026c8edf6a9745ff118d3f6ba1"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/domain/models.py",
+      "sha256": "d08b848861ae0170f021d184e6115531dbc85cde29c20dcdb3c38fe2f248ff38"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/domain/ports.py",
+      "sha256": "07b1b5162322627b7404cd6379ff89a20eccda1979e2626e68d82b0d125b0abd"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/domain/service.py",
+      "sha256": "086e9ea98d5187dea8f7920cd23c7eb91cb494be54ca9044fe5dcb8843ed0382"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/persistence/__init__.py",
+      "sha256": "7b73241347aa42d570333c6309b3f160e39e15f7afab450e8b4af7830f0d26e9"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/persistence/errors.py",
+      "sha256": "70739a9abb82b3a36acf7c316ab4fe15e9ecdef76efa5373db2e6dba58b84a1a"
+    },
+    {
+      "path": "initial-snapshot/src/smart_todo/persistence/json_repository.py",
+      "sha256": "3739012e0aff9bdc76ffcda770ba7ae7a7d85439fec3985dd1ca0734dc7e254e"
+    },
+    {
+      "path": "initial-snapshot/tests/api_contract/test_determinism.py",
+      "sha256": "bad65f8b54b02d0d26b0597e819db65cc0e76d41b32851a6174d63a71bf77ef9"
+    },
+    {
+      "path": "initial-snapshot/tests/api_contract/test_endpoint_contract.py",
+      "sha256": "35525425f53b575879ce291b7a40d2afe9018f9f48f7aaf0d68caff529f83064"
+    },
+    {
+      "path": "initial-snapshot/tests/api_contract/test_legacy_api.py",
+      "sha256": "4b9b8bfe8ec9da3dba5c863c0a7ba714dbe52b9e46268746bbc0d339d8e3a314"
+    },
+    {
+      "path": "initial-snapshot/tests/api_contract/test_status_transitions.py",
+      "sha256": "8cce2f1c95b95cc1f56d5114614b6a2a5138f9bdc9a87b262e116d7f0e47092a"
+    },
+    {
+      "path": "initial-snapshot/tests/api_contract/test_task_crud.py",
+      "sha256": "e93c9304dd925389575a92ab9bf8964e1b61defc3c902c59767faeeb91f7b3d7"
+    },
+    {
+      "path": "initial-snapshot/tests/api_contract/test_task_queries.py",
+      "sha256": "4271b24059502aca1251db6be7be366f7208f05311d94f51fc05bbf1d611cb33"
+    },
+    {
+      "path": "initial-snapshot/tests/concurrency/test_concurrent_mutations.py",
+      "sha256": "1fa5fde569fbf1931dd64720046e6bb1b95f74313d4f604f0928b4baa5a12c1e"
+    },
+    {
+      "path": "initial-snapshot/tests/conftest.py",
+      "sha256": "82dd25fc556fcb0db942299a37fe556047cd13cbc98e778042a8d4ba1f6242b5"
+    },
+    {
+      "path": "initial-snapshot/tests/error_handling/test_request_validation.py",
+      "sha256": "6e7d83d0b043813807d9635a692fb96e95c97f7cdc87bd5dfc3fefd6a67ea57d"
+    },
+    {
+      "path": "initial-snapshot/tests/harness_integrity/test_architecture.py",
+      "sha256": "16e1726364006312079955dba6f1a2338bacf208d094bee0733b8bd588564121"
+    },
+    {
+      "path": "initial-snapshot/tests/harness_integrity/test_repository_hygiene.py",
+      "sha256": "9a38d7bf30a1796e3348b6c0c09338809f8758c2b5eaacfdf864a07678da823f"
+    },
+    {
+      "path": "initial-snapshot/tests/harness_integrity/test_runner_boundaries.py",
+      "sha256": "9ac25550ec16f657938867df4500acf1db47d055e0e1308681fc6b54a52c83eb"
+    },
+    {
+      "path": "initial-snapshot/tests/persistence/test_json_repository.py",
+      "sha256": "6a538e0af3220c57a1563a767e521746d760948e27add81fba9cc2db612e44cc"
+    },
+    {
+      "path": "initial-snapshot/tests/unit/test_id_allocation.py",
+      "sha256": "9f10dce8f7b1fca2607ceddf58d11cc17b73f23a42db5e4a5cff718316570d1d"
+    },
+    {
+      "path": "initial-snapshot/uv.lock",
+      "sha256": "2a9762c545fa993622c3098b4590fa2c6cd27d15a095e149d023a50bb17da82e"
+    },
+    {
+      "path": "preflight-targeted/junit.xml",
+      "sha256": "e5b46517fc444738270c21f5417aeba3dd191ae5acf747d639e40c611ba20c19"
+    },
+    {
+      "path": "preflight-targeted/results.json",
+      "sha256": "e462f83449b6d266d01ef83b5bbbc76f5c7fb9f55a988d5aa3d53ef0f117323a"
+    },
+    {
+      "path": "preflight-targeted/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "preflight-targeted/stdout.txt",
+      "sha256": "8fc617c48104a5906f98846a313507a706dd989a14c590eafdc00b1f2baefafe"
+    },
+    {
+      "path": "repair-linkage.json",
+      "sha256": "230b0d4bb62528d973b1fc97c7f1f6854390d21321861c78951e56bdd7e2e3dc"
+    },
+    {
+      "path": "results.json",
+      "sha256": "cf8d9dd9a409a061797b2552a9065824f6ed9c837fcccc40ea66e3df6b9cecb0"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-analyze/SKILL.md",
+      "sha256": "bc5c24e6bbadf90f58e52d351c9ea22d502257ffb584694a9a46cf592dd78033"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-checklist/SKILL.md",
+      "sha256": "f846c702c2a83777ab6806decbfaecb9d7f48b15f48bebb2db1d5f06bc6775dc"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-clarify/SKILL.md",
+      "sha256": "c0ab0a24043c37e03db3251a261d9250da95bb1ab5f69b51f6beedf009900c48"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-constitution/SKILL.md",
+      "sha256": "9ba37cfc2ad0d64dcaf4816f85405376f9e671ef485220dbcbb8ed002aa93036"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-converge/SKILL.md",
+      "sha256": "c73faaef7cd7cbf8b5f5b3a378f5b583b4b878fa6add039d0dc30f5617baa5ef"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-implement/SKILL.md",
+      "sha256": "47bfb14d191d970e63b1acd362a9570baadea947daa1b3b747c3305aa0bd85cc"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-plan/SKILL.md",
+      "sha256": "cef8c4f2cdecc92b2069ba9e0cc3f921d0f87915caa1d8bc023dbc665e02904f"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-specify/SKILL.md",
+      "sha256": "f27c66b20968981c98ec65e67f279c3c5b3ac833016d0c3879b1e9aadc1361c9"
+    },
+    {
+      "path": "staged-candidate/.github/skills/speckit-tasks/SKILL.md",
+      "sha256": "2236ce1193fc122ee791c4f646aac11a341096670f1ea9aa5424b78148d9b44a"
+    },
+    {
+      "path": "staged-candidate/.gitignore",
+      "sha256": "d9503c3a13ddeb02b2ab9f2477be8a7a7c38e9f2bc698850960bdfd31a893fa9"
+    },
+    {
+      "path": "staged-candidate/.harness/README.md",
+      "sha256": "3ecf81320be2be44c4235b119f696468c0c320640873b0c6c5dabc3b8b24f64b"
+    },
+    {
+      "path": "staged-candidate/.harness/hygiene.ps1",
+      "sha256": "bdc96aefe099d5f244d80cf582afc40e2b41aef6f5b6042a33f4e25c73f77ca3"
+    },
+    {
+      "path": "staged-candidate/.harness/instruction-files.json",
+      "sha256": "70288856f74700d29faa993fb6a2700d254aaac27010e2345de416ac96c70f79"
+    },
+    {
+      "path": "staged-candidate/.harness/lint.ps1",
+      "sha256": "92aac6050d34a4a9c6989b45e167eac68c24d4baae0133ae7cfd3c4c3002d8b5"
+    },
+    {
+      "path": "staged-candidate/.harness/mandatory-checks.json",
+      "sha256": "2aafe21ab224feb40f183ef6c55bfe12d4a9bf7104a22352261a7cd996f9a1d3"
+    },
+    {
+      "path": "staged-candidate/.harness/run.ps1",
+      "sha256": "d311b41030d05ea0fc3da22b49c53ec25c29ecb8cd0efffbd3de07d49d0782d7"
+    },
+    {
+      "path": "staged-candidate/.harness/security.ps1",
+      "sha256": "f04e4b23169a46f2fe032e99d5aea4ba9b606deedb9b45d4344ec8febd588bdc"
+    },
+    {
+      "path": "staged-candidate/.harness/test.ps1",
+      "sha256": "3361e34a3a864d7611a852b0e58bcd0e13d3c7f9357336c08741bdbf75eff8e7"
+    },
+    {
+      "path": "staged-candidate/.specify/.gitignore",
+      "sha256": "0a61c5378b0bb2e0f85babff99c8b166f2170a2c12378cd17d929aa19296ec88"
+    },
+    {
+      "path": "staged-candidate/.specify/feature.json",
+      "sha256": "645ce2d99ee4ffad347cb2c6d0d454ee7b9d08b41204fd047dbf1290e8383b3e"
+    },
+    {
+      "path": "staged-candidate/.specify/init-options.json",
+      "sha256": "b2b21d8acfd7684e17e5448f718d90be389f098e2c8ad9948812804765490a34"
+    },
+    {
+      "path": "staged-candidate/.specify/integration.json",
+      "sha256": "be24ab7114874dda62954d35e9a32212ab96a0582cb1d5eb65fb7bfd5236addd"
+    },
+    {
+      "path": "staged-candidate/.specify/integrations/copilot.manifest.json",
+      "sha256": "9860d552c293edfd5fd1f565eeaf44f6aeb98e35696e3b0aad360f6380b9e1ea"
+    },
+    {
+      "path": "staged-candidate/.specify/integrations/speckit.manifest.json",
+      "sha256": "d56ea94e50785aedf4d2690c1a1466bf8e414bf243d87c5c714e29e15fb231c4"
+    },
+    {
+      "path": "staged-candidate/.specify/memory/.constitution-template.json",
+      "sha256": "8fc4b39294bae0c10d59547ad7d415b6f0e890d656cbf7171dd567f4e9054711"
+    },
+    {
+      "path": "staged-candidate/.specify/memory/constitution.md",
+      "sha256": "5b4400754b9957c4930e4e665bff5633fed65e976dd4ba6948dce99d1b2ac9cc"
+    },
+    {
+      "path": "staged-candidate/.specify/scripts/powershell/check-prerequisites.ps1",
+      "sha256": "b5b522bd3ee99a490903cc0acb2ded41c662c5f18b9b587f44755a883aeb90d2"
+    },
+    {
+      "path": "staged-candidate/.specify/scripts/powershell/common.ps1",
+      "sha256": "c4816519ffb0b930427559b3ec729ef04a56162f4ef334958c8c50a3f92def9d"
+    },
+    {
+      "path": "staged-candidate/.specify/scripts/powershell/create-new-feature.ps1",
+      "sha256": "481c7368541a816b1679e5ed65fa9e5aea84b09f8be3a02ff8a340e3b48dd58a"
+    },
+    {
+      "path": "staged-candidate/.specify/scripts/powershell/resolve-template.ps1",
+      "sha256": "e49c565a09902e4ebd4b5a51c4e014d5067fdee5b1592f15cb44ef31f430d745"
+    },
+    {
+      "path": "staged-candidate/.specify/scripts/powershell/setup-plan.ps1",
+      "sha256": "5939ef98418e8dc8cc722ef53ba359fc814f3d2a9fd7620f04e8d145a7041f1a"
+    },
+    {
+      "path": "staged-candidate/.specify/scripts/powershell/setup-tasks.ps1",
+      "sha256": "d286da96d5b7e0075daa56e834fc1e1eb5beaddbc7e06d3ba898d0e9c071c50a"
+    },
+    {
+      "path": "staged-candidate/.specify/templates/checklist-template.md",
+      "sha256": "856532b3cb66171c662cc16f16b31a5856e4655a8666aad1e545bbfc7f603ca1"
+    },
+    {
+      "path": "staged-candidate/.specify/templates/constitution-template.md",
+      "sha256": "ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+    },
+    {
+      "path": "staged-candidate/.specify/templates/plan-template.md",
+      "sha256": "7e637502d41eccf0ca672496636365691fdca62ef37b27ec07fcb412dbfa90d4"
+    },
+    {
+      "path": "staged-candidate/.specify/templates/spec-template.md",
+      "sha256": "3945437fc35cd30a5b2bf7beea680337c3516826d3efa5a6b92c4a7eca1ba28e"
+    },
+    {
+      "path": "staged-candidate/.specify/templates/tasks-template.md",
+      "sha256": "fc29a233f6f5a27ca31f1aa46b596af6500c627441c6e62b2bc4a1d721525842"
+    },
+    {
+      "path": "staged-candidate/.specify/workflows/speckit/workflow.yml",
+      "sha256": "177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+    },
+    {
+      "path": "staged-candidate/.specify/workflows/workflow-registry.json",
+      "sha256": "0fa48306db832e38d8cf1953d8efb1257189529a550284425fe95ff46783af45"
+    },
+    {
+      "path": "staged-candidate/pyproject.toml",
+      "sha256": "cbaec1a90614ac701f4d0f72b9399fd79f52db85c2514618b821368930c81020"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/checklists/requirements.md",
+      "sha256": "01602db25c9e3801951336d35d9d2d89e2650b52c1ff8c1ad9ee7fec2d6acc50"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/contracts/openapi.yaml",
+      "sha256": "19e0039e31bf0d22ccabeb23d0831ac466b798386de5f59a89ea1d65c43cb1c2"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/data-model.md",
+      "sha256": "aba2462c29ea222b2b019709901d24ce71972f03a04466515f3d109e68a13826"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/plan.md",
+      "sha256": "57dff3f9a8fa63c8e73e0b1621d06e0269520e6373898f38b1c5c16568de14df"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/quickstart.md",
+      "sha256": "e0b622db78222f79e66666607667e5efba97f9a12e1e611266076681fd7c12ab"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/research.md",
+      "sha256": "77d5e97fdda293a9749852c724a6c2df30ca3daaa77b17c0530ff9aefd2e8d0b"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/spec.md",
+      "sha256": "2e6cf53958da33bbc4b943a334b2d2a0d55084e74ed395c23807ca70ab896a61"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/tasks.md",
+      "sha256": "90017973620f0f797cccb31a92251fc9a9c3b5c0fcec556338eec6d91113a3d9"
+    },
+    {
+      "path": "staged-candidate/specs/001-smart-todo-api/test-strategy.md",
+      "sha256": "43c53024a14578680c59d55936f7e16505a4491fcf8412b01b2bd1bab3f2bcb9"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/__init__.py",
+      "sha256": "3aca91fe66697bd093ecfbc3480c8ec4ca38c27e083117ccbf887f9db6a0a169"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/api/__init__.py",
+      "sha256": "d7604a3e8a4790d88d816f226170960c075a2200e3b9b73d2ca13de50e276b36"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/api/errors.py",
+      "sha256": "ea85b466df460ee1c93b4e269a4d2033eddffd7ab70dace05854067a7423a538"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/api/routes.py",
+      "sha256": "e4c077f433651f543ff7a6fcf3235dc6682759104abc98929cbd8b97cfe46bfe"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/api/schemas.py",
+      "sha256": "5d9a476b70a52f5cd5be68c22fe290c8a23bcf4bbf4c1a0071ecdb2ca1f6b6e0"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/app.py",
+      "sha256": "bde3bbe5b38f84828d586337ddae67a006b854b24aedfd442107c56b52358d02"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/domain/__init__.py",
+      "sha256": "e913b959fc438a83b6493087b4ac3725450790dc91323f08ee4de9dd2803329a"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/domain/errors.py",
+      "sha256": "82d1abbc57f72adf0200a582d0ebc80e8a1abc026c8edf6a9745ff118d3f6ba1"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/domain/models.py",
+      "sha256": "d08b848861ae0170f021d184e6115531dbc85cde29c20dcdb3c38fe2f248ff38"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/domain/ports.py",
+      "sha256": "07b1b5162322627b7404cd6379ff89a20eccda1979e2626e68d82b0d125b0abd"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/domain/service.py",
+      "sha256": "086e9ea98d5187dea8f7920cd23c7eb91cb494be54ca9044fe5dcb8843ed0382"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/persistence/__init__.py",
+      "sha256": "7b73241347aa42d570333c6309b3f160e39e15f7afab450e8b4af7830f0d26e9"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/persistence/errors.py",
+      "sha256": "70739a9abb82b3a36acf7c316ab4fe15e9ecdef76efa5373db2e6dba58b84a1a"
+    },
+    {
+      "path": "staged-candidate/src/smart_todo/persistence/json_repository.py",
+      "sha256": "3739012e0aff9bdc76ffcda770ba7ae7a7d85439fec3985dd1ca0734dc7e254e"
+    },
+    {
+      "path": "staged-candidate/tests/api_contract/test_determinism.py",
+      "sha256": "bad65f8b54b02d0d26b0597e819db65cc0e76d41b32851a6174d63a71bf77ef9"
+    },
+    {
+      "path": "staged-candidate/tests/api_contract/test_endpoint_contract.py",
+      "sha256": "35525425f53b575879ce291b7a40d2afe9018f9f48f7aaf0d68caff529f83064"
+    },
+    {
+      "path": "staged-candidate/tests/api_contract/test_legacy_api.py",
+      "sha256": "4b9b8bfe8ec9da3dba5c863c0a7ba714dbe52b9e46268746bbc0d339d8e3a314"
+    },
+    {
+      "path": "staged-candidate/tests/api_contract/test_status_transitions.py",
+      "sha256": "8cce2f1c95b95cc1f56d5114614b6a2a5138f9bdc9a87b262e116d7f0e47092a"
+    },
+    {
+      "path": "staged-candidate/tests/api_contract/test_task_crud.py",
+      "sha256": "e93c9304dd925389575a92ab9bf8964e1b61defc3c902c59767faeeb91f7b3d7"
+    },
+    {
+      "path": "staged-candidate/tests/api_contract/test_task_queries.py",
+      "sha256": "4271b24059502aca1251db6be7be366f7208f05311d94f51fc05bbf1d611cb33"
+    },
+    {
+      "path": "staged-candidate/tests/concurrency/test_concurrent_mutations.py",
+      "sha256": "1fa5fde569fbf1931dd64720046e6bb1b95f74313d4f604f0928b4baa5a12c1e"
+    },
+    {
+      "path": "staged-candidate/tests/conftest.py",
+      "sha256": "82dd25fc556fcb0db942299a37fe556047cd13cbc98e778042a8d4ba1f6242b5"
+    },
+    {
+      "path": "staged-candidate/tests/error_handling/test_request_validation.py",
+      "sha256": "6e7d83d0b043813807d9635a692fb96e95c97f7cdc87bd5dfc3fefd6a67ea57d"
+    },
+    {
+      "path": "staged-candidate/tests/harness_integrity/test_architecture.py",
+      "sha256": "16e1726364006312079955dba6f1a2338bacf208d094bee0733b8bd588564121"
+    },
+    {
+      "path": "staged-candidate/tests/harness_integrity/test_repository_hygiene.py",
+      "sha256": "9a38d7bf30a1796e3348b6c0c09338809f8758c2b5eaacfdf864a07678da823f"
+    },
+    {
+      "path": "staged-candidate/tests/harness_integrity/test_runner_boundaries.py",
+      "sha256": "9ac25550ec16f657938867df4500acf1db47d055e0e1308681fc6b54a52c83eb"
+    },
+    {
+      "path": "staged-candidate/tests/persistence/test_json_repository.py",
+      "sha256": "6a538e0af3220c57a1563a767e521746d760948e27add81fba9cc2db612e44cc"
+    },
+    {
+      "path": "staged-candidate/tests/unit/test_id_allocation.py",
+      "sha256": "9f10dce8f7b1fca2607ceddf58d11cc17b73f23a42db5e4a5cff718316570d1d"
+    },
+    {
+      "path": "staged-candidate/uv.lock",
+      "sha256": "2a9762c545fa993622c3098b4590fa2c6cd27d15a095e149d023a50bb17da82e"
+    }
+  ]
+}

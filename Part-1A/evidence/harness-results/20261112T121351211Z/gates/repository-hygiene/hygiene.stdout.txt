@@ -1,0 +1,5 @@
+Tracked files inspected: 56
+Publication-candidate text files inspected: 62
+Synthetic scanner fixtures passed: True
+Hygiene findings: 0
+Hygiene report: C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T121351211Z\gates\repository-hygiene\hygiene.json

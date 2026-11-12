@@ -1,0 +1,5 @@
+Gate: governance-boundary
+Status: BLOCKED
+Command: Verify separately administered identity/ACL or protected CI and canonical baseline
+Exit code: 2
+Observed: D-01 remains blocked: this repository has no independently verified canonical runner, protected baseline, approval register, or separate execution boundary. Local gate output is diagnostic only.

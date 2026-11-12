@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Annotated, Literal
+from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
@@ -13,7 +13,7 @@ class CreateTaskRequest(BaseModel):
     title: str
     description: str | None = None
     tags: list[str] = Field(default_factory=list)
-    priority: Priority | None = None
+    priority: Priority = Priority.MEDIUM
 
     @field_validator("title")
     @classmethod
@@ -58,13 +58,13 @@ class CreateTaskRequest(BaseModel):
 
     @field_validator("priority", mode="before")
     @classmethod
-    def validate_priority(cls, value: Priority | str | None) -> Priority | None:
+    def validate_priority(cls, value: Any) -> Any:
         if value is None:
-            return None
+            raise ValueError("priority must be Low, Medium, or High")
         if isinstance(value, Priority):
             return value
         if not isinstance(value, str):
-            raise TypeError("priority must be a string or null")
+            return value
         try:
             return Priority(value)
         except ValueError as exc:
@@ -126,13 +126,13 @@ class UpdateTaskRequest(BaseModel):
 
     @field_validator("priority", mode="before")
     @classmethod
-    def validate_priority(cls, value: Priority | str | None) -> Priority | None:
+    def validate_priority(cls, value: Any) -> Any:
         if value is None:
-            return None
+            raise ValueError("priority must be Low, Medium, or High")
         if isinstance(value, Priority):
             return value
         if not isinstance(value, str):
-            raise TypeError("priority must be a string or null")
+            return value
         try:
             return Priority(value)
         except ValueError as exc:

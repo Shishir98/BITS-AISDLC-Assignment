@@ -1,0 +1,7 @@
+Command: "C:\Users\User\.local\bin\uv.exe" run --active --locked --no-sync --directory "C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T173033023Z\staged-candidate" pytest -q -p no:cacheprovider tests --junitxml="C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T173033023Z\gates\pytest-and-traceability\junit.xml"
+Pytest exit code: 0
+Pytest collection exit code: 0
+JUnit test cases: 35
+Acceptance criteria without full executable coverage: 7
+Missing mandatory suite directories: 0
+AC-to-AT mapping issues: 0

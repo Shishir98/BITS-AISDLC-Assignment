@@ -3,7 +3,7 @@
 **Branch**: `001-smart-todo-api` | **Date**: 2026-11-11 | **Spec**:
 [spec.md](./spec.md)
 
-**Status**: Draft - Pending Human Review
+**Status**: ACCEPT
 
 **Planning basis**: The constitution remains pending human approval. Feature
 specification v1.3.0 is a proposed revision that carries forward the pending

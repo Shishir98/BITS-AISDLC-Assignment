@@ -7,7 +7,7 @@ VIII. Code Quality; IX. Independent Validation Harness.
 Modified sections: Lifecycle, Validation and Evidence.
 Added sections: none.
 Removed sections: none.
-Status: pending human approval; not ratified.
+Status: Accepted.
 Follow-up TODO: confirm the original ratification date.
 -->
 
@@ -123,4 +123,4 @@ MUST be resolved through an approved amendment or by bringing the work into
 compliance; automated validation does not replace human review or the explicit
 final decision.
 
-**Version**: 1.1.0 | **Ratified**: TODO: confirm ratification date | **Last Amended**: 2026-11-11
+**Version**: 1.1.0 | **Ratified**: ACCEPT | **Last Amended**: 2026-11-11

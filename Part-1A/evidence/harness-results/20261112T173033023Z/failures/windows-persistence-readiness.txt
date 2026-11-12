@@ -1,0 +1,8 @@
+Gate: windows-persistence-readiness
+Requirement: D-05 requires a supported Windows atomic-visibility strategy with approved evidence.
+Expected: Demonstrated atomic visibility on the supported Windows filesystem, backed by an approved strategy and relevant evidence.
+Observed: Same-directory temporary file followed by os.replace.
+AT-014 evidence scope: Injected write/replacement failures verify rollback behavior only; they do not establish atomic visibility.
+D-05 status: BLOCKED
+Blocking reason: No approved strategy or evidence establishes the required atomic-visibility guarantee on the supported Windows filesystem. AT-014 rollback tests verify reported write/replacement failure handling only.
+Approved evidence references: 

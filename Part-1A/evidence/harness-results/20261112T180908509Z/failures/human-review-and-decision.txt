@@ -1,0 +1,5 @@
+Gate: human-review-and-decision
+Status: BLOCKED
+Command: Check for separately recorded human Bandit review and final ACCEPT/REJECT decision
+Exit code: 2
+Observed: No human security disposition or final decision was supplied. The runner does not create, infer, or impersonate these records.

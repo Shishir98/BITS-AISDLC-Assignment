@@ -35,7 +35,7 @@ project structure without adding application behavior. T002 may proceed
 independently; T001 is blocked on T003 approval.
 
 - [ ] T001 BLOCKED (T003) Create or complete `pyproject.toml` only after T003 verifies actual human approval of the project and the exact package-version set: FastAPI 0.162.4, Pydantic 2.14.3, pytest 9.2.0, HTTPX 0.28.1, Ruff 0.17.4, Bandit 1.9.4, and Uvicorn 0.54.0. Generate `uv.lock`, verify the active interpreter and dependency resolution target Python 3.12, then run `uv lock --check --python 3.12` and `uv sync --locked`. Record the approved dependencies in `pyproject.toml`, `uv.lock`, and `specs/001-smart-todo-api/research.md`. Before T003, only read-only environment inspection (for example, `python --version` and `uv --version`) is permitted; do not create or modify either project file or install project dependencies.
-- [ ] T002 [P] Create the planned `src/`, `tests/`, `.harness/`, and `evidence/` directory structure from `plan.md`; preserve runtime-data and local-environment exclusions in `.gitignore`.
+- [x] T002 [P] Create the planned `src/`, `tests/`, `.harness/`, and `evidence/` directory structure from `plan.md`; preserve runtime-data and local-environment exclusions in `.gitignore`.
 
 ## Phase 2: Foundational Gates
 

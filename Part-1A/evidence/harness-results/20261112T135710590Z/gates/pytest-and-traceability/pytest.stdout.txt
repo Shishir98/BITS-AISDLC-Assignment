@@ -1,0 +1,40 @@
+................F..................                                      [100%]
+================================== FAILURES ===================================
+____________ test_at008_priority_values_default_and_invalid_inputs ____________
+
+client = <starlette.testclient.TestClient object at 0x000002105D9D5970>
+
+    def test_at008_priority_values_default_and_invalid_inputs(client: TestClient) -> None:
+        defaulted = client.post("/tasks", json={"title": "Default"})
+        assert defaulted.status_code == 201
+        assert defaulted.json()["priority"] == "Medium"
+    
+        for priority in ("Low", "Medium", "High"):
+            response = client.post("/tasks", json={"title": priority, "priority": priority})
+            assert response.status_code == 201
+            assert response.json()["priority"] == priority
+    
+        invalid = client.post("/tasks", json={"title": "Invalid", "priority": "Urgent"})
+        assert invalid.status_code == 422
+        explicit_null = client.post("/tasks", json={"title": "Null", "priority": None})
+>       assert explicit_null.status_code == 422
+E       assert 201 == 422
+E        +  where 201 = <Response [201 Created]>.status_code
+
+tests\api_contract\test_task_queries.py:44: AssertionError
+============================== warnings summary ===============================
+..\..\..\..\..\..\Assignment-1\Part-1A\.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\User\Assignment-1\Part-1A\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/api_contract/test_endpoint_contract.py::test_at019_success_and_applicable_error_statuses_for_every_endpoint
+tests/api_contract/test_endpoint_contract.py::test_at019_success_and_applicable_error_statuses_for_every_endpoint
+tests/api_contract/test_legacy_api.py::test_invalid_json_and_bad_id
+tests/error_handling/test_request_validation.py::test_at018_malformed_json_ids_queries_and_enum_values_are_rejected
+  C:\Users\User\Assignment-1\Part-1A\.venv\Lib\site-packages\httpx\_models.py:408: DeprecationWarning: Use 'content=<...>' to upload raw bytes/text content.
+    headers, stream = encode_request(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/api_contract/test_task_queries.py::test_at008_priority_values_default_and_invalid_inputs
+1 failed, 34 passed, 5 warnings in 2.24s

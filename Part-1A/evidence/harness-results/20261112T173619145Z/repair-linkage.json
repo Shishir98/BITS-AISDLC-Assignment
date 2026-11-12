@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-12T17:45:12.600801+00:00",
+  "originalRun": {
+    "runId": "20261112T135710590Z",
+    "candidateDigest": "3d45478db910f91903d8b125117b8aaae2a514ded8f721e9449f94ce68f3e116",
+    "evidenceBundleDigest": "926abdb24217895fc61a739b07e3d3630e2fc238e1e8e2edbb55c2bca580751f",
+    "status": "FAILED",
+    "junit": {
+      "tests": 35,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "failure": {
+      "acceptanceCriterion": "AC-008",
+      "acceptanceTest": "AT-008",
+      "nodeId": "tests/api_contract/test_task_queries.py::test_at008_priority_values_default_and_invalid_inputs",
+      "expectedHttpStatus": 422,
+      "observedHttpStatus": 201,
+      "junitFailureMessage": "assert 201 == 422\n +  where 201 = <Response [201 Created]>.status_code",
+      "references": [
+        "20261112T135710590Z/gates/pytest-and-traceability/junit.xml",
+        "20261112T135710590Z/failures/pytest-and-traceability.txt"
+      ]
+    }
+  },
+  "intermediateRepairRun": {
+    "runId": "20261112T173033023Z",
+    "candidateDigest": "ae17aafc15a606a4c6ef89e7b19d663d1a93e633a3447bc1e6b82d2d088ebc69",
+    "status": "FAILED",
+    "gateStatuses": {
+      "candidate-integrity-before": "PASS",
+      "instruction-inventory": "FAIL",
+      "governance-boundary": "BLOCKED",
+      "windows-persistence-readiness": "BLOCKED",
+      "ruff": "FAIL",
+      "bandit": "PASS",
+      "pytest-and-traceability": "FAIL",
+      "repository-hygiene": "PASS",
+      "human-review-and-decision": "BLOCKED",
+      "candidate-integrity-after": "PASS"
+    },
+    "junit": {
+      "tests": 35,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "ruffReference": "20261112T173033023Z/gates/ruff/ruff.stdout.txt"
+  },
+  "finalRun": {
+    "runId": "20261112T173619145Z",
+    "candidateDigest": "be351d3fb9f591814de8c41e2573fe0da5a0219281e597ed1a73b9f74bb27c0c",
+    "finalCandidateDigest": "be351d3fb9f591814de8c41e2573fe0da5a0219281e597ed1a73b9f74bb27c0c",
+    "status": "FAILED",
+    "authoritative": false,
+    "decision": null,
+    "gateStatuses": {
+      "candidate-integrity-before": "PASS",
+      "instruction-inventory": "FAIL",
+      "governance-boundary": "BLOCKED",
+      "windows-persistence-readiness": "BLOCKED",
+      "ruff": "PASS",
+      "bandit": "PASS",
+      "pytest-and-traceability": "FAIL",
+      "repository-hygiene": "PASS",
+      "human-review-and-decision": "BLOCKED",
+      "candidate-integrity-after": "PASS"
+    },
+    "junit": {
+      "tests": 35,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "junitReference": "gates/pytest-and-traceability/junit.xml",
+    "targetedJunit": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "targetedJunitReference": "preflight-targeted/junit.xml",
+    "traceability": {
+      "full": 22,
+      "partial": 7,
+      "fail": 0,
+      "mappingIssues": 0,
+      "withoutFullCoverage": 7,
+      "partialCriteria": [
+        "AC-014",
+        "AC-022",
+        "AC-023",
+        "AC-024",
+        "AC-026",
+        "AC-027",
+        "AC-028"
+      ],
+      "reference": "gates/pytest-and-traceability/traceability.json"
+    },
+    "bandit": {
+      "gateStatus": "PASS",
+      "findingCount": 0,
+      "errorCount": 0,
+      "reference": "gates/bandit/bandit.json"
+    },
+    "repositoryHygiene": {
+      "gateStatus": "PASS",
+      "findingCount": 0,
+      "syntheticFixtureChecksPassed": true,
+      "secretsOmitted": true,
+      "reference": "gates/repository-hygiene/hygiene.json"
+    },
+    "d01Status": "BLOCKED",
+    "d05Status": "BLOCKED",
+    "humanDecision": null,
+    "failureReports": [
+      "failures/instruction-inventory.txt",
+      "failures/governance-boundary.txt",
+      "failures/windows-persistence-readiness.txt",
+      "failures/pytest-and-traceability.txt",
+      "failures/human-review-and-decision.txt"
+    ]
+  },
+  "candidateDiff": {
+    "initialCandidateDigest": "3d45478db910f91903d8b125117b8aaae2a514ded8f721e9449f94ce68f3e116",
+    "finalCandidateDigest": "be351d3fb9f591814de8c41e2573fe0da5a0219281e597ed1a73b9f74bb27c0c",
+    "added": [],
+    "removed": [],
+    "changed": [
+      ".harness/README.md",
+      ".harness/mandatory-checks.json",
+      ".harness/run.ps1",
+      "specs/001-smart-todo-api/test-strategy.md",
+      "src/smart_todo/api/schemas.py",
+      "src/smart_todo/domain/service.py",
+      "tests/api_contract/test_task_queries.py",
+      "tests/concurrency/test_concurrent_mutations.py",
+      "tests/harness_integrity/test_architecture.py",
+      "tests/harness_integrity/test_runner_boundaries.py"
+    ],
+    "outsideCandidateFiles": [
+      "README.md",
+      "Part-1A/evidence/harness-log.md"
+    ]
+  }
+}

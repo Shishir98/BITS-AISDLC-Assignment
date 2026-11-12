@@ -1,0 +1,5 @@
+Gate: instruction-inventory
+Status: FAIL
+Command: Validate exact instruction inventory entries and listed-file SHA-256 values
+Exit code: 1
+Observed: An inventory approval reference is not present for: .github/skills/speckit-analyze/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-checklist/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-clarify/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-constitution/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-converge/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-implement/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-plan/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-specify/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-tasks/SKILL.md An inventoried instruction digest does not match: .specify/memory/constitution.md An inventory approval reference is not present for: .specify/memory/constitution.md

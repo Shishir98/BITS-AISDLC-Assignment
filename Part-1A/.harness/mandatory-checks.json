@@ -1,0 +1,544 @@
+{
+  "schemaVersion": 1,
+  "validationMode": "repository-candidate-diagnostic-only",
+  "authority": {
+    "trustedRunnerPresent": false,
+    "protectedBaselinePresent": false,
+    "separateIdentityOrProtectedCiDemonstrated": false,
+    "d01Status": "BLOCKED"
+  },
+  "windowsPersistenceReadiness": {
+    "d05Status": "BLOCKED",
+    "approvedWindowsAtomicVisibilityStrategyPresent": false,
+    "supportedFilesystemAtomicVisibilityEvidencePresent": false,
+    "rollbackTestsEstablishAtomicVisibility": false,
+    "observedImplementation": "Same-directory temporary file followed by os.replace.",
+    "evidenceReferences": [],
+    "blockingReason": "No approved strategy or evidence establishes the required atomic-visibility guarantee on the supported Windows filesystem. AT-014 rollback tests verify reported write/replacement failure handling only."
+  },
+  "executionSequence": [
+    "candidate-integrity-before",
+    "instruction-inventory",
+    "governance-boundary",
+    "windows-persistence-readiness",
+    "ruff",
+    "bandit",
+    "pytest-and-traceability",
+    "repository-hygiene",
+    "human-review-and-decision",
+    "candidate-integrity-after"
+  ],
+  "candidate": {
+    "includeRootFiles": true,
+    "includeDirectories": [
+      ".github",
+      ".specify",
+      ".harness",
+      "specs",
+      "src",
+      "tests"
+    ],
+    "excludeDirectoryNames": [
+      ".git",
+      ".venv",
+      "__pycache__",
+      ".pytest_cache",
+      ".ruff_cache",
+      ".mypy_cache",
+      ".tox",
+      "build",
+      "dist",
+      "data",
+      "evidence"
+    ],
+    "excludeFileSuffixes": [
+      ".pyc",
+      ".pyo",
+      ".tmp",
+      ".log"
+    ]
+  },
+  "ruff": {
+    "command": "uv run --active --locked --no-sync --directory <staged-root> ruff check src tests",
+    "requiredExitCode": 0
+  },
+  "bandit": {
+    "command": "uv run --active --locked --no-sync --directory <staged-root> bandit -r src -f json",
+    "requiredExitCode": 0,
+    "findingsRequireHumanReview": true
+  },
+  "pytest": {
+    "command": "uv run --active --locked --no-sync --directory <staged-root> pytest -q tests --junitxml=<evidence>/junit.xml",
+    "testPaths": [
+      "tests"
+    ],
+    "requiredSuiteDirectories": [
+      "tests/unit",
+      "tests/persistence",
+      "tests/concurrency",
+      "tests/api_contract",
+      "tests/error_handling",
+      "tests/harness_integrity"
+    ],
+    "acceptanceTestIds": [
+      "AT-001",
+      "AT-002",
+      "AT-003",
+      "AT-004",
+      "AT-005",
+      "AT-006",
+      "AT-007",
+      "AT-008",
+      "AT-009",
+      "AT-010",
+      "AT-011",
+      "AT-012",
+      "AT-013",
+      "AT-014",
+      "AT-015",
+      "AT-016",
+      "AT-017",
+      "AT-018",
+      "AT-019",
+      "AT-020",
+      "AT-021",
+      "AT-022",
+      "AT-023",
+      "AT-024",
+      "AT-025",
+      "AT-026",
+      "AT-027",
+      "AT-028",
+      "AT-029"
+    ]
+  },
+  "traceability": [
+    {
+      "ac": "AC-001",
+      "at": "AT-001",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_task_crud.py",
+          "className": "tests.api_contract.test_task_crud",
+          "name": "test_at001_create_response_matches_task_contract",
+          "nodeId": "tests/api_contract/test_task_crud.py::test_at001_create_response_matches_task_contract"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-002",
+      "at": "AT-002",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/unit/test_id_allocation.py",
+          "className": "tests.unit.test_id_allocation",
+          "name": "test_at002_ids_are_deterministic_and_never_reused_after_delete_or_restart",
+          "nodeId": "tests/unit/test_id_allocation.py::test_at002_ids_are_deterministic_and_never_reused_after_delete_or_restart"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-003",
+      "at": "AT-003",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_task_crud.py",
+          "className": "tests.api_contract.test_task_crud",
+          "name": "test_at003_list_and_get_reflect_empty_existing_and_missing_tasks",
+          "nodeId": "tests/api_contract/test_task_crud.py::test_at003_list_and_get_reflect_empty_existing_and_missing_tasks"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-004",
+      "at": "AT-004",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_task_crud.py",
+          "className": "tests.api_contract.test_task_crud",
+          "name": "test_at004_patch_changes_only_supplied_fields_and_rejects_empty_update",
+          "nodeId": "tests/api_contract/test_task_crud.py::test_at004_patch_changes_only_supplied_fields_and_rejects_empty_update"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-005",
+      "at": "AT-005",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_task_crud.py",
+          "className": "tests.api_contract.test_task_crud",
+          "name": "test_at005_delete_has_no_response_body_and_missing_ids_are_404",
+          "nodeId": "tests/api_contract/test_task_crud.py::test_at005_delete_has_no_response_body_and_missing_ids_are_404"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-006",
+      "at": "AT-006",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_task_queries.py",
+          "className": "tests.api_contract.test_task_queries",
+          "name": "test_at006_tags_are_trimmed_lowercased_deduplicated_and_sorted",
+          "nodeId": "tests/api_contract/test_task_queries.py::test_at006_tags_are_trimmed_lowercased_deduplicated_and_sorted"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-007",
+      "at": "AT-007",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_task_queries.py",
+          "className": "tests.api_contract.test_task_queries",
+          "name": "test_at007_tag_filters_are_anded_normalized_deduplicated_and_can_match_nothing",
+          "nodeId": "tests/api_contract/test_task_queries.py::test_at007_tag_filters_are_anded_normalized_deduplicated_and_can_match_nothing"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-008",
+      "at": "AT-008",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_task_queries.py",
+          "className": "tests.api_contract.test_task_queries",
+          "name": "test_at008_priority_values_default_and_invalid_inputs",
+          "nodeId": "tests/api_contract/test_task_queries.py::test_at008_priority_values_default_and_invalid_inputs"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-009",
+      "at": "AT-009",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_task_queries.py",
+          "className": "tests.api_contract.test_task_queries",
+          "name": "test_at009_priority_sort_is_stable_and_uses_task_id_for_ties",
+          "nodeId": "tests/api_contract/test_task_queries.py::test_at009_priority_sort_is_stable_and_uses_task_id_for_ties"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-010",
+      "at": "AT-010",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_status_transitions.py",
+          "className": "tests.api_contract.test_status_transitions",
+          "name": "test_at010_all_task_status_values_are_returned",
+          "nodeId": "tests/api_contract/test_status_transitions.py::test_at010_all_task_status_values_are_returned"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-011",
+      "at": "AT-011",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_status_transitions.py",
+          "className": "tests.api_contract.test_status_transitions",
+          "name": "test_at011_only_forward_transitions_are_allowed_and_same_status_is_idempotent",
+          "nodeId": "tests/api_contract/test_status_transitions.py::test_at011_only_forward_transitions_are_allowed_and_same_status_is_idempotent"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-012",
+      "at": "AT-012",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_status_transitions.py",
+          "className": "tests.api_contract.test_status_transitions",
+          "name": "test_at012_prohibited_transitions_leave_persisted_status_unchanged",
+          "nodeId": "tests/api_contract/test_status_transitions.py::test_at012_prohibited_transitions_leave_persisted_status_unchanged"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-013",
+      "at": "AT-013",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at013_restart_restores_tasks_and_continues_monotonic_ids",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at013_restart_restores_tasks_and_continues_monotonic_ids"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-014",
+      "at": "AT-014",
+      "assessment": "partial",
+      "tests": [
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_failed_atomic_write_preserves_file_and_in_memory_state",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_failed_atomic_write_preserves_file_and_in_memory_state"
+        }
+      ],
+      "gaps": [
+        "AT-014 tests complete JSON replacement and injected write/replacement rollback, but D-05 remains BLOCKED: no approved Windows atomic-visibility strategy or supported-filesystem evidence exists. Failure simulation does not establish atomic visibility."
+      ]
+    },
+    {
+      "ac": "AC-015",
+      "at": "AT-015",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at015_table_driven_malformed_store_fixtures_fail_closed_without_rewriting",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at015_table_driven_malformed_store_fixtures_fail_closed_without_rewriting"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-016",
+      "at": "AT-016",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/error_handling/test_request_validation.py",
+          "className": "tests.error_handling.test_request_validation",
+          "name": "test_at016_title_and_description_boundary_values_and_invalid_values",
+          "nodeId": "tests/error_handling/test_request_validation.py::test_at016_title_and_description_boundary_values_and_invalid_values"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-017",
+      "at": "AT-017",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/error_handling/test_request_validation.py",
+          "className": "tests.error_handling.test_request_validation",
+          "name": "test_at017_tag_count_length_and_normalization_boundaries",
+          "nodeId": "tests/error_handling/test_request_validation.py::test_at017_tag_count_length_and_normalization_boundaries"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-018",
+      "at": "AT-018",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/error_handling/test_request_validation.py",
+          "className": "tests.error_handling.test_request_validation",
+          "name": "test_at018_malformed_json_ids_queries_and_enum_values_are_rejected",
+          "nodeId": "tests/error_handling/test_request_validation.py::test_at018_malformed_json_ids_queries_and_enum_values_are_rejected"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-019",
+      "at": "AT-019",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_endpoint_contract.py",
+          "className": "tests.api_contract.test_endpoint_contract",
+          "name": "test_at019_success_and_applicable_error_statuses_for_every_endpoint",
+          "nodeId": "tests/api_contract/test_endpoint_contract.py::test_at019_success_and_applicable_error_statuses_for_every_endpoint"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-020",
+      "at": "AT-020",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/error_handling/test_request_validation.py",
+          "className": "tests.error_handling.test_request_validation",
+          "name": "test_at020_validation_errors_have_stable_sanitized_envelope",
+          "nodeId": "tests/error_handling/test_request_validation.py::test_at020_validation_errors_have_stable_sanitized_envelope"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-021",
+      "at": "AT-021",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/api_contract/test_determinism.py",
+          "className": "tests.api_contract.test_determinism",
+          "name": "test_at021_identical_initial_state_and_request_sequence_produce_identical_results",
+          "nodeId": "tests/api_contract/test_determinism.py::test_at021_identical_initial_state_and_request_sequence_produce_identical_results"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-022",
+      "at": "AT-022",
+      "assessment": "partial",
+      "tests": [
+        {
+          "file": "tests/harness_integrity/test_runner_boundaries.py",
+          "className": "tests.harness_integrity.test_runner_boundaries",
+          "name": "test_at022_required_checks_and_in_process_test_client_are_network_independent",
+          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at022_required_checks_and_in_process_test_client_are_network_independent"
+        },
+        {
+          "file": "tests/harness_integrity/test_architecture.py",
+          "className": "tests.harness_integrity.test_architecture",
+          "name": "test_candidate_controls_keep_protected_trust_and_human_records_unavailable",
+          "nodeId": "tests/harness_integrity/test_architecture.py::test_candidate_controls_keep_protected_trust_and_human_records_unavailable"
+        }
+      ],
+      "gaps": [
+        "Checks declared gates and in-process network independence; does not prove a trusted runner, complete staging integrity, or evidence-manifest trust.",
+        "Control declarations are checked locally; D-01 and protected baseline remain unavailable."
+      ]
+    },
+    {
+      "ac": "AC-023",
+      "at": "AT-023",
+      "assessment": "partial",
+      "tests": [
+        {
+          "file": "tests/harness_integrity/test_runner_boundaries.py",
+          "className": "tests.harness_integrity.test_runner_boundaries",
+          "name": "test_at023_untrusted_repository_runner_refuses_authoritative_mode",
+          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at023_untrusted_repository_runner_refuses_authoritative_mode"
+        }
+      ],
+      "gaps": [
+        "Verifies fail-closed local default only; no protected canonical runner or disposable trust-store tamper workflow exists."
+      ]
+    },
+    {
+      "ac": "AC-024",
+      "at": "AT-024",
+      "assessment": "partial",
+      "tests": [
+        {
+          "file": "tests/harness_integrity/test_runner_boundaries.py",
+          "className": "tests.harness_integrity.test_runner_boundaries",
+          "name": "test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked",
+          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked"
+        }
+      ],
+      "gaps": [
+        "Verifies current inventory structure and digests, not protected approval creation, tampering, or acceptance flow."
+      ]
+    },
+    {
+      "ac": "AC-025",
+      "at": "AT-025",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/harness_integrity/test_architecture.py",
+          "className": "tests.harness_integrity.test_architecture",
+          "name": "test_at025_runtime_versions_repository_port_and_layer_boundaries",
+          "nodeId": "tests/harness_integrity/test_architecture.py::test_at025_runtime_versions_repository_port_and_layer_boundaries"
+        }
+      ],
+      "gaps": []
+    },
+    {
+      "ac": "AC-026",
+      "at": "AT-026",
+      "assessment": "partial",
+      "tests": [
+        {
+          "file": "tests/harness_integrity/test_repository_hygiene.py",
+          "className": "tests.harness_integrity.test_repository_hygiene",
+          "name": "test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files",
+          "nodeId": "tests/harness_integrity/test_repository_hygiene.py::test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files"
+        }
+      ],
+      "gaps": [
+        "Synthetic disposable-candidate findings are verified; zero findings in the actual publication set remains a separate harness result."
+      ]
+    },
+    {
+      "ac": "AC-027",
+      "at": "AT-027",
+      "assessment": "partial",
+      "tests": [
+        {
+          "file": "tests/harness_integrity/test_runner_boundaries.py",
+          "className": "tests.harness_integrity.test_runner_boundaries",
+          "name": "test_at027_human_security_review_is_a_separate_blocked_gate",
+          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at027_human_security_review_is_a_separate_blocked_gate"
+        }
+      ],
+      "gaps": [
+        "Confirms local runner wording and blocked gate; no human review record or publication gate is available."
+      ]
+    },
+    {
+      "ac": "AC-028",
+      "at": "AT-028",
+      "assessment": "partial",
+      "tests": [
+        {
+          "file": "tests/harness_integrity/test_runner_boundaries.py",
+          "className": "tests.harness_integrity.test_runner_boundaries",
+          "name": "test_at028_runner_does_not_create_or_infer_acceptance_decisions",
+          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at028_runner_does_not_create_or_infer_acceptance_decisions"
+        }
+      ],
+      "gaps": [
+        "Confirms local runner does not assign a disposition; no protected human decision workflow is available."
+      ]
+    },
+    {
+      "ac": "AC-029",
+      "at": "AT-029",
+      "assessment": "full",
+      "tests": [
+        {
+          "file": "tests/concurrency/test_concurrent_mutations.py",
+          "className": "tests.concurrency.test_concurrent_mutations",
+          "name": "test_at029_concurrent_creates_have_unique_monotonic_ids_and_survive_restart",
+          "nodeId": "tests/concurrency/test_concurrent_mutations.py::test_at029_concurrent_creates_have_unique_monotonic_ids_and_survive_restart"
+        }
+      ],
+      "gaps": []
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+﻿{
+    "candidateRoot":  "C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T121351211Z\\staged-candidate",
+    "junitReference":  "junit.xml",
+    "testCaseCount":  5,
+    "acceptanceCriteriaCount":  29,
+    "uncoveredAcceptanceCriteriaCount":  29,
+    "missingSuiteDirectories":  [
+                                    "tests/unit",
+                                    "tests/persistence",
+                                    "tests/concurrency",
+                                    "tests/api_contract",
+                                    "tests/harness_integrity"
+                                ],
+    "mappingIssues":  [
+
+                      ],
+    "rows":  [
+                 {
+                     "ac":  "AC-001",
+                     "at":  "AT-001",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_create_and_list_tasks",
+                     "gaps":  "The test checks the documented fields and defaults but does not assert the exact response field set."
+                 },
+                 {
+                     "ac":  "AC-002",
+                     "at":  "AT-002",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No ID determinism, deletion/restart, or next-ID allocation test exists."
+                 },
+                 {
+                     "ac":  "AC-003",
+                     "at":  "AT-003",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_create_and_list_tasks",
+                     "gaps":  "Existing retrieval and a non-empty list are tested; empty collection and well-formed missing-ID behavior are not."
+                 },
+                 {
+                     "ac":  "AC-004",
+                     "at":  "AT-004",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_status_transitions_and_invalid_update",
+                     "gaps":  "Only empty-update rejection is tested; supplied-field updates and preservation of omitted fields are not."
+                 },
+                 {
+                     "ac":  "AC-005",
+                     "at":  "AT-005",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No delete success, no-body, or subsequent not-found test exists."
+                 },
+                 {
+                     "ac":  "AC-006",
+                     "at":  "AT-006",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_create_and_list_tasks",
+                     "gaps":  "Normalization is checked on create but not on update."
+                 },
+                 {
+                     "ac":  "AC-007",
+                     "at":  "AT-007",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_tag_filter_and_priority_sort",
+                     "gaps":  "AND filtering is checked; single-tag, duplicate-normalized filters, and successful zero-match behavior are not."
+                 },
+                 {
+                     "ac":  "AC-008",
+                     "at":  "AT-008",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_create_and_list_tasks",
+                     "gaps":  "Only the default priority is checked; all allowed values and invalid-value rejection are not."
+                 },
+                 {
+                     "ac":  "AC-009",
+                     "at":  "AT-009",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_tag_filter_and_priority_sort",
+                     "gaps":  "One priority order is checked, but equal-priority ID ties and default ID order are not."
+                 },
+                 {
+                     "ac":  "AC-010",
+                     "at":  "AT-010",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_create_and_list_tasks",
+                     "gaps":  "Pending is checked on creation; serialization of all documented statuses is not."
+                 },
+                 {
+                     "ac":  "AC-011",
+                     "at":  "AT-011",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_status_transitions_and_invalid_update",
+                     "gaps":  "Both allowed transitions are requested; same-status idempotency and persistence/re-read assertions are not."
+                 },
+                 {
+                     "ac":  "AC-012",
+                     "at":  "AT-012",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_status_transitions_and_invalid_update",
+                     "gaps":  "Only one prohibited transition is checked, and unchanged stored state is not asserted."
+                 },
+                 {
+                     "ac":  "AC-013",
+                     "at":  "AT-013",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No repository restart or persisted next-ID test exists."
+                 },
+                 {
+                     "ac":  "AC-014",
+                     "at":  "AT-014",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No successful replacement shape or injected write/replace rollback test exists."
+                 },
+                 {
+                     "ac":  "AC-015",
+                     "at":  "AT-015",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_store_malformed_access_returns_500",
+                     "gaps":  "One malformed task-array fixture is tested; the specified malformed-data matrix, repeated access, startup behavior, response leakage, and original-byte preservation are not all covered."
+                 },
+                 {
+                     "ac":  "AC-016",
+                     "at":  "AT-016",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No title/description type, null, trimming, or boundary matrix exists."
+                 },
+                 {
+                     "ac":  "AC-017",
+                     "at":  "AT-017",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No tag count, type, normalized-length, or empty-value validation matrix exists."
+                 },
+                 {
+                     "ac":  "AC-018",
+                     "at":  "AT-018",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py",
+                     "testName":  "test_invalid_json_and_bad_id",
+                     "gaps":  "Malformed JSON and a leading-zero ID are tested; the remaining documented invalid body, field, enum, query, and path cases are not."
+                 },
+                 {
+                     "ac":  "AC-019",
+                     "at":  "AT-019",
+                     "status":  "PARTIAL",
+                     "testFile":  "tests/test_api.py;tests/test_api.py",
+                     "testName":  "test_create_and_list_tasks;test_status_transitions_and_invalid_update",
+                     "gaps":  "Not every endpoint success/error status is exercised; malformed JSON on both PATCH routes is not tested."
+                 },
+                 {
+                     "ac":  "AC-020",
+                     "at":  "AT-020",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No exact error-envelope, detail-schema/order, or leakage contract test exists."
+                 },
+                 {
+                     "ac":  "AC-021",
+                     "at":  "AT-021",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No repeated-sequence determinism test exists."
+                 },
+                 {
+                     "ac":  "AC-022",
+                     "at":  "AT-022",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No test verifies the complete runner, staging, candidate/evidence manifests, network isolation, or human-decision separation."
+                 },
+                 {
+                     "ac":  "AC-023",
+                     "at":  "AT-023",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No disposable protected-baseline tamper-detection test exists; a trusted canonical baseline is not present."
+                 },
+                 {
+                     "ac":  "AC-024",
+                     "at":  "AT-024",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No disposable approval-record verification test exists."
+                 },
+                 {
+                     "ac":  "AC-025",
+                     "at":  "AT-025",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No architecture/runtime boundary test exists."
+                 },
+                 {
+                     "ac":  "AC-026",
+                     "at":  "AT-026",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No synthetic-fixture or publication-set hygiene test currently exists."
+                 },
+                 {
+                     "ac":  "AC-027",
+                     "at":  "AT-027",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No human security-review gate test or human review record exists."
+                 },
+                 {
+                     "ac":  "AC-028",
+                     "at":  "AT-028",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No human decision-gate test or human decision record exists."
+                 },
+                 {
+                     "ac":  "AC-029",
+                     "at":  "AT-029",
+                     "status":  "MISSING",
+                     "testFile":  "",
+                     "testName":  "",
+                     "gaps":  "No concurrent mutation or failed-persistence rollback test exists."
+                 }
+             ]
+}

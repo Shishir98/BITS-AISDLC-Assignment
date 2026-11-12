@@ -1,0 +1,11 @@
+﻿{
+    "runId":  "20261112T173619145Z",
+    "candidateDigest":  "be351d3fb9f591814de8c41e2573fe0da5a0219281e597ed1a73b9f74bb27c0c",
+    "startedAt":  "2026-11-12T17:39:15.1232271+00:00",
+    "finishedAt":  "2026-11-12T17:39:18.1583793+00:00",
+    "command":  "\"C:\\Users\\User\\.local\\bin\\uv.exe\" run --active --locked --no-sync --directory \"C:\\Users\\User\\Assignment-1\\Part-1A\" pytest -q -p no:cacheprovider tests/api_contract/test_task_queries.py::test_at008_priority_values_default_and_invalid_inputs tests/concurrency/test_concurrent_mutations.py::test_at029_concurrent_creates_have_unique_monotonic_ids_and_survive_restart --junitxml=\"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173619145Z\\preflight-targeted\\junit.xml\"",
+    "exitCode":  0,
+    "stdoutReference":  "stdout.txt",
+    "stderrReference":  "stderr.txt",
+    "junitReference":  "junit.xml"
+}

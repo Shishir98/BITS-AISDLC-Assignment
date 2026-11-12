@@ -1,0 +1,265 @@
+﻿{
+    "digest":  "305516856a6b1e40a86883aff55734a0a4ca22d95730f5cc681e39d1fa0caaba",
+    "files":  [
+                  {
+                      "path":  ".github/skills/speckit-analyze/SKILL.md",
+                      "sha256":  "bc5c24e6bbadf90f58e52d351c9ea22d502257ffb584694a9a46cf592dd78033"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-checklist/SKILL.md",
+                      "sha256":  "f846c702c2a83777ab6806decbfaecb9d7f48b15f48bebb2db1d5f06bc6775dc"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-clarify/SKILL.md",
+                      "sha256":  "c0ab0a24043c37e03db3251a261d9250da95bb1ab5f69b51f6beedf009900c48"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-constitution/SKILL.md",
+                      "sha256":  "9ba37cfc2ad0d64dcaf4816f85405376f9e671ef485220dbcbb8ed002aa93036"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-converge/SKILL.md",
+                      "sha256":  "c73faaef7cd7cbf8b5f5b3a378f5b583b4b878fa6add039d0dc30f5617baa5ef"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-implement/SKILL.md",
+                      "sha256":  "47bfb14d191d970e63b1acd362a9570baadea947daa1b3b747c3305aa0bd85cc"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-plan/SKILL.md",
+                      "sha256":  "cef8c4f2cdecc92b2069ba9e0cc3f921d0f87915caa1d8bc023dbc665e02904f"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-specify/SKILL.md",
+                      "sha256":  "f27c66b20968981c98ec65e67f279c3c5b3ac833016d0c3879b1e9aadc1361c9"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-tasks/SKILL.md",
+                      "sha256":  "2236ce1193fc122ee791c4f646aac11a341096670f1ea9aa5424b78148d9b44a"
+                  },
+                  {
+                      "path":  ".gitignore",
+                      "sha256":  "d9503c3a13ddeb02b2ab9f2477be8a7a7c38e9f2bc698850960bdfd31a893fa9"
+                  },
+                  {
+                      "path":  ".harness/hygiene.ps1",
+                      "sha256":  "bdc96aefe099d5f244d80cf582afc40e2b41aef6f5b6042a33f4e25c73f77ca3"
+                  },
+                  {
+                      "path":  ".harness/instruction-files.json",
+                      "sha256":  "70288856f74700d29faa993fb6a2700d254aaac27010e2345de416ac96c70f79"
+                  },
+                  {
+                      "path":  ".harness/lint.ps1",
+                      "sha256":  "2b212ac0f9aff6c7f11b828890a94ff403f1b859d207d3d378ba5ab29a37f050"
+                  },
+                  {
+                      "path":  ".harness/mandatory-checks.json",
+                      "sha256":  "5dcaf26dce0eaa4baa3e3fda379e8425023c6dfbbf6d59d6a9983e2d962bd5cb"
+                  },
+                  {
+                      "path":  ".harness/README.md",
+                      "sha256":  "bd53dcc6cf3e25b30f43e56ad892c2788ee20ececda35f4c3985486f1a6019b9"
+                  },
+                  {
+                      "path":  ".harness/run.ps1",
+                      "sha256":  "9b346c52e8125ea2d217bda1532692602409a2a17d7feae27b923b4f75d7cb72"
+                  },
+                  {
+                      "path":  ".harness/security.ps1",
+                      "sha256":  "db51531bcf8be319dc5a0c526646193d91ff94a6963da7c1add3534488277ec2"
+                  },
+                  {
+                      "path":  ".harness/test.ps1",
+                      "sha256":  "3039f7a843ca8ad1d4749d67008768bd8ef404e1e4be924bfac96537b9488b99"
+                  },
+                  {
+                      "path":  ".specify/.gitignore",
+                      "sha256":  "0a61c5378b0bb2e0f85babff99c8b166f2170a2c12378cd17d929aa19296ec88"
+                  },
+                  {
+                      "path":  ".specify/feature.json",
+                      "sha256":  "645ce2d99ee4ffad347cb2c6d0d454ee7b9d08b41204fd047dbf1290e8383b3e"
+                  },
+                  {
+                      "path":  ".specify/init-options.json",
+                      "sha256":  "b2b21d8acfd7684e17e5448f718d90be389f098e2c8ad9948812804765490a34"
+                  },
+                  {
+                      "path":  ".specify/integration.json",
+                      "sha256":  "be24ab7114874dda62954d35e9a32212ab96a0582cb1d5eb65fb7bfd5236addd"
+                  },
+                  {
+                      "path":  ".specify/integrations/copilot.manifest.json",
+                      "sha256":  "9860d552c293edfd5fd1f565eeaf44f6aeb98e35696e3b0aad360f6380b9e1ea"
+                  },
+                  {
+                      "path":  ".specify/integrations/speckit.manifest.json",
+                      "sha256":  "d56ea94e50785aedf4d2690c1a1466bf8e414bf243d87c5c714e29e15fb231c4"
+                  },
+                  {
+                      "path":  ".specify/memory/.constitution-template.json",
+                      "sha256":  "8fc4b39294bae0c10d59547ad7d415b6f0e890d656cbf7171dd567f4e9054711"
+                  },
+                  {
+                      "path":  ".specify/memory/constitution.md",
+                      "sha256":  "5b4400754b9957c4930e4e665bff5633fed65e976dd4ba6948dce99d1b2ac9cc"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/check-prerequisites.ps1",
+                      "sha256":  "b5b522bd3ee99a490903cc0acb2ded41c662c5f18b9b587f44755a883aeb90d2"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/common.ps1",
+                      "sha256":  "c4816519ffb0b930427559b3ec729ef04a56162f4ef334958c8c50a3f92def9d"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/create-new-feature.ps1",
+                      "sha256":  "481c7368541a816b1679e5ed65fa9e5aea84b09f8be3a02ff8a340e3b48dd58a"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/resolve-template.ps1",
+                      "sha256":  "e49c565a09902e4ebd4b5a51c4e014d5067fdee5b1592f15cb44ef31f430d745"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/setup-plan.ps1",
+                      "sha256":  "5939ef98418e8dc8cc722ef53ba359fc814f3d2a9fd7620f04e8d145a7041f1a"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/setup-tasks.ps1",
+                      "sha256":  "d286da96d5b7e0075daa56e834fc1e1eb5beaddbc7e06d3ba898d0e9c071c50a"
+                  },
+                  {
+                      "path":  ".specify/templates/checklist-template.md",
+                      "sha256":  "856532b3cb66171c662cc16f16b31a5856e4655a8666aad1e545bbfc7f603ca1"
+                  },
+                  {
+                      "path":  ".specify/templates/constitution-template.md",
+                      "sha256":  "ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+                  },
+                  {
+                      "path":  ".specify/templates/plan-template.md",
+                      "sha256":  "7e637502d41eccf0ca672496636365691fdca62ef37b27ec07fcb412dbfa90d4"
+                  },
+                  {
+                      "path":  ".specify/templates/spec-template.md",
+                      "sha256":  "3945437fc35cd30a5b2bf7beea680337c3516826d3efa5a6b92c4a7eca1ba28e"
+                  },
+                  {
+                      "path":  ".specify/templates/tasks-template.md",
+                      "sha256":  "fc29a233f6f5a27ca31f1aa46b596af6500c627441c6e62b2bc4a1d721525842"
+                  },
+                  {
+                      "path":  ".specify/workflows/speckit/workflow.yml",
+                      "sha256":  "177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+                  },
+                  {
+                      "path":  ".specify/workflows/workflow-registry.json",
+                      "sha256":  "0fa48306db832e38d8cf1953d8efb1257189529a550284425fe95ff46783af45"
+                  },
+                  {
+                      "path":  "pyproject.toml",
+                      "sha256":  "cbaec1a90614ac701f4d0f72b9399fd79f52db85c2514618b821368930c81020"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/checklists/requirements.md",
+                      "sha256":  "01602db25c9e3801951336d35d9d2d89e2650b52c1ff8c1ad9ee7fec2d6acc50"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/contracts/openapi.yaml",
+                      "sha256":  "19e0039e31bf0d22ccabeb23d0831ac466b798386de5f59a89ea1d65c43cb1c2"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/data-model.md",
+                      "sha256":  "aba2462c29ea222b2b019709901d24ce71972f03a04466515f3d109e68a13826"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/plan.md",
+                      "sha256":  "57dff3f9a8fa63c8e73e0b1621d06e0269520e6373898f38b1c5c16568de14df"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/quickstart.md",
+                      "sha256":  "e0b622db78222f79e66666607667e5efba97f9a12e1e611266076681fd7c12ab"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/research.md",
+                      "sha256":  "77d5e97fdda293a9749852c724a6c2df30ca3daaa77b17c0530ff9aefd2e8d0b"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/spec.md",
+                      "sha256":  "2e6cf53958da33bbc4b943a334b2d2a0d55084e74ed395c23807ca70ab896a61"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/tasks.md",
+                      "sha256":  "90017973620f0f797cccb31a92251fc9a9c3b5c0fcec556338eec6d91113a3d9"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/test-strategy.md",
+                      "sha256":  "fc3e30ea2659220ba0e66edbaed38226c370a725933a82b1acccbf6f28ce310f"
+                  },
+                  {
+                      "path":  "src/smart_todo/__init__.py",
+                      "sha256":  "3aca91fe66697bd093ecfbc3480c8ec4ca38c27e083117ccbf887f9db6a0a169"
+                  },
+                  {
+                      "path":  "src/smart_todo/api/__init__.py",
+                      "sha256":  "d7604a3e8a4790d88d816f226170960c075a2200e3b9b73d2ca13de50e276b36"
+                  },
+                  {
+                      "path":  "src/smart_todo/api/errors.py",
+                      "sha256":  "ea85b466df460ee1c93b4e269a4d2033eddffd7ab70dace05854067a7423a538"
+                  },
+                  {
+                      "path":  "src/smart_todo/api/routes.py",
+                      "sha256":  "e4c077f433651f543ff7a6fcf3235dc6682759104abc98929cbd8b97cfe46bfe"
+                  },
+                  {
+                      "path":  "src/smart_todo/api/schemas.py",
+                      "sha256":  "a8bc75f8b9c0b57b99532bf2a8335f5db607287c808477e09b791e7d26aede0a"
+                  },
+                  {
+                      "path":  "src/smart_todo/app.py",
+                      "sha256":  "bde3bbe5b38f84828d586337ddae67a006b854b24aedfd442107c56b52358d02"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/__init__.py",
+                      "sha256":  "e913b959fc438a83b6493087b4ac3725450790dc91323f08ee4de9dd2803329a"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/errors.py",
+                      "sha256":  "82d1abbc57f72adf0200a582d0ebc80e8a1abc026c8edf6a9745ff118d3f6ba1"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/models.py",
+                      "sha256":  "d08b848861ae0170f021d184e6115531dbc85cde29c20dcdb3c38fe2f248ff38"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/ports.py",
+                      "sha256":  "07b1b5162322627b7404cd6379ff89a20eccda1979e2626e68d82b0d125b0abd"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/service.py",
+                      "sha256":  "904ca08bbe61d2571668ab1396de712e00ac7b300a1a31ede8ba58a53ea570f3"
+                  },
+                  {
+                      "path":  "src/smart_todo/persistence/__init__.py",
+                      "sha256":  "7b73241347aa42d570333c6309b3f160e39e15f7afab450e8b4af7830f0d26e9"
+                  },
+                  {
+                      "path":  "src/smart_todo/persistence/errors.py",
+                      "sha256":  "70739a9abb82b3a36acf7c316ab4fe15e9ecdef76efa5373db2e6dba58b84a1a"
+                  },
+                  {
+                      "path":  "src/smart_todo/persistence/json_repository.py",
+                      "sha256":  "3739012e0aff9bdc76ffcda770ba7ae7a7d85439fec3985dd1ca0734dc7e254e"
+                  },
+                  {
+                      "path":  "tests/test_api.py",
+                      "sha256":  "4b9b8bfe8ec9da3dba5c863c0a7ba714dbe52b9e46268746bbc0d339d8e3a314"
+                  },
+                  {
+                      "path":  "uv.lock",
+                      "sha256":  "2a9762c545fa993622c3098b4590fa2c6cd27d15a095e149d023a50bb17da82e"
+                  }
+              ]
+}

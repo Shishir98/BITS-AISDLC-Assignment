@@ -1,0 +1,9 @@
+﻿{
+    "startedAt":  "2026-11-12T18:07:02.9208254+00:00",
+    "finishedAt":  "2026-11-12T18:07:07.9886565+00:00",
+    "command":  "\"C:\\Users\\User\\.local\\bin\\uv.exe\" run --active --locked --no-sync --directory \"C:\\Users\\User\\Assignment-1\\Part-1A\" pytest -q -p no:cacheprovider tests --junitxml=\"C:\\Users\\User\\AppData\\Local\\Temp\\part1a-tasks-marked-suite-79a1f9e782124bca8760d5e32941eec9\\junit.xml\"",
+    "exitCode":  1,
+    "stdoutReference":  "stdout.txt",
+    "stderrReference":  "stderr.txt",
+    "junitReference":  "junit.xml"
+}

@@ -1,0 +1,6 @@
+﻿{
+    "startedAt":  "2026-11-12T18:03:11.5151638+00:00",
+    "finishedAt":  "2026-11-12T18:03:14.5580837+00:00",
+    "command":  "\"C:\\Users\\User\\.local\\bin\\uv.exe\" run --active --locked --no-sync --directory \"C:\\Users\\User\\Assignment-1\\Part-1A\" pytest -q -p no:cacheprovider tests/api_contract/test_task_queries.py::test_at008_priority_values_default_and_invalid_inputs tests/concurrency/test_concurrent_mutations.py::test_at029_concurrent_creates_have_unique_monotonic_ids_and_survive_restart --junitxml=\"C:\\Users\\User\\AppData\\Local\\Temp\\part1a-tasks-marked-targeted-9fb60ec595f84c71be01fcee6d291a70\\junit.xml\"",
+    "exitCode":  0
+}

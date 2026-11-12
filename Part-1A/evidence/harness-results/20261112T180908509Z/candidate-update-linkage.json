@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-12T18:11:00.614134+00:00",
+  "runId": "20261112T180908509Z",
+  "candidateDigest": "507710a1c66b2af9ffbd6b90a0b0102a694b66a0be99ecc201db30942ed1f72c",
+  "precedingRunId": "20261112T173619145Z",
+  "taskStatusUpdate": {
+    "taskId": "T002",
+    "status": "complete",
+    "evidence": "src/, tests/, .harness/, evidence/, and .gitignore exclusions are present"
+  },
+  "candidateDiffFromPrecedingRun": {
+    "added": [],
+    "removed": [],
+    "changed": [
+      ".specify/memory/constitution.md",
+      "specs/001-smart-todo-api/plan.md",
+      "specs/001-smart-todo-api/spec.md",
+      "specs/001-smart-todo-api/tasks.md"
+    ]
+  },
+  "instructionInventoryObservation": {
+    "path": ".specify/memory/constitution.md",
+    "recordedSha256": "5b4400754b9957c4930e4e665bff5633fed65e976dd4ba6948dce99d1b2ac9cc",
+    "currentSha256": "0439f7f25f121b4d5aa2e68f82a1860e05fd9e8b6e96811767ba09104aea2de1",
+    "precedingCandidateSha256": "5b4400754b9957c4930e4e665bff5633fed65e976dd4ba6948dce99d1b2ac9cc",
+    "approvalReference": "",
+    "inventoryWasModified": false,
+    "note": "The current candidate fails AT-024 because the constitution digest does not match the retained inventory. No inventory digest or approval reference was changed."
+  },
+  "tests": {
+    "targeted": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failedCases": []
+    },
+    "targetedReference": "preflight-targeted/junit.xml",
+    "completeSuite": {
+      "tests": 35,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "failedCases": [
+        {
+          "className": "tests.harness_integrity.test_runner_boundaries",
+          "name": "test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked",
+          "failureMessage": "AssertionError: assert '0439f7f25f12...a09104aea2de1' == '5b4400754b99...ce99d1b2ac9cc'\n  \n  - 5b4400754b9957c4930e4e665bff5633fed65e976dd4ba6948dce99d1b2ac9cc\n  + 0439f7f25f121b4d5aa2e68f82a1860e05fd9e8b6e96811767ba09104aea2de1"
+        }
+      ]
+    },
+    "completeSuiteReference": "preflight-complete-suite/junit.xml",
+    "harnessSuite": {
+      "tests": 35,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "failedCases": [
+        {
+          "className": "tests.harness_integrity.test_runner_boundaries",
+          "name": "test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked",
+          "failureMessage": "AssertionError: assert '0439f7f25f12...a09104aea2de1' == '5b4400754b99...ce99d1b2ac9cc'\n  \n  - 5b4400754b9957c4930e4e665bff5633fed65e976dd4ba6948dce99d1b2ac9cc\n  + 0439f7f25f121b4d5aa2e68f82a1860e05fd9e8b6e96811767ba09104aea2de1"
+        }
+      ]
+    },
+    "harnessSuiteReference": "gates/pytest-and-traceability/junit.xml"
+  },
+  "traceability": {
+    "full": 22,
+    "partial": 6,
+    "fail": 1,
+    "withoutFullCoverage": 7,
+    "failingRows": [
+      {
+        "ac": "AC-024",
+        "at": "AT-024",
+        "status": "FAIL",
+        "executionStatus": "FAIL",
+        "testFile": "tests/harness_integrity/test_runner_boundaries.py",
+        "testName": "test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked",
+        "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked",
+        "outputReferences": "pytest.stdout.txt;pytest.stderr.txt;junit.xml",
+        "gaps": "Verifies current inventory structure and digests, not protected approval creation, tampering, or acceptance flow."
+      }
+    ],
+    "reference": "gates/pytest-and-traceability/traceability.json"
+  },
+  "gateStatuses": {
+    "candidate-integrity-before": "PASS",
+    "instruction-inventory": "FAIL",
+    "governance-boundary": "BLOCKED",
+    "windows-persistence-readiness": "BLOCKED",
+    "ruff": "PASS",
+    "bandit": "PASS",
+    "pytest-and-traceability": "FAIL",
+    "repository-hygiene": "PASS",
+    "human-review-and-decision": "BLOCKED",
+    "candidate-integrity-after": "PASS"
+  },
+  "humanDecision": null
+}

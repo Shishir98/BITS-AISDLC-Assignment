@@ -46,9 +46,11 @@ class TaskService:
             except KeyError as exc:
                 raise TaskNotFoundError(f"Task {task_id} not found") from exc
 
-    def create_task(self, title: str, description: str | None, tags: Sequence[str] | None, priority: Priority | None) -> Task:
+    def create_task(self, title: str, description: str | None, tags: Sequence[str] | None, priority: Priority) -> Task:
         with self._lock:
             self._ensure_loaded()
+            if not isinstance(priority, Priority):
+                raise TaskValidationError("priority must be Low, Medium, or High")
             cleaned_title = normalize_title(title)
             cleaned_tags = normalize_tags(tags)
             task = Task(
@@ -56,7 +58,7 @@ class TaskService:
                 title=cleaned_title,
                 description=description,
                 tags=list(cleaned_tags),
-                priority=priority or Priority.MEDIUM,
+                priority=priority,
                 status=TaskStatus.PENDING,
             )
             candidate_tasks = dict(self._tasks)
@@ -89,6 +91,8 @@ class TaskService:
             if tags is not _UNSET:
                 updates["tags"] = list(normalize_tags(tags)) if tags is not None else []
             if priority is not _UNSET:
+                if not isinstance(priority, Priority):
+                    raise TaskValidationError("priority must be Low, Medium, or High")
                 updates["priority"] = priority
             if not updates:
                 raise TaskValidationError("At least one field must be provided")

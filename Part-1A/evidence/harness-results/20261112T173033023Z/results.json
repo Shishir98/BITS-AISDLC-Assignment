@@ -1,0 +1,174 @@
+﻿{
+    "schemaVersion":  1,
+    "runId":  "20261112T173033023Z",
+    "validationMode":  "repository-candidate-diagnostic-only",
+    "authoritative":  false,
+    "decision":  null,
+    "candidateDigest":  "ae17aafc15a606a4c6ef89e7b19d663d1a93e633a3447bc1e6b82d2d088ebc69",
+    "finalCandidateDigest":  "ae17aafc15a606a4c6ef89e7b19d663d1a93e633a3447bc1e6b82d2d088ebc69",
+    "candidateFileCount":  78,
+    "initialSnapshotReference":  "initial-snapshot",
+    "stagedSnapshotReference":  "staged-candidate",
+    "finalSnapshotReference":  "final-snapshot",
+    "candidateManifestReference":  "candidate-manifest.json",
+    "evidenceManifestReference":  "20261112T173033023Z.evidence-manifest.json",
+    "startedAt":  "2026-11-12T17:30:33.0323666+00:00",
+    "finishedAt":  "2026-11-12T17:30:48.8734790+00:00",
+    "status":  "FAILED",
+    "gates":  [
+                  {
+                      "name":  "candidate-integrity-before",
+                      "status":  "PASS",
+                      "command":  "SHA-256 candidate manifest comparison (source to staged snapshot)",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-12T17:30:34.1857048+00:00",
+                      "finishedAt":  "2026-11-12T17:30:34.1857048+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "The staged bytes match the source candidate manifest."
+                  },
+                  {
+                      "name":  "instruction-inventory",
+                      "status":  "FAIL",
+                      "command":  "Validate exact instruction inventory entries and listed-file SHA-256 values",
+                      "exitCode":  1,
+                      "startedAt":  "2026-11-12T17:30:34.2307907+00:00",
+                      "finishedAt":  "2026-11-12T17:30:34.2307907+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "An inventory approval reference is not present for: .github/skills/speckit-analyze/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-checklist/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-clarify/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-constitution/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-converge/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-implement/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-plan/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-specify/SKILL.md An inventory approval reference is not present for: .github/skills/speckit-tasks/SKILL.md An inventory approval reference is not present for: .specify/memory/constitution.md",
+                      "failureReportReference":  "failures/instruction-inventory.txt"
+                  },
+                  {
+                      "name":  "governance-boundary",
+                      "status":  "BLOCKED",
+                      "command":  "Verify separately administered identity/ACL or protected CI and canonical baseline",
+                      "exitCode":  2,
+                      "startedAt":  "2026-11-12T17:30:34.2317939+00:00",
+                      "finishedAt":  "2026-11-12T17:30:34.2317939+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "D-01 remains blocked: this repository has no independently verified canonical runner, protected baseline, approval register, or separate execution boundary. Local gate output is diagnostic only.",
+                      "failureReportReference":  "failures/governance-boundary.txt"
+                  },
+                  {
+                      "name":  "windows-persistence-readiness",
+                      "status":  "BLOCKED",
+                      "command":  "Verify approved Windows atomic-visibility strategy and supported-filesystem evidence",
+                      "exitCode":  2,
+                      "startedAt":  "2026-11-12T17:30:34.2389117+00:00",
+                      "finishedAt":  "2026-11-12T17:30:34.2389117+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+                                               "failures/windows-persistence-readiness.txt"
+                                           ],
+                      "message":  "D-05 remains BLOCKED. No approved strategy or evidence establishes the required atomic-visibility guarantee on the supported Windows filesystem. AT-014 rollback tests verify reported write/replacement failure handling only.",
+                      "failureReportReference":  "failures/windows-persistence-readiness.txt"
+                  },
+                  {
+                      "name":  "ruff",
+                      "status":  "FAIL",
+                      "command":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\\.harness\\lint.ps1\" -ProjectRoot \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\" -OutputDirectory \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\gates\\ruff\"",
+                      "exitCode":  1,
+                      "startedAt":  "2026-11-12T17:30:34.2602453+00:00",
+                      "finishedAt":  "2026-11-12T17:30:36.2935429+00:00",
+                      "stdoutReference":  "gates/ruff/ruff.stdout.txt",
+                      "stderrReference":  "gates/ruff/ruff.stderr.txt",
+                      "outputReferences":  [
+                                               "gates/ruff/ruff.stdout.txt",
+                                               "gates/ruff/ruff.stderr.txt"
+                                           ],
+                      "failureReportReference":  "failures/ruff.txt"
+                  },
+                  {
+                      "name":  "bandit",
+                      "status":  "PASS",
+                      "command":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\\.harness\\security.ps1\" -ProjectRoot \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\" -OutputDirectory \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\gates\\bandit\"",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-12T17:30:36.3016279+00:00",
+                      "finishedAt":  "2026-11-12T17:30:38.3323574+00:00",
+                      "stdoutReference":  "gates/bandit/security.stdout.txt",
+                      "stderrReference":  "gates/bandit/security.stderr.txt",
+                      "outputReferences":  [
+                                               "gates/bandit/security.stdout.txt",
+                                               "gates/bandit/security.stderr.txt",
+                                               "gates/bandit/bandit.stdout.txt",
+                                               "gates/bandit/bandit.stderr.txt",
+                                               "gates/bandit/bandit.json"
+                                           ]
+                  },
+                  {
+                      "name":  "pytest-and-traceability",
+                      "status":  "FAIL",
+                      "command":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\\.harness\\test.ps1\" -ProjectRoot \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\" -OutputDirectory \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\gates\\pytest-and-traceability\" -ConfigurationPath \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\\.harness\\mandatory-checks.json\"",
+                      "exitCode":  1,
+                      "startedAt":  "2026-11-12T17:30:38.3378853+00:00",
+                      "finishedAt":  "2026-11-12T17:30:47.4477222+00:00",
+                      "stdoutReference":  "gates/pytest-and-traceability/tests.stdout.txt",
+                      "stderrReference":  "gates/pytest-and-traceability/tests.stderr.txt",
+                      "outputReferences":  [
+                                               "gates/pytest-and-traceability/tests.stdout.txt",
+                                               "gates/pytest-and-traceability/tests.stderr.txt",
+                                               "gates/pytest-and-traceability/junit.xml",
+                                               "gates/pytest-and-traceability/traceability.json",
+                                               "gates/pytest-and-traceability/traceability.csv"
+                                           ],
+                      "failureReportReference":  "failures/pytest-and-traceability.txt"
+                  },
+                  {
+                      "name":  "repository-hygiene",
+                      "status":  "PASS",
+                      "command":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\\.harness\\hygiene.ps1\" -ProjectRoot \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\staged-candidate\" -OutputDirectory \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z\\gates\\repository-hygiene\" -TrackedRoot \"C:\\Users\\User\\Assignment-1\\Part-1A\"",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-12T17:30:47.4563666+00:00",
+                      "finishedAt":  "2026-11-12T17:30:48.4775480+00:00",
+                      "stdoutReference":  "gates/repository-hygiene/hygiene.stdout.txt",
+                      "stderrReference":  "gates/repository-hygiene/hygiene.stderr.txt",
+                      "outputReferences":  [
+                                               "gates/repository-hygiene/hygiene.stdout.txt",
+                                               "gates/repository-hygiene/hygiene.stderr.txt",
+                                               "gates/repository-hygiene/hygiene.json"
+                                           ]
+                  },
+                  {
+                      "name":  "human-review-and-decision",
+                      "status":  "BLOCKED",
+                      "command":  "Check for separately recorded human Bandit review and final ACCEPT/REJECT decision",
+                      "exitCode":  2,
+                      "startedAt":  "2026-11-12T17:30:48.4790549+00:00",
+                      "finishedAt":  "2026-11-12T17:30:48.4790549+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "No human security disposition or final decision was supplied. The runner does not create, infer, or impersonate these records.",
+                      "failureReportReference":  "failures/human-review-and-decision.txt"
+                  },
+                  {
+                      "name":  "candidate-integrity-after",
+                      "status":  "PASS",
+                      "command":  "SHA-256 candidate manifest comparison (initial to final source)",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-12T17:30:48.8734790+00:00",
+                      "finishedAt":  "2026-11-12T17:30:48.8734790+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "The source candidate remained unchanged during diagnostics."
+                  }
+              ],
+    "outputDirectory":  "C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261112T173033023Z"
+}

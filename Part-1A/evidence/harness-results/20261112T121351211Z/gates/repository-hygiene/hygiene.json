@@ -1,0 +1,27 @@
+﻿{
+    "trackedFileCount":  56,
+    "candidateTextFileCount":  62,
+    "syntheticFixtureChecks":  [
+                                   {
+                                       "fixture":  ".env.synthetic",
+                                       "expectedRule":  "environment-file",
+                                       "detected":  true
+                                   },
+                                   {
+                                       "fixture":  "synthetic-private-key.pem",
+                                       "expectedRule":  "private-key",
+                                       "detected":  true
+                                   },
+                                   {
+                                       "fixture":  "synthetic-credentials.txt",
+                                       "expectedRule":  "credential-like-value",
+                                       "detected":  true
+                                   }
+                               ],
+    "syntheticFixtureChecksPassed":  true,
+    "findingCount":  0,
+    "findings":  [
+
+                 ],
+    "secretsOmitted":  true
+}

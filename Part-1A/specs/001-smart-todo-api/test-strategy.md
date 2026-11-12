@@ -67,7 +67,7 @@ the file set it hashes.
 | AC-011 | Service/API: both allowed transitions persist; same-status transition is an idempotent no-op. |
 | AC-012 | Service/API: all prohibited transitions return `409` and preserve task state. |
 | AC-013 | Persistence/API: restart against the same file and verify task data and next ID. |
-| AC-014 | Persistence/API: successful complete replacement; inject write and replace failures; assert `500`, byte-identical old file, unchanged in-memory reads, and unchanged next ID. |
+| AC-014 | Persistence/API: successful complete replacement; inject write and replace failures; assert `500`, byte-identical old file, unchanged in-memory reads, and unchanged next ID. These rollback tests do not establish Windows atomic visibility; D-05 remains an independent blocker. |
 | AC-015 | Persistence/API: start successfully with each malformed fixture; on every store access assert `500 malformed_stored_data`, no stack trace, and byte-identical source file. |
 | AC-016 | API/domain: title and description types, null handling, trimming, and exact lower/upper boundaries. |
 | AC-017 | API/domain: tag list count, type, normalized length, empty values, and case-variant deduplication. |
@@ -101,3 +101,43 @@ digests and verifies its integrity without changing any candidate digest.
 Human review and decision records are added after final automated validation
 and remain human actions. Direct local pytest runs may assist development but
 do not constitute the authoritative acceptance result.
+
+### Current Repository Test Mapping (Untrusted Diagnostic)
+
+The following exact pytest node IDs are repository candidates, not protected
+canonical tests. `FULL` means the mapped test passed in the latest local
+diagnostic; `PARTIAL` records intentionally unverified protected/human behavior;
+`FAIL` means the mapped executable test ran and failed. These labels do not
+constitute an authoritative acceptance result.
+
+| AC ID | AT ID | Test file | Test name | Local status |
+|---|---|---|---|---|
+| AC-001 | AT-001 | `tests/api_contract/test_task_crud.py` | `test_at001_create_response_matches_task_contract` | FULL |
+| AC-002 | AT-002 | `tests/unit/test_id_allocation.py` | `test_at002_ids_are_deterministic_and_never_reused_after_delete_or_restart` | FULL |
+| AC-003 | AT-003 | `tests/api_contract/test_task_crud.py` | `test_at003_list_and_get_reflect_empty_existing_and_missing_tasks` | FULL |
+| AC-004 | AT-004 | `tests/api_contract/test_task_crud.py` | `test_at004_patch_changes_only_supplied_fields_and_rejects_empty_update` | FULL |
+| AC-005 | AT-005 | `tests/api_contract/test_task_crud.py` | `test_at005_delete_has_no_response_body_and_missing_ids_are_404` | FULL |
+| AC-006 | AT-006 | `tests/api_contract/test_task_queries.py` | `test_at006_tags_are_trimmed_lowercased_deduplicated_and_sorted` | FULL |
+| AC-007 | AT-007 | `tests/api_contract/test_task_queries.py` | `test_at007_tag_filters_are_anded_normalized_deduplicated_and_can_match_nothing` | FULL |
+| AC-008 | AT-008 | `tests/api_contract/test_task_queries.py` | `test_at008_priority_values_default_and_invalid_inputs` | FULL |
+| AC-009 | AT-009 | `tests/api_contract/test_task_queries.py` | `test_at009_priority_sort_is_stable_and_uses_task_id_for_ties` | FULL |
+| AC-010 | AT-010 | `tests/api_contract/test_status_transitions.py` | `test_at010_all_task_status_values_are_returned` | FULL |
+| AC-011 | AT-011 | `tests/api_contract/test_status_transitions.py` | `test_at011_only_forward_transitions_are_allowed_and_same_status_is_idempotent` | FULL |
+| AC-012 | AT-012 | `tests/api_contract/test_status_transitions.py` | `test_at012_prohibited_transitions_leave_persisted_status_unchanged` | FULL |
+| AC-013 | AT-013 | `tests/persistence/test_json_repository.py` | `test_at013_restart_restores_tasks_and_continues_monotonic_ids` | FULL |
+| AC-014 | AT-014 | `tests/persistence/test_json_repository.py` | `test_at014_failed_atomic_write_preserves_file_and_in_memory_state` | PARTIAL |
+| AC-015 | AT-015 | `tests/persistence/test_json_repository.py` | `test_at015_table_driven_malformed_store_fixtures_fail_closed_without_rewriting` | FULL |
+| AC-016 | AT-016 | `tests/error_handling/test_request_validation.py` | `test_at016_title_and_description_boundary_values_and_invalid_values` | FULL |
+| AC-017 | AT-017 | `tests/error_handling/test_request_validation.py` | `test_at017_tag_count_length_and_normalization_boundaries` | FULL |
+| AC-018 | AT-018 | `tests/error_handling/test_request_validation.py` | `test_at018_malformed_json_ids_queries_and_enum_values_are_rejected` | FULL |
+| AC-019 | AT-019 | `tests/api_contract/test_endpoint_contract.py` | `test_at019_success_and_applicable_error_statuses_for_every_endpoint` | FULL |
+| AC-020 | AT-020 | `tests/error_handling/test_request_validation.py` | `test_at020_validation_errors_have_stable_sanitized_envelope` | FULL |
+| AC-021 | AT-021 | `tests/api_contract/test_determinism.py` | `test_at021_identical_initial_state_and_request_sequence_produce_identical_results` | FULL |
+| AC-022 | AT-022 | `tests/harness_integrity/test_runner_boundaries.py`; `tests/harness_integrity/test_architecture.py` | `test_at022_required_checks_and_in_process_test_client_are_network_independent`; `test_candidate_controls_keep_protected_trust_and_human_records_unavailable` | PARTIAL |
+| AC-023 | AT-023 | `tests/harness_integrity/test_runner_boundaries.py` | `test_at023_untrusted_repository_runner_refuses_authoritative_mode` | PARTIAL |
+| AC-024 | AT-024 | `tests/harness_integrity/test_runner_boundaries.py` | `test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked` | PARTIAL |
+| AC-025 | AT-025 | `tests/harness_integrity/test_architecture.py` | `test_at025_runtime_versions_repository_port_and_layer_boundaries` | FULL |
+| AC-026 | AT-026 | `tests/harness_integrity/test_repository_hygiene.py` | `test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files` | PARTIAL |
+| AC-027 | AT-027 | `tests/harness_integrity/test_runner_boundaries.py` | `test_at027_human_security_review_is_a_separate_blocked_gate` | PARTIAL |
+| AC-028 | AT-028 | `tests/harness_integrity/test_runner_boundaries.py` | `test_at028_runner_does_not_create_or_infer_acceptance_decisions` | PARTIAL |
+| AC-029 | AT-029 | `tests/concurrency/test_concurrent_mutations.py` | `test_at029_concurrent_creates_have_unique_monotonic_ids_and_survive_restart` | FULL |

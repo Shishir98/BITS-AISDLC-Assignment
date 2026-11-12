@@ -1,0 +1,14 @@
+Gate: pytest-and-traceability
+Command: "C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T121351211Z\staged-candidate\.harness\test.ps1" -ProjectRoot "C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T121351211Z\staged-candidate" -OutputDirectory "C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T121351211Z\gates\pytest-and-traceability" -ConfigurationPath "C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T121351211Z\staged-candidate\.harness\mandatory-checks.json"
+Exit code: 1
+Started: 2026-11-12T12:13:56.2361257+00:00
+Finished: 2026-11-12T12:13:59.2728354+00:00
+--- stdout ---
+Command: "C:\Users\User\.local\bin\uv.exe" run --active --locked --no-sync --directory "C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T121351211Z\staged-candidate" pytest -q tests --junitxml="C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261112T121351211Z\gates\pytest-and-traceability\junit.xml"
+Pytest exit code: 0
+JUnit test cases: 5
+Acceptance criteria without complete executable coverage: 29
+Missing mandatory suite directories: 5
+AC-to-AT mapping issues: 0
+
+--- stderr ---
