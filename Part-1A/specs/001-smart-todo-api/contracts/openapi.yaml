@@ -1,0 +1,350 @@
+openapi: 3.1.0
+info:
+  title: Smart Todo & Task Management API
+  version: 1.2.2
+  description: >-
+    API contract includes the proposed v1.2.2 error-detail amendment, which is
+    pending human review and is not approved.
+paths:
+  /tasks:
+    post:
+      operationId: createTask
+      description: Creates a task with a deterministic sequential identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '201':
+          description: Task created.
+          headers:
+            Location:
+              required: true
+              schema:
+                type: string
+                format: uri-reference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          $ref: '#/components/responses/InvalidJson'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    get:
+      operationId: listTasks
+      description: >-
+        Returns tasks in ID order unless sort=priority is specified. Priority
+        order is High, Medium, Low with ID-ascending ties. Repeated tag
+        parameters use AND matching and the same normalization as task tags.
+        Unknown query parameters are rejected; a no-match filter returns an
+        empty collection with count 0.
+      parameters:
+        - name: tag
+          in: query
+          required: false
+          style: form
+          explode: true
+          description: >-
+            Repeat for multiple tags; a task must contain every tag. Trim and
+            lowercase before applying the 1-32 character bound.
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [priority]
+      responses:
+        '200':
+          description: Task collection; count equals the number of items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCollection'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /tasks/{id}:
+    parameters:
+      - $ref: '#/components/parameters/TaskId'
+    get:
+      operationId: getTask
+      responses:
+        '200':
+          description: Task found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    patch:
+      operationId: updateTask
+      description: Updates one or more task detail fields; status is not accepted.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+      responses:
+        '200':
+          description: Task updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          $ref: '#/components/responses/InvalidJson'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      operationId: deleteTask
+      responses:
+        '204':
+          description: Task deleted; response has no body.
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /tasks/{id}/status:
+    parameters:
+      - $ref: '#/components/parameters/TaskId'
+    patch:
+      operationId: updateTaskStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskStatusRequest'
+      responses:
+        '200':
+          description: Status transition accepted or idempotent no-op.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          $ref: '#/components/responses/InvalidJson'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/InvalidStatusTransition'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+components:
+  parameters:
+    TaskId:
+      name: id
+      in: path
+      required: true
+      description: Positive base-10 integer without leading zeros.
+      schema:
+        type: string
+        pattern: '^[1-9][0-9]*$'
+  schemas:
+    Priority:
+      type: string
+      enum: [Low, Medium, High]
+    TaskStatus:
+      type: string
+      enum: [Pending, In Progress, Completed]
+      description: >-
+        New tasks are Pending. Only Pending to In Progress and In Progress to
+        Completed change state; repeating the current status is an idempotent
+        no-op.
+    Task:
+      type: object
+      additionalProperties: false
+      required: [id, title, description, tags, priority, status]
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: Trimmed; must not be blank.
+        description:
+          type: [string, 'null']
+          maxLength: 2000
+        tags:
+          type: array
+          maxItems: 20
+          uniqueItems: true
+          description: Trimmed, lowercase, normalized, and lexicographically sorted.
+          items:
+            type: string
+            minLength: 1
+            maxLength: 32
+        priority:
+          $ref: '#/components/schemas/Priority'
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+    TaskCollection:
+      type: object
+      additionalProperties: false
+      required: [items, count]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        count:
+          type: integer
+          minimum: 0
+          description: Must equal the length of items.
+    CreateTaskRequest:
+      type: object
+      additionalProperties: false
+      required: [title]
+      properties:
+        title:
+          type: string
+          description: Must be 1-200 characters after trimming; whitespace-only is invalid.
+        description:
+          type: [string, 'null']
+          maxLength: 2000
+        tags:
+          type: array
+          maxItems: 20
+          default: []
+          description: Each entry is trimmed/lowercased before its 1-32 character bound is checked.
+          items:
+            type: string
+        priority:
+          $ref: '#/components/schemas/Priority'
+          default: Medium
+    UpdateTaskRequest:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        title:
+          type: string
+          description: Must be 1-200 characters after trimming; whitespace-only is invalid.
+        description:
+          type: [string, 'null']
+          maxLength: 2000
+        tags:
+          type: array
+          maxItems: 20
+          description: Each entry is trimmed/lowercased before its 1-32 character bound is checked.
+          items:
+            type: string
+        priority:
+          $ref: '#/components/schemas/Priority'
+    UpdateTaskStatusRequest:
+      type: object
+      additionalProperties: false
+      required: [status]
+      properties:
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+    ErrorDetail:
+      type: object
+      description: >-
+        Proposed field-level error detail. All members are required strings;
+        objects with the same field path are ordered by code and then message.
+      additionalProperties: false
+      required: [field, code, message]
+      properties:
+        field:
+          type: string
+          description: Field path associated with the error.
+        code:
+          type: string
+          description: Field-level error code.
+        message:
+          type: string
+          description: Stable client-facing description.
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required: [code, message, details]
+          properties:
+            code:
+              type: string
+              enum:
+                - invalid_json
+                - not_found
+                - invalid_status_transition
+                - validation_error
+                - malformed_stored_data
+                - persistence_error
+            message:
+              type: string
+            details:
+              type: array
+              description: >-
+                Empty when no field-level information applies; otherwise sorted
+                by field path, then code and message for ties.
+              items:
+                $ref: '#/components/schemas/ErrorDetail'
+
+  responses:
+    InvalidJson:
+      description: Request body is not valid JSON; code is invalid_json.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Task does not exist; code is not_found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InvalidStatusTransition:
+      description: >-
+        Valid status value is prohibited from the current status; code is
+        invalid_status_transition.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ValidationError:
+      description: Request fields, path ID, or query parameters are invalid; code is validation_error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: >-
+        Malformed stored data uses code malformed_stored_data; local persistence
+        failure uses code persistence_error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
