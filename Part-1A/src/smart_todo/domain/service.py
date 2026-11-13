@@ -28,6 +28,8 @@ class TaskService:
     def list_tasks(self, tags: Sequence[str] | None = None, sort: str | None = None) -> list[Task]:
         with self._lock:
             self._ensure_loaded()
+            if sort is not None and sort != "priority":
+                raise TaskValidationError("sort must be either omitted or 'priority'")
             filtered = list(self._tasks.values())
             requested = normalize_filters(tags)
             if requested:
@@ -51,15 +53,19 @@ class TaskService:
             self._ensure_loaded()
             if not isinstance(priority, Priority):
                 raise TaskValidationError("priority must be Low, Medium, or High")
+            if description is not None and not isinstance(description, str):
+                raise TaskValidationError("description must be a string or null")
             cleaned_title = normalize_title(title)
             cleaned_tags = normalize_tags(tags)
-            task = Task(
-                id=self._next_id,
-                title=cleaned_title,
-                description=description,
-                tags=list(cleaned_tags),
-                priority=priority,
-                status=TaskStatus.PENDING,
+            task = Task.model_validate(
+                {
+                    "id": self._next_id,
+                    "title": cleaned_title,
+                    "description": description,
+                    "tags": list(cleaned_tags),
+                    "priority": priority,
+                    "status": TaskStatus.PENDING,
+                }
             )
             candidate_tasks = dict(self._tasks)
             candidate_tasks[task.id] = task
@@ -85,18 +91,24 @@ class TaskService:
             current = self._tasks[task_id]
             updates: dict[str, object] = {}
             if title is not _UNSET:
-                updates["title"] = normalize_title(title) if title is not None else None
+                if title is None:
+                    raise TaskValidationError("title must be 1-200 characters after trimming")
+                updates["title"] = normalize_title(title)
             if description is not _UNSET:
+                if description is not None and not isinstance(description, str):
+                    raise TaskValidationError("description must be a string or null")
                 updates["description"] = description
             if tags is not _UNSET:
                 updates["tags"] = list(normalize_tags(tags)) if tags is not None else []
             if priority is not _UNSET:
-                if not isinstance(priority, Priority):
+                if priority is None or not isinstance(priority, Priority):
                     raise TaskValidationError("priority must be Low, Medium, or High")
                 updates["priority"] = priority
             if not updates:
                 raise TaskValidationError("At least one field must be provided")
-            candidate = current.model_copy(update=updates)
+            payload = current.model_dump(mode="python")
+            payload.update(updates)
+            candidate = Task.model_validate(payload)
             candidate_tasks = dict(self._tasks)
             candidate_tasks[task_id] = candidate
             self._repository.save(sorted(candidate_tasks.values(), key=lambda item: item.id), self._next_id)
@@ -119,6 +131,13 @@ class TaskService:
             if task_id not in self._tasks:
                 raise TaskNotFoundError(f"Task {task_id} not found")
             current = self._tasks[task_id]
+            if isinstance(status, str):
+                try:
+                    status = TaskStatus(status)
+                except ValueError as exc:
+                    raise TaskValidationError("status must be Pending, In Progress, or Completed") from exc
+            elif not isinstance(status, TaskStatus):
+                raise TaskValidationError("status must be Pending, In Progress, or Completed")
             if status == current.status:
                 return current.model_copy(deep=True)
             allowed = {
@@ -127,7 +146,9 @@ class TaskService:
             }
             if (current.status, status) not in allowed:
                 raise InvalidStatusTransitionError(f"Status transition from {current.status.value} to {status.value} is not allowed")
-            candidate = current.model_copy(update={"status": status})
+            payload = current.model_dump(mode="python")
+            payload["status"] = status
+            candidate = Task.model_validate(payload)
             candidate_tasks = dict(self._tasks)
             candidate_tasks[task_id] = candidate
             self._repository.save(sorted(candidate_tasks.values(), key=lambda item: item.id), self._next_id)
@@ -136,6 +157,8 @@ class TaskService:
 
 
 def normalize_title(value: str) -> str:
+    if not isinstance(value, str):
+        raise TaskValidationError("title must be a string")
     cleaned = value.strip()
     if not 1 <= len(cleaned) <= 200:
         raise TaskValidationError("title must be 1-200 characters after trimming")
@@ -145,9 +168,13 @@ def normalize_title(value: str) -> str:
 def normalize_tags(values: Iterable[str] | None) -> list[str]:
     if values is None:
         return []
+    if isinstance(values, (str, bytes)) or not isinstance(values, Iterable):
+        raise TaskValidationError("tags must be a list of strings")
     cleaned: list[str] = []
     seen: set[str] = set()
     for raw in values:
+        if not isinstance(raw, str):
+            raise TaskValidationError("tag values must be strings")
         tag = raw.strip().lower()
         if not 1 <= len(tag) <= 32:
             raise TaskValidationError("tag values must be 1-32 characters after normalization")
