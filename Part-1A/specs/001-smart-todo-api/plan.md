@@ -7,19 +7,28 @@
 
 **Approved**: 2026-11-12
 
-**Planning basis**: Constitution v1.1.0, feature specification v1.3.0, and this
-implementation plan have human approval dated 2026-11-12. The approved plan and
-research record the dependency versions below. D-01 and D-05 remain independent
-open technical blockers and are not resolved by artifact approval.
+**Amendment status**: This dependent plan update reflects the human-approved
+feature specification v1.4.0 amendment dated 2026-11-13; the plan retains its
+original 2026-11-12 approval record.
+
+**Planning basis**: The original plan and feature specification v1.3.0 were
+approved on 2026-11-12. The feature specification was amended to v1.4.0 with
+explicit human approval dated 2026-11-13; that amendment resolves D-05 by
+replacing the unsupported platform guarantee with an application-level
+recovery contract. The protected runner boundary D-01 remains open.
 
 ## Summary
 
 Build a small, single-process FastAPI service with explicit Pydantic request,
 response, domain, and stored-document models. A business service owns task rules
 and mutation coordination. A JSON repository lazily reads and fully validates
-the configured local document, then persists complete candidates through a
-same-directory temporary file and replacement. In-memory state advances only
-after persistence succeeds. Part-1A contains the required `src/`, `tests/`,
+the configured local document, then persists complete candidates through
+uniquely named same-directory temporary and verified backup files, best-effort
+replacement, and byte verification. In-memory state advances only after the
+primary matches the candidate bytes. Application-handled failures attempt
+byte-exact restoration (or verified restoration of absence) and fail closed if
+recovery cannot be verified; this does not claim Windows atomic visibility or
+crash durability. Part-1A contains the required `src/`, `tests/`,
 `.harness/`, and `evidence/` structure. A separate access-controlled runner
 provides the trusted validation boundary; its external location alone is not
 protection. The canonical runner validates and stages one immutable application
@@ -36,34 +45,34 @@ workspace.
 | Development dependencies | pytest 9.2.0, HTTPX 0.28.1, Ruff 0.17.4, Bandit 1.9.4, and Uvicorn 0.54.0 for local serving. Resolved together with uv on CPython 3.12; commit `uv.lock` with the project configuration (D-04). |
 | Storage | One local JSON document containing `next_id` and the task array. Factory `Path` override, then `SMART_TODO_STORE_PATH`, then `data/tasks.json`; runtime data is Git-ignored (D-02). |
 | Testing | pytest with an in-process ASGI client; all acceptance tests run through the protected harness. Automated application tests make no external network requests. |
-| Target platform | Windows-compatible Python 3.12; use `pathlib`, close file handles before replacement, and avoid POSIX-only assumptions. Formal atomic-replacement behavior on the supported Windows filesystem must be resolved (D-05). |
+| Target platform | Windows-compatible Python 3.12; use `pathlib`, close file handles before replacement, and avoid POSIX-only assumptions. Use `os.replace` only as a best-effort replacement mechanism; the approved contract makes no Windows atomic-visibility or crash-durability guarantee. |
 | Project type | Small HTTP API / web service |
 | Performance goals | No throughput or latency target is specified. Prioritize correctness for a single local collection. |
-| Constraints | Deterministic sequential behavior; single-process mutation serialization; no multi-process writer guarantee, external services, database, or unrequested features. Preserve the specified atomic-replacement requirement; its Windows guarantee remains unresolved (D-05). |
+| Constraints | Deterministic sequential behavior; single-process mutation serialization; no multi-process writer guarantee, external services, database, or unrequested features. D-05 is resolved by the approved application-level recovery amendment; D-01 remains the trusted-validation blocker. |
 | Scale/scope | One local task collection, no pagination or multi-user ownership. Maximum collection size is not specified. |
 
 ## Constitution Check
 
 | Principle | Plan alignment |
 |---|---|
-| I. Specification-First Development | This plan follows the human-approved constitution v1.1.0 and feature specification v1.3.0, both approved on 2026-11-12. The approved planning set records the dependency versions below. D-01 and D-05 remain separate technical blockers. |
+| I. Specification-First Development | The original plan/specification v1.3.0 approval is dated 2026-11-12; feature specification v1.4.0 and its D-05 amendment were approved 2026-11-13. D-01 remains a separate trusted-validation blocker. |
 | II. Clean Architecture | Routes depend on the service; the service depends on domain rules and a repository boundary; persistence does not depend on API code. |
 | III. Deterministic Behaviour | Sequential requests from identical persisted state produce identical results. Concurrent mutation serialization follows NFR-007; request-to-ID assignment is unspecified. |
 | IV. API Contract Integrity | OpenAPI design mirrors the documented endpoints, status codes, response shapes, and error envelope. |
-| V. Data Integrity | Lazy request-time validation, `MalformedStoredDataError`, candidate-state writes, same-directory temporary files, and replacement-before-memory-commit follow the specification. Windows atomic-visibility assurance is an open platform gate (D-05). |
+| V. Data Integrity | Lazy request-time validation and `MalformedStoredDataError` remain unchanged. Candidate bytes and a uniquely named same-directory backup are verified; best-effort replacement is followed by primary-byte verification before memory commit. Handled failures restore and verify prior bytes or absence; unverifiable recovery preserves material and fails closed. No Windows atomic-visibility or crash-durability guarantee is claimed. |
 | VI. Security | No secrets or local environment files are committed; request validation and stable public errors are required. The final repository security review remains a human gate. |
 | VII. Requirement-Driven Testing | [test-strategy.md](./test-strategy.md) maps all 29 acceptance criteria to mandatory test focuses. |
 | VIII. Code Quality | Use type annotations and modular Python; the runner requires zero Ruff violations and captures Bandit execution status, exit code, stdout/stderr, and machine-readable findings. A human security reviewer records each finding's disposition and determines whether the review gate is satisfied. |
-| IX. Independent Validation Harness | Part-1A includes required `.harness/` scripts/configuration and `tests/` as submitted, untrusted copies; the canonical runner, protected test/control baseline, approval records, and execution environment are separately protected. `.harness/instruction-files.json` explicitly inventories exact governing files and digests. Repository location alone is not a security boundary; D-01 remains blocked unless the separate identity/ACL or protected CI boundary is demonstrated. |
+| IX. Independent Validation Harness | Part-1A includes required `.harness/` scripts/configuration and `tests/` as submitted, untrusted copies. The selected implementation is a GitHub Actions workflow dispatched from protected `main`; it verifies the human-approved control/test baseline, checks out an explicit candidate separately, uses read-only permission, supplies no secrets to candidate code, and verifies run-specific staging before and after execution. `.harness/instruction-files.json` explicitly inventories exact governing files and digests. A branch ruleset alone does not prove canonical runner independence; D-01 remains blocked until the workflow, approvals, execution boundary, and actual run are verified. |
 | X. Traceability and Evidence | Part-1A includes `evidence/` organization. The runner generates local evidence copies and retains authoritative evidence in its protected store. |
 | XI. Human Accountability | Automated results never choose ACCEPT/REJECT; a human security review and a separate explicit final decision are required. |
 
-**Gate result**: Human approval of constitution v1.1.0, feature specification
-v1.3.0, and this plan was recorded on 2026-11-12. The artifact, specification
-version, error-details, and dependency-version approval checks in T003 are
-satisfied. This does not assert that approval preceded implementation, and it
-does not resolve D-01 or D-05: the protected runner boundary and Windows
-atomic-visibility requirement remain open implementation blockers.
+**Gate result**: The original approval and dependency/version checks recorded
+for v1.3.0 remain historical. The D-05 guarantee change is explicitly approved
+by the human on 2026-11-13 and is recorded in feature specification v1.4.0 and
+research.md. D-05 no longer blocks the application implementation. D-01 remains
+open: the protected runner boundary and authoritative execution have not been
+established.
 
 ## Proposed Architecture
 
@@ -97,10 +106,11 @@ atomic-visibility requirement remain open implementation blockers.
    synchronous JSON repository; FastAPI dispatches them through its worker
    thread pool.
 4. For a mutation, the service builds a candidate state, asks its injected
-   repository port to persist it atomically, and swaps the in-memory snapshot
-   only after replacement succeeds. Repository-specific exceptions propagate
-   unchanged through the service; the application/API boundary maps them to
-   `malformed_stored_data` or `persistence_error` and retains the prior state.
+   repository port to persist it using the approved backup/recovery contract,
+   and swaps the in-memory snapshot only after primary-byte verification.
+   Repository-specific exceptions propagate unchanged through the service;
+   the application/API boundary maps them to `malformed_stored_data` or
+   `persistence_error` and retains the prior state.
 5. Reads take a consistent snapshot under the same coordination boundary.
    Concurrent mutation results must be equivalent to some serial execution;
    which request receives each ID is intentionally not guaranteed.
@@ -111,13 +121,16 @@ specification's explicit exclusion of independent process writers. Keep the
 lock held over state read, candidate construction, file replacement, and
 in-memory commit; do not expose mutable state outside that boundary.
 
-The proposed replacement uses a same-directory temporary file, closes all
-handles, and then invokes a Windows replacement mechanism. Neither Python's
-`os.replace` documentation nor the reviewed Win32 `ReplaceFileW` and
-`MoveFileExW` documentation establishes the required Windows atomic-visibility
-guarantee. `ReplaceFileW` also documents failure outcomes in which the original
-may no longer remain at its original path. Therefore D-05 remains an
-implementation blocker; do not weaken the approved data-integrity requirement.
+The persistence transaction serializes candidate bytes before touching the
+store; it creates and verifies a uniquely named same-directory backup for an
+existing primary, writes and closes same-directory temporary files, and uses
+`os.replace` as a best-effort replacement operation. It verifies the installed
+primary bytes before publishing memory. A handled failure attempts byte-exact
+restoration from the verified backup or restoration of original absence. Failed
+verification preserves recovery material and puts the repository in a
+fail-closed state. This contract does not claim Windows atomic visibility,
+crash durability, recovery from abrupt process/OS failure, or hardware-level
+persistence.
 
 ## Project Structure
 
@@ -209,44 +222,44 @@ validation candidate manifest and trusted baseline workflow. Runner-generated
 results are mirrored into Part-1A while an authoritative copy remains in the
 protected store.
 
-The canonical runner, baseline, approval records, staging area, and authoritative
-evidence must be writable only by a separately administered Windows identity or
-protected CI service. The coding agent's identity must lack write/admin access.
-ACLs/CI permissions—not directory location or Git history—enforce the boundary.
-If the agent can act as the trusted identity, administer the host, or change the
-CI policy, the mechanism is defeated; D-01 remains blocked until an actual
-separation is demonstrated. A same-user local setup cannot claim this protection.
+The selected trust boundary uses GitHub's protected `main` branch and a
+workflow dispatched from that branch. The workflow's definition and trusted
+control scripts are checked out from `main`; the candidate commit is checked
+out separately and is never used as the workflow definition. The job has
+`contents: read`, does not expose secrets, verifies approved hashes, stages
+candidate bytes in a unique run directory, checks integrity before and after
+execution, and uploads complete logs and evidence. No additional Windows
+account is required. The exact branch ruleset settings and runner isolation
+still require human verification; a protected branch alone does not establish
+canonical runner independence.
 
 ### Initial Trusted-Runner Bootstrap
 
 D-01 remains unresolved until the human/assignment owner establishes and
-verifies this separate trust boundary. Bootstrap must occur out of band from the
-repository runner:
+verifies this GitHub trust boundary. Bootstrap must occur through the protected
+main-branch review and approval process:
 
-1. Establish the separate Windows identity/ACL or protected CI environment and
-   the protected canonical-runner, baseline, approval, staging, and evidence
-   stores. The coding-agent identity must not be able to administer them.
-2. Create the initial Part-1A repository runner, mandatory tests, expected
-   results, validation controls, `.harness/instruction-files.json`, and the
-   exact instruction files it lists as untrusted candidate files.
-3. A human administrator independently reviews those exact candidate files,
-   verifies that the inventory contains only actual applicable files and no
-   wildcard entries, and calculates their SHA-256 digests. The administrator
-   records the source commit and verifies the candidate file set and digests
-   before enrollment.
-4. Through the protected out-of-band channel, enroll the approved file digests
-   and initial baseline. Record the initial approver, actual approval date,
-   rationale, source commit, and approved digests in the protected approval
-   register. Do not invent missing metadata.
-5. The first authoritative run invokes the canonical runner from the protected
-   trust store. That runner verifies the repository runner and controls against
-   the enrolled baseline, then stages and executes only the verified bytes.
-   Never bootstrap by executing an unverified repository copy.
+1. Verify the configured `main` branch ruleset and which actors can change the
+   workflow, trust scripts, baseline, and approval register. Do not infer this
+   from the protected-branch flag alone.
+2. Independently review the initial workflow, trust scripts, mandatory tests,
+   expected results, validation controls, `.harness/instruction-files.json`,
+   the ten listed instruction files, and their exact SHA-256 digests.
+3. Use the single `.harness/trust/approval-register.json` review record to
+   record the actual reviewer, date, rationale, source commit, decision, and
+   reference for the complete inventory. Do not fill blank fields or invent
+   approval data.
+4. Merge the reviewed workflow and baseline to protected `main` through its
+   configured governance process. The workflow must fail closed while approval
+   data is missing or hashes differ.
+5. Dispatch the workflow from `main` with an explicit full candidate commit
+   SHA. Confirm it runs the trusted workflow/control files from `main`, verifies
+   the candidate before execution, and retains integrity-bound results.
 6. Every later change to runner, tests, expected results, controls,
    `.harness/instruction-files.json`, or an inventoried instruction file
-   requires a new human approval record with exact old/new digests, followed by
-   a protected baseline update. Test bootstrap and tamper detection only against
-   disposable fixtures; never mutate the real canonical baseline.
+   requires a new human approval and protected baseline update. Test
+   tamper-detection only against disposable fixtures; never alter an approved
+   baseline without human approval.
 
 The initial repository runner is not trusted because it computes or reports its
 own hashes. Its digest is established by the human administrator and its first
@@ -333,11 +346,11 @@ store is authoritative. Runner-generated results must not be manually edited.
 
 | ID | Status / decision | Proposed boundary / impact |
 |---|---|---|
-| D-01 | **Open implementation blocker** | Part-1A must contain `.harness/`, `tests/`, and `evidence/` as submitted, untrusted repository copies. The human/assignment owner must establish and verify a separately administered Windows identity/ACL or protected CI, then independently review and enroll the canonical runner, tests, controls, `.harness/instruction-files.json`, inventoried files, and their exact digests through an out-of-band approval register. The first authoritative invocation starts from the canonical protected runner; only verified immutable snapshots execute. Location alone is not protection. If the separate identity/ACL or protected CI boundary cannot be demonstrated, D-01 remains blocked. |
+| D-01 | **Design direction closed; implementation blocker remains** | GitHub-based governance and protected `main` were selected; the human reports that the main ruleset is configured. Part-1A's workflow and consolidated approval-register template are candidate files only. The human/assignment owner must review and approve the exact workflow, tests, controls, instruction inventory and ten inventoried files, verify who can administer the boundary, merge the approved baseline to `main`, and run the workflow with an explicit candidate SHA. A branch ruleset alone does not establish canonical runner independence; D-01 remains blocked until the protected workflow and actual run are verified. No additional Windows account is required. |
 | D-02 | **Resolved for planning** | `create_app(store_path: Path | None = None)` explicit path takes precedence; otherwise use non-empty `SMART_TODO_STORE_PATH`; if absent, default to `data/tasks.json` relative to the process working directory. Resolve path at app creation; do not load store then. `.gitignore` excludes `/data/`; any custom path must also be outside tracked files or ignored. |
 | D-03 | **Resolved by approved specification v1.3.0 (2026-11-12)** | The approved v1.3.0 specification includes the error-details schema (exact string fields `field`, `code`, and `message`; `details: []` without field-level information; deterministic ordering), harness-copy trust boundaries, Bandit human disposition, and controlled instruction-file inventory. |
 | D-04 | **Resolved for planning; commit gate remains** | `pyproject.toml` and `uv.lock` are generated in Part-1A using uv; include both in project commits. The Windows CPython 3.12 resolution selected FastAPI 0.162.4, Pydantic 2.14.3, pytest 9.2.0, HTTPX 0.28.1, Ruff 0.17.4, Bandit 1.9.4, and Uvicorn 0.54.0. Review the dependency/lock diff before implementation; see `research.md`. |
-| D-05 | **Open implementation blocker** | `os.replace` has no documented Windows atomic-visibility guarantee. `ReplaceFileW` and `MoveFileExW` are possible Windows APIs, but reviewed Microsoft documentation does not establish the required guarantee; `ReplaceFileW` documents failure states that can leave the replaced file moved/missing. Do not claim atomic visibility or crash durability. Preserve the existing requirement and block implementation until a compliant supported approach is verified or a human explicitly amends the specification. |
+| D-05 | **Resolved by approved specification v1.4.0 (2026-11-13)** | The human-approved amendment retains JSON and replaces the unsupported Windows atomic-visibility/crash-durability guarantee with application-handled backup, byte-verification, restoration, and fail-closed behavior. `os.replace` remains best effort only. No OS-level atomic visibility, crash durability, abrupt process/OS recovery, or hardware persistence guarantee is claimed. |
 
 The feature's scope, status transitions, priority/tag semantics, stored JSON
 shape, error codes, sequential determinism, single-process serialization,
@@ -350,4 +363,5 @@ separately in `tasks.md`.
 No unnecessary subsystems or waived constitution requirements are proposed. The
 API, service, model, and repository boundaries are required by the specification.
 The required repository harness and evidence structure coexist with a genuinely
-separate trusted runner boundary. D-01 and D-05 remain implementation gates.
+separate trusted runner boundary. D-01 remains an authoritative validation gate;
+D-05 is resolved by the approved v1.4.0 application-level recovery contract.

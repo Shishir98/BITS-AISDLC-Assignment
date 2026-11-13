@@ -1,0 +1,177 @@
+{
+  "files": [
+    {
+      "path": ".github/skills/speckit-analyze/SKILL.md",
+      "sha256": "bc5c24e6bbadf90f58e52d351c9ea22d502257ffb584694a9a46cf592dd78033"
+    },
+    {
+      "path": ".github/skills/speckit-checklist/SKILL.md",
+      "sha256": "f846c702c2a83777ab6806decbfaecb9d7f48b15f48bebb2db1d5f06bc6775dc"
+    },
+    {
+      "path": ".github/skills/speckit-clarify/SKILL.md",
+      "sha256": "c0ab0a24043c37e03db3251a261d9250da95bb1ab5f69b51f6beedf009900c48"
+    },
+    {
+      "path": ".github/skills/speckit-constitution/SKILL.md",
+      "sha256": "9ba37cfc2ad0d64dcaf4816f85405376f9e671ef485220dbcbb8ed002aa93036"
+    },
+    {
+      "path": ".github/skills/speckit-converge/SKILL.md",
+      "sha256": "c73faaef7cd7cbf8b5f5b3a378f5b583b4b878fa6add039d0dc30f5617baa5ef"
+    },
+    {
+      "path": ".github/skills/speckit-implement/SKILL.md",
+      "sha256": "47bfb14d191d970e63b1acd362a9570baadea947daa1b3b747c3305aa0bd85cc"
+    },
+    {
+      "path": ".github/skills/speckit-plan/SKILL.md",
+      "sha256": "cef8c4f2cdecc92b2069ba9e0cc3f921d0f87915caa1d8bc023dbc665e02904f"
+    },
+    {
+      "path": ".github/skills/speckit-specify/SKILL.md",
+      "sha256": "f27c66b20968981c98ec65e67f279c3c5b3ac833016d0c3879b1e9aadc1361c9"
+    },
+    {
+      "path": ".github/skills/speckit-tasks/SKILL.md",
+      "sha256": "2236ce1193fc122ee791c4f646aac11a341096670f1ea9aa5424b78148d9b44a"
+    },
+    {
+      "path": ".harness/README.md",
+      "sha256": "63705ebd21f5321a89b6713285cc4b7cdf0e897da0ece6d75b6c003987b097cc"
+    },
+    {
+      "path": ".harness/hygiene.ps1",
+      "sha256": "e327d617108a216f3dc1bba73e2f42441e3d57767d3c01c86d514f73a2ee303e"
+    },
+    {
+      "path": ".harness/instruction-files.json",
+      "sha256": "9953e6fa9f1642afe0af619f9058515a79ef705e82275f3fff2989516ce7c48d"
+    },
+    {
+      "path": ".harness/lint.ps1",
+      "sha256": "92aac6050d34a4a9c6989b45e167eac68c24d4baae0133ae7cfd3c4c3002d8b5"
+    },
+    {
+      "path": ".harness/mandatory-checks.json",
+      "sha256": "bc86c443b4ce1f8e0fd48c70df8ef83baca06b792d4b7338b643eb0c671a0d8c"
+    },
+    {
+      "path": ".harness/run.ps1",
+      "sha256": "de33ceb4c4be3427fc1b48f4b6c157b4d2e97814b4f88de870fcabe244a15669"
+    },
+    {
+      "path": ".harness/security.ps1",
+      "sha256": "f04e4b23169a46f2fe032e99d5aea4ba9b606deedb9b45d4344ec8febd588bdc"
+    },
+    {
+      "path": ".harness/test.ps1",
+      "sha256": "3361e34a3a864d7611a852b0e58bcd0e13d3c7f9357336c08741bdbf75eff8e7"
+    },
+    {
+      "path": ".harness/trust/prepare_candidate.py",
+      "sha256": "433e685cc6acb2b089a69c78a3c8c82eb629e04c44dd06f8b82b560b45adff72"
+    },
+    {
+      "path": ".harness/trust/run_validation.py",
+      "sha256": "7ce82867ae6e7d14c914f400700d2a0df61817a45f4e02a928564db291208871"
+    },
+    {
+      "path": ".harness/trust/seal_evidence.py",
+      "sha256": "6025eadcfd75196bf6e67e40f1829c287a455ee1074187ebd6abd0f7e6de7aed"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "d918e241eb7312796f2a0f2a32e07eae22b1be4e1c837c41ac4f476f1b2a1e55"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "cbaec1a90614ac701f4d0f72b9399fd79f52db85c2514618b821368930c81020"
+    },
+    {
+      "path": "tests/api_contract/test_determinism.py",
+      "sha256": "bad65f8b54b02d0d26b0597e819db65cc0e76d41b32851a6174d63a71bf77ef9"
+    },
+    {
+      "path": "tests/api_contract/test_endpoint_contract.py",
+      "sha256": "35525425f53b575879ce291b7a40d2afe9018f9f48f7aaf0d68caff529f83064"
+    },
+    {
+      "path": "tests/api_contract/test_legacy_api.py",
+      "sha256": "4b9b8bfe8ec9da3dba5c863c0a7ba714dbe52b9e46268746bbc0d339d8e3a314"
+    },
+    {
+      "path": "tests/api_contract/test_status_transitions.py",
+      "sha256": "8cce2f1c95b95cc1f56d5114614b6a2a5138f9bdc9a87b262e116d7f0e47092a"
+    },
+    {
+      "path": "tests/api_contract/test_task_crud.py",
+      "sha256": "e93c9304dd925389575a92ab9bf8964e1b61defc3c902c59767faeeb91f7b3d7"
+    },
+    {
+      "path": "tests/api_contract/test_task_queries.py",
+      "sha256": "4271b24059502aca1251db6be7be366f7208f05311d94f51fc05bbf1d611cb33"
+    },
+    {
+      "path": "tests/concurrency/test_concurrent_mutations.py",
+      "sha256": "1fa5fde569fbf1931dd64720046e6bb1b95f74313d4f604f0928b4baa5a12c1e"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "82dd25fc556fcb0db942299a37fe556047cd13cbc98e778042a8d4ba1f6242b5"
+    },
+    {
+      "path": "tests/error_handling/test_request_validation.py",
+      "sha256": "73d6ea485401e59b2a98d7dd418fe2784d364b1f6ca74c5c9287d4c1e7614c7a"
+    },
+    {
+      "path": "tests/harness_integrity/test_architecture.py",
+      "sha256": "6c3a0db0349cad7fc8bb428eaf26ba46bdeaf85a016723a9ae6e3982033719d8"
+    },
+    {
+      "path": "tests/harness_integrity/test_github_trust_bootstrap.py",
+      "sha256": "d48dd59c2b5730ec17b8bd8b51606618bad8d0bb1ea699729e7d0e2f6a849a46"
+    },
+    {
+      "path": "tests/harness_integrity/test_repository_hygiene.py",
+      "sha256": "eb7726e298e2d4177fde594ade8268e498b41d6de8147fdb0afa09f80999b5ae"
+    },
+    {
+      "path": "tests/harness_integrity/test_runner_boundaries.py",
+      "sha256": "7d6cce13071407c7a4a256e424560c4e6640faf3eea17931e655d2f7daae1e31"
+    },
+    {
+      "path": "tests/persistence/test_json_repository.py",
+      "sha256": "a3dbf65131dc71a7b5fd4445561d694a6880e6cdffd82b34f09069202d6a94cb"
+    },
+    {
+      "path": "tests/unit/test_id_allocation.py",
+      "sha256": "9f10dce8f7b1fca2607ceddf58d11cc17b73f23a42db5e4a5cff718316570d1d"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "2a9762c545fa993622c3098b4590fa2c6cd27d15a095e149d023a50bb17da82e"
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceCommit": "",
+  "status": "BOOTSTRAP_PENDING_HUMAN_REVIEW",
+  "trusted_files": [
+    {
+      "path": ".github/workflows/part-1a-candidate-validation.yml",
+      "sha256": "d6168fa5b7007e2328478ac914684b70171948e54e7cd8dcc3ff9977e3265932"
+    },
+    {
+      "path": "Part-1A/.harness/trust/prepare_candidate.py",
+      "sha256": "433e685cc6acb2b089a69c78a3c8c82eb629e04c44dd06f8b82b560b45adff72"
+    },
+    {
+      "path": "Part-1A/.harness/trust/run_validation.py",
+      "sha256": "7ce82867ae6e7d14c914f400700d2a0df61817a45f4e02a928564db291208871"
+    },
+    {
+      "path": "Part-1A/.harness/trust/seal_evidence.py",
+      "sha256": "6025eadcfd75196bf6e67e40f1829c287a455ee1074187ebd6abd0f7e6de7aed"
+    }
+  ]
+}

@@ -83,7 +83,7 @@ class UpdateTaskRequest(BaseModel):
     @classmethod
     def validate_title(cls, value: str | None) -> str | None:
         if value is None:
-            return None
+            raise ValueError("title must be a string")
         if not isinstance(value, str):
             raise TypeError("title must be a string")
         cleaned = value.strip()

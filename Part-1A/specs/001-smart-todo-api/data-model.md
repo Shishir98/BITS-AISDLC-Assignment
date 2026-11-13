@@ -64,31 +64,39 @@ consistent snapshot under the same coordination boundary. Concurrent mutation
 results must correspond to some serial execution; the request-to-ID assignment
 within that execution is unspecified.
 
-For a mutation, construct and validate a candidate document without changing the
-live in-memory state. Write the complete candidate to a temporary file in the
-store's directory, flush and close it, then replace the store with the completed
-file. Only after replacement succeeds is the in-memory snapshot advanced. A
-reported write or replacement failure discards the candidate and preserves the
-prior file bytes and in-memory state. The repository returns distinct typed
-errors for malformed stored content and local persistence failures.
+For a mutation, construct and serialize the complete candidate document before
+changing the primary store or live in-memory state. For an existing store,
+preserve its exact bytes in a uniquely named same-directory backup, close that
+file, and verify its bytes before attempting replacement. Write and close the
+candidate in a uniquely named same-directory temporary file. Use the existing
+`os.replace` operation as a best-effort replacement mechanism; then read the
+primary back and verify the exact candidate bytes before advancing the
+in-memory snapshot.
 
-On Windows, all file handles to the temporary file must be closed before
-replacement. Temporary-file creation must use the destination directory so the
-replacement stays on the same filesystem. Paths are handled with
-`pathlib.Path`. The application factory accepts an optional explicit `Path`;
-when absent, a non-empty `SMART_TODO_STORE_PATH` is used, otherwise the default
-is `data/tasks.json`. Relative paths are resolved against the process working
+On an application-handled persistence failure, attempt to restore the previous
+bytes from the verified backup using a same-directory temporary file and verify
+the restored primary byte-for-byte. If the original store was absent, remove a
+partially installed primary and verify that the path is absent. In-memory state
+remains unchanged after failed persistence. If recovery cannot be verified,
+preserve the backup, mark the repository as requiring recovery, and fail closed
+to normal mutations. Temporary and backup files may be cleaned after a
+successful, verified transaction; cleanup failure does not invalidate that
+commit. The repository returns distinct typed errors for malformed stored
+content and local persistence failures.
+
+The application factory accepts an optional explicit `Path`; when absent, a
+non-empty `SMART_TODO_STORE_PATH` is used, otherwise the default is
+`data/tasks.json`. Relative paths are resolved against the process working
 directory at app creation. App creation does not access the store. The default
 `data/` directory is excluded from Git; any custom path must also be outside
 tracked files or ignored.
 
-Python documents `os.replace` atomicity with a POSIX qualification and does not
-establish an atomic-visibility guarantee on Windows. The reviewed Microsoft
-documentation for `ReplaceFileW` and `MoveFileExW` also does not establish the
-required guarantee. `ReplaceFileW` documents failure states that can leave the
-replaced file moved or absent at its original path. Atomic visibility and crash
-durability are distinct claims; neither is established by this research for the
-supported Windows setup. D-05 in `plan.md` remains an implementation blocker.
+The contract applies only to application-handled failures. It does NOT guarantee
+OS-level atomic visibility during Windows replacement, crash durability across
+sudden power loss, recovery after abrupt process termination or OS failure
+during replacement, or hardware-level persistence beyond documented
+application operations. The approved v1.4.0 amendment resolves D-05 without
+claiming these unsupported platform guarantees.
 
 ## Approved Error Detail Contract (Specification v1.3.0)
 

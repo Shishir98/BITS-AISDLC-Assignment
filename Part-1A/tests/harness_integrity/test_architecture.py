@@ -50,8 +50,16 @@ def test_candidate_controls_keep_protected_trust_and_human_records_unavailable()
     assert controls["authority"]["trustedRunnerPresent"] is False
     assert controls["authority"]["protectedBaselinePresent"] is False
     assert controls["authority"]["d01Status"] == "BLOCKED"
-    assert controls["windowsPersistenceReadiness"]["d05Status"] == "BLOCKED"
-    assert controls["windowsPersistenceReadiness"]["rollbackTestsEstablishAtomicVisibility"] is False
-    assert controls["windowsPersistenceReadiness"]["evidenceReferences"] == []
+    assert controls["persistenceContractReadiness"]["d05Status"] == "RESOLVED_BY_APPROVED_SPEC_AMENDMENT"
+    assert controls["persistenceContractReadiness"]["approvedSpecVersion"] == "1.4.0"
+    assert controls["persistenceContractReadiness"]["humanApprovalDate"] == "2026-11-13"
+    assert controls["persistenceContractReadiness"]["applicationHandledRecoveryContractApproved"] is True
+    assert controls["persistenceContractReadiness"]["atomicVisibilityGuaranteed"] is False
+    assert controls["persistenceContractReadiness"]["crashDurabilityGuaranteed"] is False
+    assert controls["persistenceContractReadiness"]["rollbackTestsEstablishAtomicVisibility"] is False
+    assert controls["persistenceContractReadiness"]["evidenceReferences"] == []
     assert "human-review-and-decision" in controls["executionSequence"]
-    assert '"windows-persistence-readiness"' in runner
+    assert controls["authority"]["githubWorkflowCandidatePresent"] is True
+    assert controls["authority"]["githubWorkflowRunVerified"] is False
+    assert '"persistence-contract-readiness"' in runner
+    assert "RESOLVED_BY_APPROVED_SPEC_AMENDMENT" in runner
