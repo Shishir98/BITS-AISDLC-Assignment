@@ -1,0 +1,2 @@
+Command: "C:\Users\User\.local\bin\uv.exe" run --active --locked --no-sync --directory "C:\Users\User\Assignment-1\Part-1A" ruff check src tests
+Ruff exit code: 0

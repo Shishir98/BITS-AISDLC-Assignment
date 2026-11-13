@@ -1,0 +1,4 @@
+﻿COMMAND: uv run --locked python -c <trusted traceability verifier> using C:\Users\User\Assignment-1\Part-1A\evidence\candidate-runs\Candidate-20261113T184944527\full-pytest.junit.xml
+WORKING_DIRECTORY: C:\Users\User\Assignment-1\Part-1A
+JUNIT: C:\Users\User\Assignment-1\Part-1A\evidence\candidate-runs\Candidate-20261113T184944527\full-pytest.junit.xml
+EXIT_CODE: 0

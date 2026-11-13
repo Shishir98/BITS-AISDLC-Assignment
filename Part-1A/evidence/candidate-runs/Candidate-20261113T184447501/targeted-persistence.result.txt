@@ -1,0 +1,2 @@
+﻿COMMAND: uv run --locked pytest tests/persistence/test_json_repository.py -q --junitxml=C:\Users\User\Assignment-1\Part-1A\evidence\candidate-runs\Candidate-20261113T184447501\targeted-persistence.junit.xml
+EXIT_CODE: 2

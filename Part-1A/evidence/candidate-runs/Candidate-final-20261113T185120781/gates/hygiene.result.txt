@@ -1,0 +1,3 @@
+﻿COMMAND: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .harness/hygiene.ps1 -ProjectRoot Part-1A -OutputDirectory <final-evidence>\gates\hygiene
+WORKING_DIRECTORY: C:\Users\User\Assignment-1\Part-1A
+EXIT_CODE: 0

@@ -5,22 +5,27 @@
     "trustedRunnerPresent": false,
     "protectedBaselinePresent": false,
     "separateIdentityOrProtectedCiDemonstrated": false,
+    "githubWorkflowCandidatePresent": true,
+    "githubWorkflowRunVerified": false,
     "d01Status": "BLOCKED"
   },
-  "windowsPersistenceReadiness": {
-    "d05Status": "BLOCKED",
-    "approvedWindowsAtomicVisibilityStrategyPresent": false,
-    "supportedFilesystemAtomicVisibilityEvidencePresent": false,
+  "persistenceContractReadiness": {
+    "d05Status": "RESOLVED_BY_APPROVED_SPEC_AMENDMENT",
+    "approvedSpecVersion": "1.4.0",
+    "humanApprovalDate": "2026-11-13",
+    "applicationHandledRecoveryContractApproved": true,
+    "atomicVisibilityGuaranteed": false,
+    "crashDurabilityGuaranteed": false,
     "rollbackTestsEstablishAtomicVisibility": false,
-    "observedImplementation": "Same-directory temporary file followed by os.replace.",
+    "observedImplementation": "Verified same-directory backup and candidate, best-effort os.replace, and byte-verified primary/recovery.",
     "evidenceReferences": [],
-    "blockingReason": "No approved strategy or evidence establishes the required atomic-visibility guarantee on the supported Windows filesystem. AT-014 rollback tests verify reported write/replacement failure handling only."
+    "statusNote": "D-05 is resolved by the explicitly approved application-level backup and recovery amendment. No Windows atomic-visibility or crash-durability guarantee is asserted."
   },
   "executionSequence": [
     "candidate-integrity-before",
     "instruction-inventory",
     "governance-boundary",
-    "windows-persistence-readiness",
+    "persistence-contract-readiness",
     "ruff",
     "bandit",
     "pytest-and-traceability",
@@ -298,18 +303,64 @@
     {
       "ac": "AC-014",
       "at": "AT-014",
-      "assessment": "partial",
+      "assessment": "full",
       "tests": [
         {
           "file": "tests/persistence/test_json_repository.py",
           "className": "tests.persistence.test_json_repository",
-          "name": "test_at014_failed_atomic_write_preserves_file_and_in_memory_state",
-          "nodeId": "tests/persistence/test_json_repository.py::test_at014_failed_atomic_write_preserves_file_and_in_memory_state"
+          "name": "test_at014_successful_write_verifies_backup_and_complete_candidate",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_successful_write_verifies_backup_and_complete_candidate"
+        },
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_candidate_serialization_failure_does_not_touch_store_or_memory",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_candidate_serialization_failure_does_not_touch_store_or_memory"
+        },
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_candidate_temporary_write_failure_recovers_and_allows_next_write",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_candidate_temporary_write_failure_recovers_and_allows_next_write"
+        },
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_backup_write_failure_leaves_verified_original_and_memory_unchanged",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_backup_write_failure_leaves_verified_original_and_memory_unchanged"
+        },
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_replacement_failure_restores_exact_bytes_and_allows_next_write",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_replacement_failure_restores_exact_bytes_and_allows_next_write"
+        },
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_replacement_failure_after_install_restores_from_verified_backup",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_replacement_failure_after_install_restores_from_verified_backup"
+        },
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_failed_creation_restores_original_absence",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_failed_creation_restores_original_absence"
+        },
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_recovery_failure_preserves_backup_and_fails_closed",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_recovery_failure_preserves_backup_and_fails_closed"
+        },
+        {
+          "file": "tests/persistence/test_json_repository.py",
+          "className": "tests.persistence.test_json_repository",
+          "name": "test_at014_cleanup_failure_does_not_undo_verified_commit",
+          "nodeId": "tests/persistence/test_json_repository.py::test_at014_cleanup_failure_does_not_undo_verified_commit"
         }
       ],
-      "gaps": [
-        "AT-014 tests complete JSON replacement and injected write/replacement rollback, but D-05 remains BLOCKED: no approved Windows atomic-visibility strategy or supported-filesystem evidence exists. Failure simulation does not establish atomic visibility."
-      ]
+      "gaps": []
     },
     {
       "ac": "AC-015",
@@ -415,6 +466,18 @@
       "assessment": "partial",
       "tests": [
         {
+          "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
+          "className": "tests.harness_integrity.test_github_trust_bootstrap",
+          "name": "test_at022_workflow_uses_protected_main_read_only_checkout_and_sha",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at022_workflow_uses_protected_main_read_only_checkout_and_sha"
+        },
+        {
+          "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
+          "className": "tests.harness_integrity.test_github_trust_bootstrap",
+          "name": "test_at022_candidate_process_receives_only_allowlisted_environment",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at022_candidate_process_receives_only_allowlisted_environment"
+        },
+        {
           "file": "tests/harness_integrity/test_runner_boundaries.py",
           "className": "tests.harness_integrity.test_runner_boundaries",
           "name": "test_at022_required_checks_and_in_process_test_client_are_network_independent",
@@ -428,8 +491,8 @@
         }
       ],
       "gaps": [
-        "Checks declared gates and in-process network independence; does not prove a trusted runner, complete staging integrity, or evidence-manifest trust.",
-        "Control declarations are checked locally; D-01 and protected baseline remain unavailable."
+        "Workflow and staging controls are candidate implementations; no protected GitHub run or protected-artifact verification has occurred.",
+        "The hosted workflow does not provide an independently verified external-network sandbox for candidate code."
       ]
     },
     {
@@ -438,6 +501,30 @@
       "assessment": "partial",
       "tests": [
         {
+          "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
+          "className": "tests.harness_integrity.test_github_trust_bootstrap",
+          "name": "test_at023_pending_bootstrap_fails_before_candidate_staging",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at023_pending_bootstrap_fails_before_candidate_staging"
+        },
+        {
+          "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
+          "className": "tests.harness_integrity.test_github_trust_bootstrap",
+          "name": "test_at023_synthetic_tampered_test_file_is_rejected_before_staging",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at023_synthetic_tampered_test_file_is_rejected_before_staging"
+        },
+        {
+          "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
+          "className": "tests.harness_integrity.test_github_trust_bootstrap",
+          "name": "test_at023_unapproved_changes_to_controls_inventory_instructions_and_dependencies_are_rejected",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at023_unapproved_changes_to_controls_inventory_instructions_and_dependencies_are_rejected"
+        },
+        {
+          "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
+          "className": "tests.harness_integrity.test_github_trust_bootstrap",
+          "name": "test_at023_verified_candidate_is_staged_and_manifest_tampering_is_detected",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at023_verified_candidate_is_staged_and_manifest_tampering_is_detected"
+        },
+        {
           "file": "tests/harness_integrity/test_runner_boundaries.py",
           "className": "tests.harness_integrity.test_runner_boundaries",
           "name": "test_at023_untrusted_repository_runner_refuses_authoritative_mode",
@@ -445,7 +532,7 @@
         }
       ],
       "gaps": [
-        "Verifies fail-closed local default only; no protected canonical runner or disposable trust-store tamper workflow exists."
+        "Disposable fixtures verify digest rejection and staged-byte integrity; protected GitHub execution and branch-ruleset administration remain unverified."
       ]
     },
     {
@@ -454,6 +541,18 @@
       "assessment": "partial",
       "tests": [
         {
+          "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
+          "className": "tests.harness_integrity.test_github_trust_bootstrap",
+          "name": "test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals"
+        },
+        {
+          "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
+          "className": "tests.harness_integrity.test_github_trust_bootstrap",
+          "name": "test_at024_tampered_trusted_workflow_or_approval_register_is_rejected",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at024_tampered_trusted_workflow_or_approval_register_is_rejected"
+        },
+        {
           "file": "tests/harness_integrity/test_runner_boundaries.py",
           "className": "tests.harness_integrity.test_runner_boundaries",
           "name": "test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked",
@@ -461,7 +560,7 @@
         }
       ],
       "gaps": [
-        "Verifies current inventory structure and digests, not protected approval creation, tampering, or acceptance flow."
+        "Synthetic approved baseline is exercised, but human approval remains pending; no protected approval record exists."
       ]
     },
     {
@@ -481,18 +580,28 @@
     {
       "ac": "AC-026",
       "at": "AT-026",
-      "assessment": "partial",
+      "assessment": "full",
       "tests": [
         {
           "file": "tests/harness_integrity/test_repository_hygiene.py",
           "className": "tests.harness_integrity.test_repository_hygiene",
           "name": "test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files",
           "nodeId": "tests/harness_integrity/test_repository_hygiene.py::test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files"
+        },
+        {
+          "file": "tests/harness_integrity/test_repository_hygiene.py",
+          "className": "tests.harness_integrity.test_repository_hygiene",
+          "name": "test_at026_current_publication_candidate_has_no_hygiene_findings",
+          "nodeId": "tests/harness_integrity/test_repository_hygiene.py::test_at026_current_publication_candidate_has_no_hygiene_findings"
+        },
+        {
+          "file": "tests/harness_integrity/test_repository_hygiene.py",
+          "className": "tests.harness_integrity.test_repository_hygiene",
+          "name": "test_at026_historical_synthetic_scanner_fixtures_are_not_publication_findings",
+          "nodeId": "tests/harness_integrity/test_repository_hygiene.py::test_at026_historical_synthetic_scanner_fixtures_are_not_publication_findings"
         }
       ],
-      "gaps": [
-        "Synthetic disposable-candidate findings are verified; zero findings in the actual publication set remains a separate harness result."
-      ]
+      "gaps": []
     },
     {
       "ac": "AC-027",

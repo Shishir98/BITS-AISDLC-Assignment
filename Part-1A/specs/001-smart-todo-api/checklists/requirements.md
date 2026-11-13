@@ -4,7 +4,7 @@
 **Created**: 2026-11-11
 **Feature**: [spec.md](../spec.md)
 
-**Review Ownership**: Specification-author review; the current feature specification v1.3.0 was approved on 2026-11-12.
+**Review Ownership**: Specification-author review; the current feature specification v1.4.0 was approved on 2026-11-13. Feature specification v1.3.0 remains in the preserved change history.
 **Marker Semantics**: `[x]` means the specification-quality check passed. It does not mean the feature is implemented or accepted.
 
 ## Content Quality
@@ -46,7 +46,7 @@
   Pydantic, and endpoint-level API behavior. These are stated as project
   constraints or externally observable contracts, not as implementation steps.
 - This checklist assesses specification quality only and was prepared against
-  an earlier specification draft; the current feature specification v1.3.0
-  was approved on 2026-11-12.
+  an earlier specification draft; the current feature specification v1.4.0
+  was approved on 2026-11-13.
 - Specification version 1.1.0 records the targeted corrections in the change
   history; it was superseded by approved v1.3.0 on 2026-11-12.

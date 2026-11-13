@@ -6,9 +6,9 @@
 
 **Status**: ACCEPT
 
-**Version**: 1.3.0
+**Version**: 1.4.0
 
-**Approved**: 2026-11-12
+**Approved**: 2026-11-13
 
 **Input**: User description: "Create a deterministic task-management API with task CRUD, tag filtering, priority sorting, JSON persistence, and validated task-status transitions."
 
@@ -24,6 +24,22 @@
 - Q: Which harness artifacts are trusted: the copies submitted in Part-1A or a separately protected baseline? → A: Part-1A tests, harness scripts, controls, and evidence are required submitted copies but are untrusted candidates/evidence. Only a canonical runner that verifies their exact SHA-256 digests against the separately protected baseline may stage and execute them. Repository location alone establishes no trust; D-01 remains blocked unless the separate identity/ACL or protected CI boundary is demonstrated.
 - Q: How are instruction files that influence coding or validation selected? → A: Enumerate only actual files in `.harness/instruction-files.json`, with `path`, `purpose`, `classification`, `sha256`, and `approval_reference` keys. Do not use wildcard entries. Protect the inventory and listed digests through the trusted baseline and approval process.
 - Q: Who reviews Bandit findings? → A: The runner executes Bandit and preserves its machine-readable findings and execution output. A human security reviewer reviews each finding, records its resolution or documented disposition with identity, date, and rationale, and determines whether the review gate is satisfied.
+
+### Session 2026-11-13
+
+- Human-approved D-05 amendment: retain JSON persistence and replace the unsupported Windows atomic-visibility and crash-durability guarantee with the application-level backup and recovery contract in FR-014 and AC-014. Approval date: 2026-11-13. This amendment does not claim OS-level atomic visibility, crash durability, or recovery after abrupt process or OS failure during replacement.
+
+### D-01 implementation direction
+
+- GitHub-based governance was selected. The human reports that the repository's
+  `main` branch ruleset is configured. The intended validation workflow is
+  dispatched from protected `main`, checks out the trusted workflow separately
+  from an explicitly identified candidate commit, uses read-only repository
+  permission, and receives no secrets. This closes the design choice; it does
+  not establish that the submitted workflow is protected, canonical, or
+  authoritative. D-01 remains open until the workflow, baseline, approvals,
+  staging integrity, evidence, and actual protected run are independently
+  verified. No additional Windows account is required or proposed.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -131,8 +147,9 @@ and verify the documented errors and preservation guarantees.
   JSON, and local write failures have distinct documented error codes.
 - The application starts with a malformed store; requests that access it return
   the documented `malformed_stored_data` error without changing the store.
-- If an atomic replacement fails, the pre-existing store remains byte-for-byte
-  unchanged.
+- A handled persistence failure attempts to restore the previous bytes (or
+  original absence) and verifies that restoration; an unrecoverable repository
+  fails closed.
 - Concurrent mutations handled by one application instance are serialized;
   concurrent writers from independent application processes are outside scope.
 
@@ -177,11 +194,31 @@ and verify the documented errors and preservation guarantees.
   in a local JSON document and preserve them across application restarts. A
   missing store MUST represent an empty collection with next identifier 1, not
   an error.
-- **FR-014**: Every persistence write MUST serialize a complete replacement to a
-  temporary file in the same directory and atomically replace the store only
-  after the temporary file is complete. If a write or replacement fails, the
-  previous store and corresponding in-memory state MUST remain unchanged, and
-  the API MUST report a persistence error.
+- **FR-014**: Every persistence write MUST serialize the complete candidate JSON
+  document before modifying the existing store. If a valid store exists, the
+  implementation MUST preserve its exact bytes in a separate, uniquely named
+  backup in the store's directory and verify the backup bytes before attempting
+  to replace the primary store. Candidate temporary files and backups MUST be
+  created in the primary store's directory. File writes MUST be completed and
+  handles closed before replacement. The existing supported replacement
+  operation is a best-effort mechanism; it MUST NOT be described as guaranteeing
+  atomic visibility on Windows. The primary store MUST be read back and
+  byte-verified against the candidate before in-memory state is committed.
+  Following an application-handled persistence failure, the implementation
+  MUST attempt to restore the exact previous bytes from the verified backup and
+  verify the restored primary byte-for-byte. If the primary did not exist
+  before the attempted creation, recovery MUST remove any partially installed
+  primary and verify that the path is absent. In-memory state MUST remain
+  unchanged on failure. If restoration cannot be verified, the backup MUST be
+  preserved, the repository MUST require recovery and fail closed, and normal
+  mutations MUST NOT continue. Temporary files and backups MAY be removed after
+  a successful, verified transaction; cleanup failure MUST NOT invalidate that
+  verified commit. These guarantees cover application-handled failures only.
+  The system does NOT guarantee OS-level atomic visibility during Windows
+  replacement, crash durability across sudden power loss, recovery after abrupt
+  process termination or OS failure during replacement, or hardware-level
+  persistence beyond documented application operations. Persistence failures
+  MUST retain the existing API persistence-error response.
 - **FR-015**: Malformed stored JSON or an invalid stored-data shape MUST raise
   the typed `MalformedStoredDataError` with stable identifier
   `malformed_stored_data`. This includes invalid task records, duplicate IDs, or
@@ -238,20 +275,20 @@ and verify the documented errors and preservation guarantees.
   alone MUST NOT establish trust, and a submitted copy MUST NOT be authoritative
   merely because it is outside application source.
 
-  The authoritative boundary MUST consist of a canonical trusted runner, the
-  canonical test/control baseline, approval records, and a protected execution
-  environment administered through a separate Windows identity/ACL or
-  protected CI controls. Before each authoritative run, the trusted runner MUST
-  verify the exact SHA-256 digests of the submitted runner, mandatory tests,
-  expected results, validation controls, and instruction inventory against the
-  separately protected, human-approved baseline. It MUST verify each inventoried
-  instruction file against the controlled inventory and approved digests, then
-  stage and execute only the verified immutable snapshot. Missing/invalid
+  The selected D-01 implementation is a GitHub Actions workflow dispatched
+  from protected `main`, with the trusted workflow and candidate checked out
+  separately. It MUST use a read-only token, provide no secrets to candidate
+  code, and verify exact SHA-256 digests for the submitted runner, mandatory
+  tests, expected results, validation controls, instruction inventory, and
+  inventoried files against a human-approved baseline. It MUST stage and
+  execute only the verified run-specific snapshot, verify integrity before and
+  after execution, and retain complete logs and evidence. Missing/invalid
   baselines or approval records, unauthorized modifications, and digest
   mismatches MUST fail closed with a non-zero exit code and MUST NOT produce a
-  success-shaped result. If the separately administered identity/ACL or
-  protected CI boundary cannot be demonstrated, D-01 remains blocked and no
-  authoritative validation is permitted.
+  success-shaped result. A protected branch ruleset alone does not establish
+  canonical runner independence. D-01 remains blocked until the protected
+  workflow, approval baseline, execution boundary, and actual run are verified.
+  No separate Windows account is required by the selected design.
 
   `.harness/instruction-files.json` MUST inventory only actual instruction or
   governing files that influence coding-agent behavior or validation. Each
@@ -480,11 +517,21 @@ all stated outcomes are observed.
 - **AC-013**: After a task is written and the application is restarted against
   the same store, retrieving and listing returns the same task fields and values;
   the next successful creation receives the persisted next unused ID.
-- **AC-014**: A successful write replaces the stored JSON, including tasks and
-  next identifier, with a complete valid document. When a write or replacement
-  is forced to fail, the API returns `500` with code `persistence_error`; the
-  prior store remains byte-for-byte unchanged, and subsequent reads observe the
-  unchanged in-memory task collection and next identifier.
+- **AC-014**: A successful write serializes a complete valid document, preserves
+  and verifies the previous store bytes in a uniquely named same-directory
+  backup, writes and closes same-directory temporary files before replacement,
+  and verifies the primary bytes against the candidate before committing
+  in-memory state. If an application-handled persistence failure occurs, the
+  API returns `500` with code `persistence_error`, and in-memory state remains
+  unchanged. For a previously existing store, recovery attempts to restore and
+  byte-verify the exact previous bytes from the verified backup. For a store
+  that did not previously exist, recovery removes any partially installed
+  primary and verifies the original absence. If recovery cannot be verified,
+  the backup is preserved and the repository fails closed to further
+  mutations. Temporary and backup cleanup after a verified transaction does
+  not invalidate its commit. These tests establish only the specified
+  application-handled behavior; they do not establish OS-level atomic
+  visibility, crash durability, or recovery after abrupt process or OS failure.
 - **AC-015**: Invalid stored JSON and a structurally invalid stored document
   raise `MalformedStoredDataError` with identifier `malformed_stored_data`.
   Table-driven cases cover malformed syntax; root type, keys, and duplicate
@@ -540,14 +587,17 @@ all stated outcomes are observed.
   `sha256`, and `approval_reference` keys. A missing or mismatched baseline,
   invalid approval record, or unauthorized modification is detected before
   application tests run; the runner records failure, produces no success-shaped
-  result, and exits non-zero. If the separate identity/ACL or protected CI
-  boundary cannot be demonstrated, D-01 remains blocked.
+  result, and exits non-zero. The selected implementation is the protected-main
+  GitHub Actions workflow. D-01 remains blocked until its protected source,
+  approved baseline, execution boundary, and actual protected run are verified;
+  branch protection alone does not establish canonical runner independence.
 - **AC-024**: A legitimate change to a mandatory test, expected result, or
   validation control, instruction inventory, or inventoried instruction file is
   accepted only after a protected approval record contains the human approver,
   date, change rationale, and old/new SHA-256 digests, and the human-approved
-  baseline is updated through a protected channel. A change without that record
-  is rejected; a change matching the approved new baseline is accepted.
+  baseline is updated through the protected GitHub `main` review process. A
+  change without that record is rejected; a change matching the approved new
+  baseline is accepted.
 - **AC-025**: The selected runtime reports Python 3.12 and the API uses FastAPI
   and Pydantic. An automated architecture check verifies that routes depend on
   business logic rather than persistence details and that business logic does
@@ -624,7 +674,7 @@ minimum required coverage; additional focused tests MAY be added.
 | AC-011 | AT-011: Allowed transitions and idempotent same-status request |
 | AC-012 | AT-012: All prohibited transitions return conflict and preserve state |
 | AC-013 | AT-013: Restart, read tasks, and continue the persisted ID sequence |
-| AC-014 | AT-014: Verify atomic replacement and that failed writes preserve persisted bytes and in-memory state |
+| AC-014 | AT-014: Verify candidate serialization, backup verification, best-effort replacement, byte-exact recovery (including original absence), unchanged memory, fail-closed recovery failure, and safe cleanup |
 | AC-015 | AT-015: Verify successful startup, request-triggered validation, `500` on each malformed-store access, and unchanged bytes |
 | AC-016 | AT-016: Title/description type and lower/upper boundary validation |
 | AC-017 | AT-017: Tag count/length/type bounds and normalization |
@@ -690,6 +740,7 @@ minimum required coverage; additional focused tests MAY be added.
 
 | Version | Date | Change |
 |---|---|---|
+| 1.4.0 | 2026-11-13 | **Human-approved 2026-11-13 (D-05 amendment).** Retain JSON persistence; replace the unsupported Windows atomic-visibility and crash-durability guarantee with the explicit application-level backup, byte-verification, restoration, and fail-closed recovery contract. Amend FR-014, AC-014, and AT-014 traceability; state the platform and abrupt-failure limitations. Preserve all prior specification history. |
 | 1.3.0 | 2026-11-12 | **Approved 2026-11-12.** Clarify submitted versus authoritative harness artifacts, exact-digest verification and D-01 blocking, add the controlled instruction-file inventory, separate Bandit execution from human disposition, and update AC/NFR traceability without changing the existing requirement or acceptance-criterion counts. |
 | 1.2.2 | 2026-11-11 | **Proposed; superseded by approved v1.3.0 on 2026-11-12.** Specify the exact error-detail schema, empty-array behavior, deterministic ordering, OpenAPI shape, and updated traceability/success criteria. |
 | 1.2.1 | 2026-11-11 | Made malformed-store request-time validation explicit; aligned sequential determinism, concurrent serialization, ID assignment, persistence rollback, acceptance criteria, test mappings, and success criteria. |

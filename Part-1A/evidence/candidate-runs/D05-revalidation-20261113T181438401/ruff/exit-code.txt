@@ -1,0 +1,2 @@
+COMMAND: powershell -NoProfile -ExecutionPolicy Bypass -File .harness\lint.ps1 -ProjectRoot C:\Users\User\Assignment-1\Part-1A -OutputDirectory C:\Users\User\Assignment-1\Part-1A\evidence\candidate-runs\D05-revalidation-20261113T181438401\ruff
+EXIT_CODE=0
