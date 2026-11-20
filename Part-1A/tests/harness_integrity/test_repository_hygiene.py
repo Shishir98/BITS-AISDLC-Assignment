@@ -10,7 +10,13 @@ POWERSHELL = os.environ.get("POWERSHELL_EXE", "powershell.exe")
 HYGIENE_SCRIPT = PROJECT_ROOT / ".harness" / "hygiene.ps1"
 
 
-def _run_hygiene(project: Path, output: Path) -> subprocess.CompletedProcess[str]:
+def _run_hygiene(
+    project: Path,
+    output: Path,
+    tracked_root: str | None = None,
+) -> subprocess.CompletedProcess[str]:
+    if tracked_root is None:
+        tracked_root = str(project)
     return subprocess.run(
         [
             POWERSHELL,
@@ -22,7 +28,7 @@ def _run_hygiene(project: Path, output: Path) -> subprocess.CompletedProcess[str
             "-ProjectRoot",
             str(project),
             "-TrackedRoot",
-            str(project),
+            tracked_root,
             "-OutputDirectory",
             str(output),
         ],
@@ -60,7 +66,8 @@ def test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files(tmp_p
 
 
 def test_at026_current_publication_candidate_has_no_hygiene_findings(tmp_path: Path) -> None:
-    result = _run_hygiene(PROJECT_ROOT, tmp_path / "publication-scan")
+    tracked_root = os.environ.get("PART1A_TRACKED_ROOT", str(PROJECT_ROOT))
+    result = _run_hygiene(PROJECT_ROOT, tmp_path / "publication-scan", tracked_root)
     assert result.returncode == 0, result.stdout + result.stderr
     report = json.loads((tmp_path / "publication-scan" / "hygiene.json").read_text(encoding="utf-8-sig"))
     assert report["syntheticFixtureChecksPassed"] is True

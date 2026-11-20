@@ -49,7 +49,12 @@ def test_candidate_controls_keep_protected_trust_and_human_records_unavailable()
     runner = (PROJECT_ROOT / ".harness" / "run.ps1").read_text(encoding="utf-8")
     assert controls["authority"]["trustedRunnerPresent"] is False
     assert controls["authority"]["protectedBaselinePresent"] is False
-    assert controls["authority"]["d01Status"] == "BLOCKED"
+    assert controls["authority"]["d01Status"] == "SCOPED_WAIVER"
+    assert controls["ownerDisposition"]["customBootstrapStatus"] == "WAIVED"
+    assert controls["ownerDisposition"]["waivedPortions"] == [
+        "AC-023.canonical-protected-runner-and-baseline",
+        "AC-024.actual-protected-approval-register",
+    ]
     assert controls["persistenceContractReadiness"]["d05Status"] == "RESOLVED_BY_APPROVED_SPEC_AMENDMENT"
     assert controls["persistenceContractReadiness"]["approvedSpecVersion"] == "1.4.0"
     assert controls["persistenceContractReadiness"]["humanApprovalDate"] == "2026-11-13"
@@ -58,7 +63,10 @@ def test_candidate_controls_keep_protected_trust_and_human_records_unavailable()
     assert controls["persistenceContractReadiness"]["crashDurabilityGuaranteed"] is False
     assert controls["persistenceContractReadiness"]["rollbackTestsEstablishAtomicVisibility"] is False
     assert controls["persistenceContractReadiness"]["evidenceReferences"] == []
-    assert "human-review-and-decision" in controls["executionSequence"]
+    assert "d01-owner-disposition" in controls["executionSequence"]
+    assert "protected-workflow-verification" in controls["executionSequence"]
+    assert "human-security-review" in controls["executionSequence"]
+    assert "human-final-decision" in controls["executionSequence"]
     assert controls["authority"]["githubWorkflowCandidatePresent"] is True
     assert controls["authority"]["githubWorkflowRunVerified"] is False
     assert '"persistence-contract-readiness"' in runner

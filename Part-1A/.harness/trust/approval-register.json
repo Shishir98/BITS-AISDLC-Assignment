@@ -7,7 +7,7 @@
     "rationale": "",
     "source_commit": ""
   },
-  "baseline_sha256": "948203009c18e53f481beeb66b28fba118255a449d57f65a273e5cbe7a4695eb",
+  "baseline_sha256": "89c2111c6346c5eef62d174e859c9825496b898cf5363f92d88e27dcc55b63dc",
   "instruction_files": [
     {
       "approval_reference": "",
@@ -77,7 +77,70 @@
       "classification": "governing",
       "path": ".specify/memory/constitution.md",
       "purpose": "Project governance and validation principles.",
-      "sha256": "d918e241eb7312796f2a0f2a32e07eae22b1be4e1c837c41ac4f476f1b2a1e55"
+      "sha256": "efef04e006a5b4b15880ab0ea5dc25977bec6b3e82005c2e6bdfb13ccfe4f72b"
+    },
+    {
+      "path": "specs/001-smart-todo-api/checklists/requirements.md",
+      "purpose": "Governing requirements quality checklist for Smart Todo API",
+      "classification": "requirements-checklist",
+      "sha256": "73f9d2a695739799added2d90d556ad726da2df12dabafca287968e5df3cf77f",
+      "approval_reference": ""
+    },
+    {
+      "path": "specs/001-smart-todo-api/contracts/openapi.yaml",
+      "purpose": "Governing OpenAPI 3.1.0 HTTP contract for Smart Todo API",
+      "classification": "api-contract",
+      "sha256": "873a1566d6ffb62e23bc05add4effd54a53ca01c0996c074c6045088992b6b69",
+      "approval_reference": ""
+    },
+    {
+      "path": "specs/001-smart-todo-api/data-model.md",
+      "purpose": "Governing domain and persistence data model specification",
+      "classification": "data-model",
+      "sha256": "2293518d13c7d1acaa5e6395ad2fd067a39d0cf90dd58a133373b9acbd01143d",
+      "approval_reference": ""
+    },
+    {
+      "path": "specs/001-smart-todo-api/plan.md",
+      "purpose": "Governing technical implementation plan and architecture specification",
+      "classification": "architecture-plan",
+      "sha256": "3091b6e5802e2946aeff63d61d153083614894bb90dfd652c3349249db102ab8",
+      "approval_reference": ""
+    },
+    {
+      "path": "specs/001-smart-todo-api/quickstart.md",
+      "purpose": "Governing quickstart and validation execution guide",
+      "classification": "quickstart",
+      "sha256": "05aa84e982e596bd1988c4312b2d0ad90ff8a7799e6e3457dfd80bd03bd6eb3d",
+      "approval_reference": ""
+    },
+    {
+      "path": "specs/001-smart-todo-api/research.md",
+      "purpose": "Governing dependency and persistence research decisions",
+      "classification": "research",
+      "sha256": "b1bfbe8eef6fa2cabc67d4a21421cb9133b8f0323756e6f959a89e0b92ed6bbe",
+      "approval_reference": ""
+    },
+    {
+      "path": "specs/001-smart-todo-api/spec.md",
+      "purpose": "Governing feature specification v1.4.0 for Smart Todo API",
+      "classification": "specification",
+      "sha256": "c803d80480cfd31247e153fb260b8fcb8f0b8d9e79aa70c07e803cc926525867",
+      "approval_reference": ""
+    },
+    {
+      "path": "specs/001-smart-todo-api/tasks.md",
+      "purpose": "Governing task tracker and phase dependency specification",
+      "classification": "task-tracker",
+      "sha256": "d13244eb5d97702df39f7ac11213acee18e45073d9a7e5f84d35c281a2b9701b",
+      "approval_reference": ""
+    },
+    {
+      "path": "specs/001-smart-todo-api/test-strategy.md",
+      "purpose": "Governing acceptance test strategy and AC-001..AC-029 traceability matrix",
+      "classification": "test-strategy",
+      "sha256": "2bc536c39a43e8a3889c530b648046df7a110e964c3d66a71a22d1bd8b1b47a4",
+      "approval_reference": ""
     }
   ],
   "schemaVersion": 1,

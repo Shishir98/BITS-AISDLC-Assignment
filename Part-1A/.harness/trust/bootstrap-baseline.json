@@ -38,7 +38,7 @@
     },
     {
       "path": ".harness/README.md",
-      "sha256": "63705ebd21f5321a89b6713285cc4b7cdf0e897da0ece6d75b6c003987b097cc"
+      "sha256": "16f25474a94809273dcfee3b5622e5c02efd117d491f238e94ede17e62e365a5"
     },
     {
       "path": ".harness/hygiene.ps1",
@@ -46,7 +46,7 @@
     },
     {
       "path": ".harness/instruction-files.json",
-      "sha256": "9953e6fa9f1642afe0af619f9058515a79ef705e82275f3fff2989516ce7c48d"
+      "sha256": "783c7dfdd43acafaf510ef0c40b19113355c55a55ccd250b54bf6d7edfa400c2"
     },
     {
       "path": ".harness/lint.ps1",
@@ -54,7 +54,7 @@
     },
     {
       "path": ".harness/mandatory-checks.json",
-      "sha256": "bc86c443b4ce1f8e0fd48c70df8ef83baca06b792d4b7338b643eb0c671a0d8c"
+      "sha256": "55a412ca859f841a5646e6572fdb7f6a8f62817b07706777de89b3dc7c8076b4"
     },
     {
       "path": ".harness/run.ps1",
@@ -66,27 +66,63 @@
     },
     {
       "path": ".harness/test.ps1",
-      "sha256": "3361e34a3a864d7611a852b0e58bcd0e13d3c7f9357336c08741bdbf75eff8e7"
+      "sha256": "a51c986ae98fa1992d1aa66aec58715d06f1430939aa53ed9af25fa586aa4874"
     },
     {
       "path": ".harness/trust/prepare_candidate.py",
-      "sha256": "433e685cc6acb2b089a69c78a3c8c82eb629e04c44dd06f8b82b560b45adff72"
+      "sha256": "e4b37f4cc8bcdd65dff73ae907d272e60cb7ccd1cef42b0d8d343b9bd02702d6"
     },
     {
       "path": ".harness/trust/run_validation.py",
-      "sha256": "7ce82867ae6e7d14c914f400700d2a0df61817a45f4e02a928564db291208871"
+      "sha256": "c9ecf49c5a7f23ed621d6ec3f96041311c69a4fb2df90574e0dc61fc706f9483"
     },
     {
       "path": ".harness/trust/seal_evidence.py",
-      "sha256": "6025eadcfd75196bf6e67e40f1829c287a455ee1074187ebd6abd0f7e6de7aed"
+      "sha256": "9b9416436bce286b0d4662a7ed055665412e6163cd6fb5c319b58e63236feb75"
     },
     {
       "path": ".specify/memory/constitution.md",
-      "sha256": "d918e241eb7312796f2a0f2a32e07eae22b1be4e1c837c41ac4f476f1b2a1e55"
+      "sha256": "efef04e006a5b4b15880ab0ea5dc25977bec6b3e82005c2e6bdfb13ccfe4f72b"
     },
     {
       "path": "pyproject.toml",
       "sha256": "cbaec1a90614ac701f4d0f72b9399fd79f52db85c2514618b821368930c81020"
+    },
+    {
+      "path": "specs/001-smart-todo-api/checklists/requirements.md",
+      "sha256": "73f9d2a695739799added2d90d556ad726da2df12dabafca287968e5df3cf77f"
+    },
+    {
+      "path": "specs/001-smart-todo-api/contracts/openapi.yaml",
+      "sha256": "873a1566d6ffb62e23bc05add4effd54a53ca01c0996c074c6045088992b6b69"
+    },
+    {
+      "path": "specs/001-smart-todo-api/data-model.md",
+      "sha256": "2293518d13c7d1acaa5e6395ad2fd067a39d0cf90dd58a133373b9acbd01143d"
+    },
+    {
+      "path": "specs/001-smart-todo-api/plan.md",
+      "sha256": "3091b6e5802e2946aeff63d61d153083614894bb90dfd652c3349249db102ab8"
+    },
+    {
+      "path": "specs/001-smart-todo-api/quickstart.md",
+      "sha256": "05aa84e982e596bd1988c4312b2d0ad90ff8a7799e6e3457dfd80bd03bd6eb3d"
+    },
+    {
+      "path": "specs/001-smart-todo-api/research.md",
+      "sha256": "b1bfbe8eef6fa2cabc67d4a21421cb9133b8f0323756e6f959a89e0b92ed6bbe"
+    },
+    {
+      "path": "specs/001-smart-todo-api/spec.md",
+      "sha256": "c803d80480cfd31247e153fb260b8fcb8f0b8d9e79aa70c07e803cc926525867"
+    },
+    {
+      "path": "specs/001-smart-todo-api/tasks.md",
+      "sha256": "d13244eb5d97702df39f7ac11213acee18e45073d9a7e5f84d35c281a2b9701b"
+    },
+    {
+      "path": "specs/001-smart-todo-api/test-strategy.md",
+      "sha256": "2bc536c39a43e8a3889c530b648046df7a110e964c3d66a71a22d1bd8b1b47a4"
     },
     {
       "path": "tests/api_contract/test_determinism.py",
@@ -118,7 +154,7 @@
     },
     {
       "path": "tests/conftest.py",
-      "sha256": "82dd25fc556fcb0db942299a37fe556047cd13cbc98e778042a8d4ba1f6242b5"
+      "sha256": "3f4a96870ea7e9c381301be013c7db9572f371bf5bb763959efc6a2d5df37274"
     },
     {
       "path": "tests/error_handling/test_request_validation.py",
@@ -130,7 +166,11 @@
     },
     {
       "path": "tests/harness_integrity/test_github_trust_bootstrap.py",
-      "sha256": "d48dd59c2b5730ec17b8bd8b51606618bad8d0bb1ea699729e7d0e2f6a849a46"
+      "sha256": "e393eb29872bc82dd45609183691ec96cb3d5c3a9b3b3aef2ad6bff3a4bcaad4"
+    },
+    {
+      "path": "tests/harness_integrity/test_human_decision.py",
+      "sha256": "24ac06256c40e9affd9169a4eaaa434b50a2f0ce49aa9a778145a5add30311a3"
     },
     {
       "path": "tests/harness_integrity/test_repository_hygiene.py",
@@ -138,7 +178,11 @@
     },
     {
       "path": "tests/harness_integrity/test_runner_boundaries.py",
-      "sha256": "7d6cce13071407c7a4a256e424560c4e6640faf3eea17931e655d2f7daae1e31"
+      "sha256": "cce80c3488a162719eaebef808c7e0790b02b280a78fa4c99f32f5ca4a34b3ac"
+    },
+    {
+      "path": "tests/harness_integrity/test_security_review_gate.py",
+      "sha256": "fcc3eecdd678c9c6079694b789a74a0a9888f43e0b659a5681cde8cec8d8c136"
     },
     {
       "path": "tests/persistence/test_json_repository.py",
@@ -159,19 +203,19 @@
   "trusted_files": [
     {
       "path": ".github/workflows/part-1a-candidate-validation.yml",
-      "sha256": "d6168fa5b7007e2328478ac914684b70171948e54e7cd8dcc3ff9977e3265932"
+      "sha256": "795aeb80ab5bfc7be5da5da541609c3a5c1d89f8718cafc7519f9949fffff2bb"
     },
     {
       "path": "Part-1A/.harness/trust/prepare_candidate.py",
-      "sha256": "433e685cc6acb2b089a69c78a3c8c82eb629e04c44dd06f8b82b560b45adff72"
+      "sha256": "e4b37f4cc8bcdd65dff73ae907d272e60cb7ccd1cef42b0d8d343b9bd02702d6"
     },
     {
       "path": "Part-1A/.harness/trust/run_validation.py",
-      "sha256": "7ce82867ae6e7d14c914f400700d2a0df61817a45f4e02a928564db291208871"
+      "sha256": "c9ecf49c5a7f23ed621d6ec3f96041311c69a4fb2df90574e0dc61fc706f9483"
     },
     {
       "path": "Part-1A/.harness/trust/seal_evidence.py",
-      "sha256": "6025eadcfd75196bf6e67e40f1829c287a455ee1074187ebd6abd0f7e6de7aed"
+      "sha256": "9b9416436bce286b0d4662a7ed055665412e6163cd6fb5c319b58e63236feb75"
     }
   ]
 }

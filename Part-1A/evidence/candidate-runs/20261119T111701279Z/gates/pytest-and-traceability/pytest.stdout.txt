@@ -1,0 +1,100 @@
+..........................F......F.....F....................             [100%]
+================================== FAILURES ===================================
+_____ test_at022_workflow_uses_protected_main_read_only_checkout_and_sha ______
+
+    def test_at022_workflow_uses_protected_main_read_only_checkout_and_sha() -> None:
+>       workflow = WORKFLOW.read_text(encoding="utf-8")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\harness_integrity\test_github_trust_bootstrap.py:190: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\Programs\Python\Python312\Lib\pathlib.py:1028: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/User/AppData/Local/SmartTodoValidation/Part-1A/20261119T111701279Z/.github/workflows/part-1a-candidate-validation.yml')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T111701279Z\\.github\\workflows\\part-1a-candidate-validation.yml'
+
+..\..\..\..\Programs\Python\Python312\Lib\pathlib.py:1014: FileNotFoundError
+_ test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals _
+
+    def test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals() -> None:
+        inventory = json.loads((PROJECT_ROOT / ".harness" / "instruction-files.json").read_text(encoding="utf-8"))
+        register = json.loads(
+            (PROJECT_ROOT / ".harness" / "trust" / "approval-register.json").read_text(encoding="utf-8")
+        )
+        baseline = json.loads(
+            (PROJECT_ROOT / ".harness" / "trust" / "bootstrap-baseline.json").read_text(encoding="utf-8")
+        )
+        assert register["status"] == "PENDING_HUMAN_REVIEW"
+        assert register["instruction_files"] == inventory
+        assert len(register["instruction_files"]) == 19
+        assert set(GOVERNING_SPEC_PATHS) <= {entry["path"] for entry in inventory}
+        assert register["baseline_sha256"] == _sha256(
+            PROJECT_ROOT / ".harness" / "trust" / "bootstrap-baseline.json"
+        )
+        assert baseline["status"] == "BOOTSTRAP_PENDING_HUMAN_REVIEW"
+        baseline_files = {entry["path"]: entry["sha256"] for entry in baseline["files"]}
+        prepare_module = _load_module(PREPARE_SCRIPT, "prepare_candidate_inventory")
+        assert set(baseline_files) == prepare_module._scoped_files(PROJECT_ROOT)
+        assert {entry["path"] for entry in inventory} <= set(baseline_files)
+        for relative, digest in baseline_files.items():
+>           assert digest == _sha256(PROJECT_ROOT / relative)
+E           AssertionError: assert '55a412ca859f...9b3dc7c8076b4' == 'bc86c443b4ce...3eb0c671a0d8c'
+E             
+E             - bc86c443b4ce1f8e0fd48c70df8ef83baca06b792d4b7338b643eb0c671a0d8c
+E             + 55a412ca859f841a5646e6572fdb7f6a8f62817b07706777de89b3dc7c8076b4
+
+tests\harness_integrity\test_github_trust_bootstrap.py:468: AssertionError
+______ test_at026_current_publication_candidate_has_no_hygiene_findings _______
+
+tmp_path = WindowsPath('C:/Users/User/AppData/Local/Temp/pytest-of-User/pytest-48/test_at026_current_publication0')
+
+    def test_at026_current_publication_candidate_has_no_hygiene_findings(tmp_path: Path) -> None:
+        result = _run_hygiene(PROJECT_ROOT, tmp_path / "publication-scan")
+>       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: git.exe : fatal: not a git repository (or any of the parent directories): .git
+E         At 
+E         C:\Users\User\AppData\Local\SmartTodoValidation\Part-1A\20261119T111701279Z\staged-candidate\.harness\hygiene.ps1:71 
+E         char:16
+E         + ... gitRootText = & git -C $trackedRoot rev-parse --show-toplevel 2>$null
+E         +                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E             + CategoryInfo          : NotSpecified: (fatal: not a gi...ectories): .git:String) [], RemoteException
+E             + FullyQualifiedErrorId : NativeCommandError
+E          
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', 'C:\\Users\\User\\AppDat...(fatal: not a gi...ectories): .git:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError\n \n').returncode
+
+tests\harness_integrity\test_repository_hygiene.py:64: AssertionError
+============================== warnings summary ===============================
+..\..\..\..\..\..\Assignment-1\Part-1A\.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\User\Assignment-1\Part-1A\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/api_contract/test_endpoint_contract.py::test_at019_success_and_applicable_error_statuses_for_every_endpoint
+tests/api_contract/test_endpoint_contract.py::test_at019_success_and_applicable_error_statuses_for_every_endpoint
+tests/api_contract/test_legacy_api.py::test_invalid_json_and_bad_id
+tests/error_handling/test_request_validation.py::test_at018_malformed_json_ids_queries_and_enum_values_are_rejected
+  C:\Users\User\Assignment-1\Part-1A\.venv\Lib\site-packages\httpx\_models.py:408: DeprecationWarning: Use 'content=<...>' to upload raw bytes/text content.
+    headers, stream = encode_request(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/harness_integrity/test_github_trust_bootstrap.py::test_at022_workflow_uses_protected_main_read_only_checkout_and_sha
+FAILED tests/harness_integrity/test_github_trust_bootstrap.py::test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals
+FAILED tests/harness_integrity/test_repository_hygiene.py::test_at026_current_publication_candidate_has_no_hygiene_findings
+3 failed, 57 passed, 5 warnings in 8.34s

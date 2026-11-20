@@ -11,11 +11,12 @@
 feature specification v1.4.0 amendment dated 2026-11-13; the plan retains its
 original 2026-11-12 approval record.
 
-**Planning basis**: The original plan and feature specification v1.3.0 were
-approved on 2026-11-12. The feature specification was amended to v1.4.0 with
-explicit human approval dated 2026-11-13; that amendment resolves D-05 by
-replacing the unsupported platform guarantee with an application-level
-recovery contract. The protected runner boundary D-01 remains open.
+**Planning basis**: The original constitution v1.1.0, plan, and feature
+specification v1.3.0 were approved on 2026-11-12. On 2026-11-13, the feature
+specification was amended to v1.4.0 and the constitution was amended to v2.0.0
+with explicit human approval; those amendments resolve D-05 by replacing the
+unsupported platform guarantee with an application-level recovery contract. The
+protected runner boundary D-01 remains open.
 
 ## Summary
 
@@ -55,7 +56,7 @@ workspace.
 
 | Principle | Plan alignment |
 |---|---|
-| I. Specification-First Development | The original plan/specification v1.3.0 approval is dated 2026-11-12; feature specification v1.4.0 and its D-05 amendment were approved 2026-11-13. D-01 remains a separate trusted-validation blocker. |
+| I. Specification-First Development | The original constitution v1.1.0, plan, and specification v1.3.0 approval is dated 2026-11-12; feature specification v1.4.0, Constitution v2.0.0, and the D-05 amendment were approved 2026-11-13. D-01 remains a separate trusted-validation blocker. |
 | II. Clean Architecture | Routes depend on the service; the service depends on domain rules and a repository boundary; persistence does not depend on API code. |
 | III. Deterministic Behaviour | Sequential requests from identical persisted state produce identical results. Concurrent mutation serialization follows NFR-007; request-to-ID assignment is unspecified. |
 | IV. API Contract Integrity | OpenAPI design mirrors the documented endpoints, status codes, response shapes, and error envelope. |
