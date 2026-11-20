@@ -1,0 +1,79 @@
+from reminder_agent.prompts import build_messages, load_prompt_bundle
+import json
+
+
+def test_system_prompt_contains_contract_and_explicit_temporal_context() -> None:
+    bundle = load_prompt_bundle()
+    messages = build_messages(
+        bundle,
+        "Remind me tomorrow at 5 PM.",
+        "2026-03-01T09:00:00-05:00",
+        "America/New_York",
+    )
+    assert "CREATE" in messages[0]["content"]
+    assert "untrusted" in messages[0]["content"].lower()
+    assert "reference_datetime" in messages[1]["content"]
+    assert "2026-03-01T09:00:00-05:00" in messages[1]["content"]
+    assert "America/New_York" in messages[1]["content"]
+    assert bundle.sha256
+
+
+def test_prompt_context_exposes_dst_issue_without_choosing_an_instant() -> None:
+    messages = build_messages(
+        load_prompt_bundle(),
+        "Remind me to call the clinic on March 8, 2026 at 2:30 AM.",
+        "2026-03-01T09:00:00-05:00",
+        "America/New_York",
+    )
+    context = json.loads(messages[1]["content"])["temporal_analysis"]
+    assert context["issue"] == "nonexistent"
+    assert context["resolved_datetime"] is None
+
+
+def test_prompt_context_resolves_weekday_from_explicit_reference() -> None:
+    messages = build_messages(
+        load_prompt_bundle(),
+        "Move my dentist reminder to Friday at 6 PM.",
+        "2026-03-01T09:00:00-05:00",
+        "America/New_York",
+    )
+    context = json.loads(messages[1]["content"])["temporal_analysis"]
+    assert context["resolved_datetime"] == "2026-03-06T18:00:00-05:00"
+
+
+def test_prompt_distinguishes_a_missing_description_and_pronoun_target() -> None:
+    bundle = load_prompt_bundle()
+    create = build_messages(
+        bundle, "Remind me tomorrow at 5 PM.",
+        "2026-03-01T09:00:00-05:00", "America/New_York",
+    )
+    move = build_messages(
+        bundle, "Move it to Friday at 6 PM.",
+        "2026-03-01T09:00:00-05:00", "America/New_York",
+    )
+    assert not json.loads(create[1]["content"])["input_evidence"]["description_present"]
+    assert not json.loads(move[1]["content"])["input_evidence"]["explicit_target_present"]
+    assert bundle.schema["type"] == "object"
+
+
+def test_prompt_context_marks_malformed_input_without_a_supported_operation() -> None:
+    messages = build_messages(
+        load_prompt_bundle(),
+        "blue Tuesday chairing 17 because",
+        "2026-03-01T09:00:00-05:00",
+        "America/New_York",
+    )
+    evidence = json.loads(messages[1]["content"])["input_evidence"]
+    assert not evidence["supported_reminder_operation_present"]
+
+
+def test_prompt_context_does_not_promote_malformed_time_to_description() -> None:
+    messages = build_messages(
+        load_prompt_bundle(),
+        "Remind me Tuesday in purple around somethingish o'clock.",
+        "2026-03-01T09:00:00-05:00",
+        "America/New_York",
+    )
+    evidence = json.loads(messages[1]["content"])["input_evidence"]
+    assert evidence["supported_reminder_operation_present"]
+    assert not evidence["description_present"]

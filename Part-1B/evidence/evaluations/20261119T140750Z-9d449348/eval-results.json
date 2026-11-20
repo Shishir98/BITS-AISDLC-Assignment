@@ -1,0 +1,12 @@
+{
+  "run_id": "20261119T140750Z-9d449348",
+  "status": "INCOMPLETE",
+  "reason": "BLOCKED_INFRASTRUCTURE",
+  "message": "OLLAMA_NO_CLOUD=1 is not verified for the Ollama server process.",
+  "expected_generation_count": 57,
+  "attempted_generation_count": 0,
+  "completed_generation_count": 0,
+  "successful_output_count": 0,
+  "scores": null,
+  "failed_case_ids": []
+}

@@ -1,0 +1,469 @@
+{
+  "run_id": "20261120T130057Z-f197c472",
+  "execution_timestamp_utc": "2026-11-20T13:03:22.908917+00:00",
+  "status": "PASS",
+  "reason": null,
+  "dataset_version": "1.0.0",
+  "dataset_path": "evals/dataset.json",
+  "dataset_sha256": "aaec4699c10bf7dea51ce101a60a604f3f8c6b7a80cfd1cfe95158ee15d50fd3",
+  "case_count": 19,
+  "expected_generation_count": 57,
+  "attempted_generation_count": 57,
+  "completed_generation_count": 57,
+  "successful_output_count": 57,
+  "ollama_cli": {
+    "available": true,
+    "executable": "C:\\Users\\User\\AppData\\Local\\Programs\\Ollama\\ollama.EXE",
+    "version": "ollama version is 0.40.16",
+    "return_code": 0,
+    "error": null
+  },
+  "ollama_runtime": {
+    "version": "0.40.16",
+    "model": {
+      "name": "qwen3.5:9b",
+      "model": "qwen3.5:9b",
+      "modified_at": "2026-11-19T19:14:23.3081714+05:30",
+      "size": 6550825550,
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "details": {
+        "parent_model": "model.gguf",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 4096,
+        "runner": "llamacpp"
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ]
+    },
+    "inventory": [
+      {
+        "name": "qwen3.5:9b",
+        "model": "qwen3.5:9b",
+        "modified_at": "2026-11-19T19:14:23.3081714+05:30",
+        "size": 6550825550,
+        "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+        "details": {
+          "parent_model": "model.gguf",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "9.0B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 262144,
+          "embedding_length": 4096,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ]
+      }
+    ],
+    "endpoint_mode": "loopback"
+  },
+  "ollama_server_process_evidence": {
+    "verified": true,
+    "verification_method": "Controlled PowerShell launcher set OLLAMA_NO_CLOUD before starting this Ollama process; the child process inherits its launch environment.",
+    "ollama_no_cloud": "1",
+    "ollama_host": "127.0.0.1:11434",
+    "server_started_after_setting": true,
+    "process_id": 3404,
+    "process_name": "ollama.exe",
+    "launched_at_utc": "2026-11-20T12:45:23.8930730+00:00",
+    "ollama_version": "0.40.16"
+  },
+  "endpoint": {
+    "base_url": "http://127.0.0.1:11434",
+    "mode": "loopback"
+  },
+  "selected_model": "qwen3.5:9b",
+  "installed_model": {
+    "name": "qwen3.5:9b",
+    "model": "qwen3.5:9b",
+    "modified_at": "2026-11-19T19:14:23.3081714+05:30",
+    "size": 6550825550,
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "details": {
+      "parent_model": "model.gguf",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "9.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 4096,
+      "runner": "llamacpp"
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ]
+  },
+  "local_model_inventory": [
+    {
+      "name": "qwen3.5:9b",
+      "model": "qwen3.5:9b",
+      "modified_at": "2026-11-19T19:14:23.3081714+05:30",
+      "size": 6550825550,
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "details": {
+        "parent_model": "model.gguf",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 4096,
+        "runner": "llamacpp"
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ]
+    }
+  ],
+  "ollama_ps": {
+    "available": true,
+    "return_code": 0,
+    "output": "NAME          ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL              \nqwen3.5:9b    56671c2ab938    5.6 GB    100% GPU     4096       llamacpp    4 minutes from now",
+    "error": null,
+    "offload_observation": "GPU-resident"
+  },
+  "prompt_version": "1.7.0",
+  "prompt_sha256": "6767752a88d2d7d3274b4cdab3d1a1a19e783d70e4037e98573aeb3fac92fabe",
+  "schema_sha256": "3e9f44897fee48501b78d249f6303ba06ba5b73aedb8e405f1ad6ba490d37568",
+  "generation_parameters": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "top_p_applied": true,
+    "context_length": 4096,
+    "timeout_seconds": 120,
+    "think": false,
+    "options_sent": {
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "num_ctx": 4096
+    },
+    "request_fields_sent": {
+      "think": false
+    },
+    "tools_enabled": false
+  },
+  "per_case_temporal_context": [
+    {
+      "case_id": "REP-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "REP-002",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "REP-003",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "REP-004",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "REP-005",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "BND-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "BND-002",
+      "reference_datetime": "2026-12-31T23:30:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "BND-003",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "BND-004",
+      "reference_datetime": "2026-10-25T09:00:00-04:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "AMB-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "AMB-002",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "AMB-003",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "AMB-004",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "MAL-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "MAL-002",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "ADV-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "ADV-002",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "ADV-003",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "ADV-004",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    }
+  ],
+  "scores": {
+    "structural": 100.0,
+    "critical_invariants": 100.0,
+    "property_invariant": 100.0,
+    "semantic_quality": 99.47368421052632,
+    "aggregate": 99.8157894736842,
+    "gates": {
+      "structural_100": true,
+      "critical_invariants_100": true,
+      "property_invariant_at_least_95": true,
+      "semantic_quality_at_least_85": true,
+      "aggregate_at_least_90": true
+    },
+    "passed": true
+  },
+  "observed_output_variation": [
+    {
+      "case_id": "REP-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "REP-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-005",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "BND-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "AMB-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "MAL-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "MAL-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "ADV-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "ADV-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "ADV-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "ADV-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "failed_case_ids": [],
+  "errors": [],
+  "final_source_snapshot": "evidence/final-generation/20261120T130057Z-f197c472",
+  "case_runs_path": "case-runs.json",
+  "evaluation_results_path": "eval-results.json"
+}

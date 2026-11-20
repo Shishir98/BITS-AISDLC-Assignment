@@ -1,0 +1,215 @@
+{
+  "run_id": "20261120T130057Z-f197c472",
+  "status": "PASS",
+  "reason": null,
+  "expected_generation_count": 57,
+  "attempted_generation_count": 57,
+  "completed_generation_count": 57,
+  "successful_output_count": 57,
+  "scores": {
+    "structural": 100.0,
+    "critical_invariants": 100.0,
+    "property_invariant": 100.0,
+    "semantic_quality": 99.47368421052632,
+    "aggregate": 99.8157894736842,
+    "gates": {
+      "structural_100": true,
+      "critical_invariants_100": true,
+      "property_invariant_at_least_95": true,
+      "semantic_quality_at_least_85": true,
+      "aggregate_at_least_90": true
+    },
+    "passed": true
+  },
+  "failed_case_ids": [],
+  "equivalence_groups": {
+    "REP-001#1": true,
+    "REP-002#1": true,
+    "REP-001#2": true,
+    "REP-002#2": true,
+    "REP-001#3": true,
+    "REP-002#3": true,
+    "REP-003#1": true,
+    "REP-004#1": true,
+    "REP-003#2": true,
+    "REP-004#2": true,
+    "REP-003#3": true,
+    "REP-004#3": true
+  },
+  "observed_output_variation": [
+    {
+      "case_id": "REP-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "REP-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-005",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "BND-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "AMB-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "MAL-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "MAL-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "ADV-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "ADV-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "ADV-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "ADV-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}
