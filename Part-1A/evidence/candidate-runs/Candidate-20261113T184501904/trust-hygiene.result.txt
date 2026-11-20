@@ -1,0 +1,3 @@
+﻿COMMAND: uv run --locked python -m pytest tests/harness_integrity/test_repository_hygiene.py tests/harness_integrity/test_github_trust_bootstrap.py -q --junitxml=C:\Users\User\Assignment-1\Part-1A\evidence\candidate-runs\Candidate-20261113T184501904\trust-hygiene.junit.xml
+WORKING_DIRECTORY: C:\Users\User\Assignment-1\Part-1A
+EXIT_CODE: 1

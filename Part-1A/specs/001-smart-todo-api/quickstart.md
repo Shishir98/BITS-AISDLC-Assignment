@@ -1,17 +1,18 @@
 # Validation Quickstart
 
-This is the planned Windows setup and validation flow, not an implementation.
-The application and harness files in the tree are planned outputs. Authoritative
-validation requires the separate trusted runner and its protected baseline,
-approval store, and evidence archive described in `plan.md`.
+This quickstart describes the implemented Smart Todo API and local diagnostic
+commands. Local runs are not authoritative. The GitHub Actions workflow and
+bootstrap approval register are candidate implementations; D-01 remains blocked
+until their review, approval, protected-main deployment, and actual workflow
+run are verified.
 
 ## Prerequisites
 
 - 64-bit Windows with Python 3.12 available to uv.
 - uv installed and available on `PATH`.
 - The reviewed Part-1A `pyproject.toml` and `uv.lock`, committed together.
-- For authoritative validation, a configured trusted runner protected by a
-  separate Windows identity/ACL or protected CI permissions.
+- For the future protected validation run, the workflow must be dispatched from
+  the configured protected `main` branch with a full candidate commit SHA.
 
 Check the tools before syncing:
 
@@ -53,8 +54,6 @@ private keys, or the runtime store.
 
 ## Local Development Checks
 
-Once implementation files exist, these commands run locally:
-
 ```powershell
 uv run --locked pytest
 uv run --locked ruff check .
@@ -70,29 +69,30 @@ network requests. For a local demonstration:
 uv run --locked uvicorn smart_todo.app:app --app-dir src --reload
 ```
 
-## Authoritative Validation and Acceptance
+## GitHub Candidate Validation and Acceptance
 
-1. Invoke the Part-1A entrypoint:
+1. After the workflow and bootstrap baseline have been reviewed and approved
+   through the protected `main` process, dispatch
+   `.github/workflows/part-1a-candidate-validation.yml` from `main`. Supply the
+   exact 40-character candidate commit SHA; branch names and tags are rejected.
+2. The workflow checks out trusted `main` controls separately from the
+   candidate, uses read-only repository permission, passes no secrets to
+   candidate code, verifies approved digests, and creates a run-specific staged
+   snapshot. It runs the locked tests, Ruff, and Bandit from staging and checks
+   both staging and publication-candidate equality before and after execution.
+   Logs and evidence are retained as a workflow artifact.
+3. Review Bandit and repository-hygiene findings, then record the actual human
+   security review and final ACCEPT/REJECT decision. Automated PASS never
+   decides acceptance; publication remains blocked until human records are
+   present and an ACCEPT is recorded.
 
-   ```powershell
-   .\.harness\run.ps1
-   ```
+The workflow and main-branch ruleset are not yet verified as an independent
+canonical runner. Do not treat a local harness run or an unapproved workflow
+run as authoritative. The following candidate diagnostic command is optional:
 
-   It must hand off to the protected runner. The trusted runner verifies the
-   repository copies of `.harness/`, `tests/`, expected results, and controls
-   against its protected baseline and approval records before running checks.
-   It stages verified bytes before execution. Unauthorized changes fail with a
-   runner-generated failure result and non-zero exit code. The Part-1A copies
-   and their location do not themselves create a security boundary.
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\.harness\run.ps1 -LocalDevelopment
+```
 
-2. The runner executes mandatory tests, Ruff, Bandit, architecture, hygiene,
-   network-isolation, and traceability checks. It generates results and writes
-   them to `evidence/`, while retaining authoritative evidence in its protected
-   store. Results are not manually edited.
-3. A human reviews Bandit and repository-hygiene findings, records the final
-   security review, then records an explicit `ACCEPT` or `REJECT`. Automated
-   PASS never decides acceptance; publication remains blocked until human
-   records are present and an `ACCEPT` is recorded.
-
-No application tests or product-validation commands were run while preparing
-these planning artifacts.
+This command intentionally reports local diagnostic status and does not
+establish an independent trust boundary.

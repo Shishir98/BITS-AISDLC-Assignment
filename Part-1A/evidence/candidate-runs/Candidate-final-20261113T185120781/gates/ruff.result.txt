@@ -1,0 +1,3 @@
+﻿COMMAND: uv run --locked ruff check src tests
+WORKING_DIRECTORY: C:\Users\User\Assignment-1\Part-1A
+EXIT_CODE: 0

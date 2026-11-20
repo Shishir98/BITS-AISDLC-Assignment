@@ -1,0 +1,40 @@
+﻿{
+    "schema_version":  1,
+    "verified":  true,
+    "verification_method":  "Controlled PowerShell launcher set OLLAMA_NO_CLOUD before starting this Ollama process; the child process inherits its launch environment.",
+    "ollama_no_cloud":  "1",
+    "ollama_host":  "127.0.0.1:11434",
+    "server_started_after_setting":  true,
+    "process_id":  3404,
+    "process_name":  "ollama.exe",
+    "launched_at_utc":  "2026-11-20T12:45:23.8930730+00:00",
+    "ollama_version":  "0.40.16",
+    "local_model_inventory":  [
+                                  {
+                                      "name":  "qwen3.5:9b",
+                                      "model":  "qwen3.5:9b",
+                                      "modified_at":  "2026-11-19T19:14:23.3081714+05:30",
+                                      "size":  6550825550,
+                                      "digest":  "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+                                      "details":  {
+                                                      "parent_model":  "model.gguf",
+                                                      "format":  "gguf",
+                                                      "family":  "qwen35",
+                                                      "families":  [
+                                                                       "qwen35"
+                                                                   ],
+                                                      "parameter_size":  "9.0B",
+                                                      "quantization_level":  "Q4_K_M",
+                                                      "context_length":  262144,
+                                                      "embedding_length":  4096,
+                                                      "runner":  "llamacpp"
+                                                  },
+                                      "capabilities":  [
+                                                           "completion",
+                                                           "vision",
+                                                           "tools",
+                                                           "thinking"
+                                                       ]
+                                  }
+                              ]
+}

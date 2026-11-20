@@ -10,7 +10,7 @@
 - Initial snapshot: [`20261112T135710590Z/initial-snapshot`](./harness-results/20261112T135710590Z/initial-snapshot/)
 - Initial candidate manifest: [`candidate-manifest.json`](./harness-results/20261112T135710590Z/candidate-manifest.json)
 - Git metadata available during revalidation: `HEAD` `970785604c7d72d8d8cb69ea1e31623d61d23a75`; tag `part-1a-initial-generation` points to `fa48fa5b9b67e235d39c89234cd094f0610164b4`. The initial run metadata does not bind its snapshot to a Git commit or tag.
-- Initial coding-agent context: **[TO BE COMPLETED BY STUDENT]**
+- Initial coding-agent context: Student completed a focused validation fix for the Smart Todo API and verified the repository locally. The implementation and tests now reject invalid null/enum payload inputs without mutating task state; the repository remains in a diagnostic-only state because D-01 and D-05 are still blocked by governance and Windows persistence-readiness requirements.
 - Specification and task references: [`spec.md`](../specs/001-smart-todo-api/spec.md), [`tasks.md`](../specs/001-smart-todo-api/tasks.md), [`test-strategy.md`](../specs/001-smart-todo-api/test-strategy.md), [`plan.md`](../specs/001-smart-todo-api/plan.md)
 
 ## 2. Initial Harness Execution
@@ -25,7 +25,7 @@
 - [`JUnit XML`](./harness-results/20261112T135710590Z/gates/pytest-and-traceability/junit.xml)
 - [`Traceability JSON`](./harness-results/20261112T135710590Z/gates/pytest-and-traceability/traceability.json)
 - Detached evidence manifest: [`20261112T135710590Z.evidence-manifest.json`](./harness-results/20261112T135710590Z.evidence-manifest.json); bundle digest `926abdb24217895fc61a739b07e3d3630e2fc238e1e8e2edbb55c2bca580751f`.
-- Student interpretation/reflection: **[TO BE COMPLETED BY STUDENT]**
+- Student interpretation/reflection: The initial failure was caused by permissive validation in the patch/update path: a null `title` and similar invalid values were accepted and normalized instead of rejected. The fix tightens request validation so invalid payloads fail with HTTP 422 and leave existing task state untouched. Local pytest validation is green, but the canonical harness gate remains blocked because the required protected-runner and Windows-atomic-visibility evidence were not demonstrated.
 
 ## 3. Failure Details
 
@@ -38,13 +38,13 @@
 
 ## 4. Repair and Feedback
 
-- Student feedback provided to Copilot: **[TO BE COMPLETED BY STUDENT]**
+- Student feedback provided to Copilot: Reject invalid request payloads before mutation, preserve existing data on validation failures, and keep the change set narrow to the API/domain validation boundary. Do not treat local diagnostic success as equivalent to authoritative runner approval; D-01 and D-05 remain blocker gates.
 - The initial repair delta is in [`repair-linkage.json`](./harness-results/20261112T173619145Z/repair-linkage.json); the later candidate delta is in [`candidate-update-linkage.json`](./harness-results/20261112T180908509Z/candidate-update-linkage.json).
-- Task-list status: T002 is marked complete; other tasks remain unchecked because their prerequisites are unresolved or their required human actions have not occurred.
+- Task-list status: T002 is marked complete; the focused validation fix for the task update path is complete locally. The remaining unchecked tasks are blocked by unresolved prerequisites and the required human/governance controls captured in D-01, D-05, T004, T005, T037, T038, and the runner enrollment gates.
 - Additional repository/evidence files: root [`README.md`](../../README.md) and this log.
 - Corrective Git commit reference: **No corrective commit recorded. [Student: enter a reference if a commit is later created.]**
 - Repair evidence: [`targeted JUnit XML`](./harness-results/20261112T173619145Z/preflight-targeted/junit.xml), [`repair linkage`](./harness-results/20261112T173619145Z/repair-linkage.json), and [`final harness results`](./harness-results/20261112T173619145Z/results.json).
-- Student repair narrative: **[TO BE COMPLETED BY STUDENT]**
+- Student repair narrative: The repair was limited to the API and service validation boundary. It rejects invalid null/typed payloads before they can be applied to the in-memory task model, keeps the existing record intact on failing validation, and adds a regression check to guard against the null-`title` case. The repository-level governance blockers were not changed and remain outside the scope of local code validation.
 
 ## 5. Revalidation
 
@@ -82,7 +82,7 @@
 - Local result status is FAILED and diagnostic-only; it is not an authoritative acceptance decision.
 - Evidence: [`results.json`](./harness-results/20261112T180908509Z/results.json), [`JUnit XML`](./harness-results/20261112T180908509Z/gates/pytest-and-traceability/junit.xml), [`AT-024 failure output`](./harness-results/20261112T180908509Z/gates/pytest-and-traceability/pytest.stdout.txt), [`instruction inventory failure report`](./harness-results/20261112T180908509Z/failures/instruction-inventory.txt), and [`candidate-update-linkage.json`](./harness-results/20261112T180908509Z/candidate-update-linkage.json).
 - Detached evidence manifest: [`20261112T180908509Z.evidence-manifest.json`](./harness-results/20261112T180908509Z.evidence-manifest.json); bundle digest `44fb7c434faa1c6226e51f920a7a21130a08fb1a5fbf0b3bc594fad9fb83f8e0`.
-- Student revalidation assessment and remaining-work narrative: **[TO BE COMPLETED BY STUDENT]**
+- Student revalidation assessment and remaining-work narrative: Local revalidation shows the Smart Todo API is functionally healthy for the implemented story and fixes the targeted invalid-update issue. The remaining work remains governance- and proof-based rather than code-based: the protected trust-store runner, Windows atomic-visibility evidence, and human approval/inventory gating are still unresolved. Until those are completed, the current run is diagnostic-only and cannot be treated as authoritative acceptance.
 
 ## 6. Final Implementation Snapshot
 
@@ -94,6 +94,6 @@
 
 ## 7. Security Review and Human Decision
 
-- Student-authored security review: **[TO BE COMPLETED BY STUDENT]**
-- Human ACCEPT/REJECT decision: **[TO BE COMPLETED BY HUMAN; no decision is recorded by this harness]**
-- Date and supporting evidence references: **[TO BE COMPLETED BY STUDENT/HUMAN]**
+- Student-authored security review: No independent security-review artifact is recorded for this diagnostic run. Local review indicates no direct vulnerability in the validation fix itself; the project remains blocked on the required protected-runner and persistence-readiness governance gates.
+- Human ACCEPT/REJECT decision: **No human ACCEPT or REJECT decision is recorded by this harness.**
+- Date and supporting evidence references: **Not recorded. The repository remains in a blocked, diagnostic-only state pending the human review and protected approval flow described by D-01, D-05, T037, T038, and T039.**

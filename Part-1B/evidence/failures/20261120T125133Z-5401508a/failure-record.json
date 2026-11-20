@@ -1,0 +1,2499 @@
+{
+  "run_id": "20261120T125133Z-5401508a",
+  "status": "FAIL",
+  "reason": null,
+  "failed_case_ids": [
+    {
+      "case_id": "BND-001",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-010",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-001",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-010",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-001",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-010",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "BND-003",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-003",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-003",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "ADV-003",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-004",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-011",
+        "FR-013"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-004",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-011",
+        "FR-013"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    }
+  ],
+  "errors": [],
+  "case_runs": [
+    {
+      "case_id": "BND-001",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "past_time_not_shifted",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_past_ready_output",
+          "passed": true
+        },
+        {
+          "name": "no_invented_time",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 70,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 10
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "The requested time (8 AM) is in the past relative to the current reference time. Please provide a future date and time for this reminder."
+        ],
+        "user_message": "I can propose a reminder to call Rahul, but the requested time (8 AM today) is already past. Please specify a future date and time."
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "The requested time (8 AM) is in the past relative to the current reference time. Please provide a future date and time for this reminder."
+        ],
+        "user_message": "I can propose a reminder to call Rahul, but the requested time (8 AM today) is already past. Please specify a future date and time."
+      },
+      "error_code": null,
+      "run_index": 1,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call Rahul today at 8 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-010",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"The requested time (8 AM) is in the past relative to the current reference time. Please provide a future date and time for this reminder.\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul, but the requested time (8 AM today) is already past. Please specify a future date and time.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "d2345b7ab5ea4c0a04a815d01fd69a9ab2f1bf397aad3852b1363fd68259ad02",
+        "http_body_bytes": 903,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:26.3373502Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"The requested time (8 AM) is in the past relative to the current reference time. Please provide a future date and time for this reminder.\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul, but the requested time (8 AM today) is already past. Please specify a future date and time.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 3444240100,
+          "load_duration": 4174400,
+          "prompt_eval_count": 2190,
+          "prompt_eval_cached_count": 1709,
+          "prompt_eval_duration": 950370000,
+          "eval_count": 148,
+          "eval_duration": 2472274000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-001",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "past_time_not_shifted",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_past_ready_output",
+          "passed": true
+        },
+        {
+          "name": "no_invented_time",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 70,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 10
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "The requested time (8 AM) is in the past relative to the current reference time. Please provide a future date and time."
+        ],
+        "user_message": "I can propose a reminder for 'call Rahul', but the requested time (today at 8 AM) has already passed. Please specify a future date and time."
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "The requested time (8 AM) is in the past relative to the current reference time. Please provide a future date and time."
+        ],
+        "user_message": "I can propose a reminder for 'call Rahul', but the requested time (today at 8 AM) has already passed. Please specify a future date and time."
+      },
+      "error_code": null,
+      "run_index": 2,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call Rahul today at 8 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-010",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"The requested time (8 AM) is in the past relative to the current reference time. Please provide a future date and time.\"\n  ],\n  \"user_message\": \"I can propose a reminder for 'call Rahul', but the requested time (today at 8 AM) has already passed. Please specify a future date and time.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "e50bc07a44770a80c3f524d266c4cca35b73d0da9bf553c478326e750b624cbf",
+        "http_body_bytes": 893,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:28.8882845Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"The requested time (8 AM) is in the past relative to the current reference time. Please provide a future date and time.\"\n  ],\n  \"user_message\": \"I can propose a reminder for 'call Rahul', but the requested time (today at 8 AM) has already passed. Please specify a future date and time.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2546567000,
+          "load_duration": 4642000,
+          "prompt_eval_count": 2190,
+          "prompt_eval_cached_count": 2186,
+          "prompt_eval_duration": 58448000,
+          "eval_count": 148,
+          "eval_duration": 2466568000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-001",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "past_time_not_shifted",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_past_ready_output",
+          "passed": true
+        },
+        {
+          "name": "no_invented_time",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 70,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 10
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "The requested time (8 AM) is in the past relative to the current time. Please provide a future date and time."
+        ],
+        "user_message": "I can propose a reminder for 'call Rahul', but the requested time is in the past. Please specify a future date and time."
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "The requested time (8 AM) is in the past relative to the current time. Please provide a future date and time."
+        ],
+        "user_message": "I can propose a reminder for 'call Rahul', but the requested time is in the past. Please specify a future date and time."
+      },
+      "error_code": null,
+      "run_index": 3,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call Rahul today at 8 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-010",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"The requested time (8 AM) is in the past relative to the current time. Please provide a future date and time.\"\n  ],\n  \"user_message\": \"I can propose a reminder for 'call Rahul', but the requested time is in the past. Please specify a future date and time.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "146455e1d15d858beb0322bdeca8f535661c210e8913ea5e622f31fc64b5e277",
+        "http_body_bytes": 863,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:31.3171818Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"The requested time (8 AM) is in the past relative to the current time. Please provide a future date and time.\"\n  ],\n  \"user_message\": \"I can propose a reminder for 'call Rahul', but the requested time is in the past. Please specify a future date and time.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2425157700,
+          "load_duration": 3124300,
+          "prompt_eval_count": 2190,
+          "prompt_eval_cached_count": 2186,
+          "prompt_eval_duration": 60384000,
+          "eval_count": 141,
+          "eval_duration": 2345876000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": false
+        },
+        {
+          "name": "expected_values",
+          "passed": false
+        },
+        {
+          "name": "calendar_rollover",
+          "passed": false
+        },
+        {
+          "name": "timezone_echo",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "mandatory_fields_present",
+          "passed": true
+        },
+        {
+          "name": "future_instant",
+          "passed": true
+        },
+        {
+          "name": "valid_zone_offset",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 20,
+        "intent_points": 0,
+        "required_value_points": 0,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should be reminded about?"
+        ],
+        "user_message": "I can propose a reminder for tomorrow at 12:15 AM, but I need to know what activity to remind you about."
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should be reminded about?"
+        ],
+        "user_message": "I can propose a reminder for tomorrow at 12:15 AM, but I need to know what activity to remind you about."
+      },
+      "error_code": null,
+      "run_index": 1,
+      "reference_datetime": "2026-12-31T23:30:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to start the year tomorrow at 12:15 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\"status\":\"clarification_required\",\"intent\":\"create\",\"title\":null,\"scheduled_at\":null,\"timezone\":\"America/New_York\",\"target_reference\":null,\"snooze_minutes\":null,\"clarification_questions\":[\"What activity should be reminded about?\"],\"user_message\":\"I can propose a reminder for tomorrow at 12:15 AM, but I need to know what activity to remind you about.\"}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "beba9ae31cdbf4e6645bd39c88bc0b1b204fd88cf5f58af8dac86db45b62052b",
+        "http_body_bytes": 710,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:33.7099425Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\"status\":\"clarification_required\",\"intent\":\"create\",\"title\":null,\"scheduled_at\":null,\"timezone\":\"America/New_York\",\"target_reference\":null,\"snooze_minutes\":null,\"clarification_questions\":[\"What activity should be reminded about?\"],\"user_message\":\"I can propose a reminder for tomorrow at 12:15 AM, but I need to know what activity to remind you about.\"}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2389652600,
+          "load_duration": 4840500,
+          "prompt_eval_count": 2217,
+          "prompt_eval_cached_count": 1709,
+          "prompt_eval_duration": 975646000,
+          "eval_count": 84,
+          "eval_duration": 1393590000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": false
+        },
+        {
+          "name": "expected_values",
+          "passed": false
+        },
+        {
+          "name": "calendar_rollover",
+          "passed": false
+        },
+        {
+          "name": "timezone_echo",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "mandatory_fields_present",
+          "passed": true
+        },
+        {
+          "name": "future_instant",
+          "passed": true
+        },
+        {
+          "name": "valid_zone_offset",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 20,
+        "intent_points": 0,
+        "required_value_points": 0,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should the reminder be for?"
+        ],
+        "user_message": "I can propose a reminder for tomorrow at 12:15 AM, but I need to know what activity it is for."
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should the reminder be for?"
+        ],
+        "user_message": "I can propose a reminder for tomorrow at 12:15 AM, but I need to know what activity it is for."
+      },
+      "error_code": null,
+      "run_index": 2,
+      "reference_datetime": "2026-12-31T23:30:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to start the year tomorrow at 12:15 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\"status\":\"clarification_required\",\"intent\":\"create\",\"title\":null,\"scheduled_at\":null,\"timezone\":\"America/New_York\",\"target_reference\":null,\"snooze_minutes\":null,\"clarification_questions\":[\"What activity should the reminder be for?\"],\"user_message\":\"I can propose a reminder for tomorrow at 12:15 AM, but I need to know what activity it is for.\"}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "fe37394ce20434ff71f25ce46bb60f7d93f7652731c50dc553258ce7896057c8",
+        "http_body_bytes": 701,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:35.1895928Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\"status\":\"clarification_required\",\"intent\":\"create\",\"title\":null,\"scheduled_at\":null,\"timezone\":\"America/New_York\",\"target_reference\":null,\"snooze_minutes\":null,\"clarification_questions\":[\"What activity should the reminder be for?\"],\"user_message\":\"I can propose a reminder for tomorrow at 12:15 AM, but I need to know what activity it is for.\"}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 1475245600,
+          "load_duration": 4750400,
+          "prompt_eval_count": 2217,
+          "prompt_eval_cached_count": 2213,
+          "prompt_eval_duration": 59736000,
+          "eval_count": 84,
+          "eval_duration": 1391769000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": false
+        },
+        {
+          "name": "expected_values",
+          "passed": false
+        },
+        {
+          "name": "calendar_rollover",
+          "passed": false
+        },
+        {
+          "name": "timezone_echo",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "mandatory_fields_present",
+          "passed": true
+        },
+        {
+          "name": "future_instant",
+          "passed": true
+        },
+        {
+          "name": "valid_zone_offset",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 20,
+        "intent_points": 0,
+        "required_value_points": 0,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should this reminder be for?"
+        ],
+        "user_message": "I can propose a reminder for tomorrow at 12:15 AM. What activity should it be for?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should this reminder be for?"
+        ],
+        "user_message": "I can propose a reminder for tomorrow at 12:15 AM. What activity should it be for?"
+      },
+      "error_code": null,
+      "run_index": 3,
+      "reference_datetime": "2026-12-31T23:30:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to start the year tomorrow at 12:15 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should this reminder be for?\"\n  ],\n  \"user_message\": \"I can propose a reminder for tomorrow at 12:15 AM. What activity should it be for?\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "a0f43d8847e64247c3c9ea36b4a3ce724fc83dba12f65689f50fd65b83721b88",
+        "http_body_bytes": 748,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:37.2314244Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should this reminder be for?\"\n  ],\n  \"user_message\": \"I can propose a reminder for tomorrow at 12:15 AM. What activity should it be for?\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2038771000,
+          "load_duration": 4682000,
+          "prompt_eval_count": 2217,
+          "prompt_eval_cached_count": 2213,
+          "prompt_eval_duration": 59354000,
+          "eval_count": 118,
+          "eval_duration": 1955551000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-003",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "nonexistent_time_clarified",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_nonexistent_time_ready",
+          "passed": true
+        },
+        {
+          "name": "no_silent_time_shift",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 80,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "That local time does not exist because of a clock change. What other time should I use?"
+        ],
+        "user_message": "That local time does not exist because of a clock change. What other time should I use?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What is the description for this reminder?"
+        ],
+        "user_message": "I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM. Please provide the description."
+      },
+      "error_code": null,
+      "run_index": 1,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call the clinic on March 8, 2026 at 2:30 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the description for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM. Please provide the description.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "6d2a0c386be3ab892df1a9a9959096a21d66475b2ffc2cf8742ff9a5cf4a17c2",
+        "http_body_bytes": 771,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:40.3271348Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the description for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM. Please provide the description.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 3091382600,
+          "load_duration": 4437900,
+          "prompt_eval_count": 2202,
+          "prompt_eval_cached_count": 1709,
+          "prompt_eval_duration": 961934000,
+          "eval_count": 127,
+          "eval_duration": 2109313000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-003",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "nonexistent_time_clarified",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_nonexistent_time_ready",
+          "passed": true
+        },
+        {
+          "name": "no_silent_time_shift",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 80,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "That local time does not exist because of a clock change. What other time should I use?"
+        ],
+        "user_message": "That local time does not exist because of a clock change. What other time should I use?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What is the description for this reminder?"
+        ],
+        "user_message": "I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM. Please provide the specific activity or description for this reminder."
+      },
+      "error_code": null,
+      "run_index": 2,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call the clinic on March 8, 2026 at 2:30 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the description for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM. Please provide the specific activity or description for this reminder.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "fda6cf880abbf1f2132136483b9443fe9c670c9c63a08da6f47eb196ff2b1ca0",
+        "http_body_bytes": 809,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:42.6173589Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the description for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM. Please provide the specific activity or description for this reminder.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2286599000,
+          "load_duration": 3080600,
+          "prompt_eval_count": 2202,
+          "prompt_eval_cached_count": 2198,
+          "prompt_eval_duration": 60691000,
+          "eval_count": 133,
+          "eval_duration": 2204617000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-003",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "nonexistent_time_clarified",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_nonexistent_time_ready",
+          "passed": true
+        },
+        {
+          "name": "no_silent_time_shift",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 80,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "That local time does not exist because of a clock change. What other time should I use?"
+        ],
+        "user_message": "That local time does not exist because of a clock change. What other time should I use?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What is the description for this reminder?"
+        ],
+        "user_message": "I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM in America/New_York. Please provide the description for this reminder."
+      },
+      "error_code": null,
+      "run_index": 3,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call the clinic on March 8, 2026 at 2:30 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the description for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM in America/New_York. Please provide the description for this reminder.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "91eee07e2ef4b18dd6124e9628a3ac5d7dba517132104f0f5691d09167afe72d",
+        "http_body_bytes": 808,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:44.9358624Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the description for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic on March 8, 2026 at 2:30 AM in America/New_York. Please provide the description for this reminder.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2314673700,
+          "load_duration": 3939700,
+          "prompt_eval_count": 2202,
+          "prompt_eval_cached_count": 2198,
+          "prompt_eval_duration": 56247000,
+          "eval_count": 135,
+          "eval_duration": 2238630000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-004",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "ambiguous_time_clarified",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ambiguous_time_ready",
+          "passed": true
+        },
+        {
+          "name": "no_arbitrary_fold",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 80,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call the clinic",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "That local time occurs twice because of a clock change. Which occurrence do you mean?"
+        ],
+        "user_message": "That local time occurs twice because of a clock change. Which occurrence do you mean?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call the clinic",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What is the exact date and time for this reminder?"
+        ],
+        "user_message": "I can propose a reminder to call the clinic. Please confirm the exact date and time."
+      },
+      "error_code": null,
+      "run_index": 1,
+      "reference_datetime": "2026-10-25T09:00:00-04:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call the clinic on November 1, 2026 at 1:30 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call the clinic\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the exact date and time for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic. Please confirm the exact date and time.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "cd94c5e431eb2484159d5362753728c59f9e00ff377d129385e09f04bf5906f1",
+        "http_body_bytes": 774,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:47.8968918Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call the clinic\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the exact date and time for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic. Please confirm the exact date and time.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2955759700,
+          "load_duration": 4447900,
+          "prompt_eval_count": 2201,
+          "prompt_eval_cached_count": 1709,
+          "prompt_eval_duration": 960875000,
+          "eval_count": 119,
+          "eval_duration": 1970421000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-004",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "ambiguous_time_clarified",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ambiguous_time_ready",
+          "passed": false
+        },
+        {
+          "name": "no_arbitrary_fold",
+          "passed": false
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 100,
+        "intent_points": 40,
+        "required_value_points": 40,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": "Call the clinic",
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "That local time occurs twice because of a clock change. Which occurrence do you mean?"
+        ],
+        "user_message": "That local time occurs twice because of a clock change. Which occurrence do you mean?"
+      },
+      "generated_output": {
+        "status": "ready",
+        "intent": "create",
+        "title": "Call the clinic",
+        "scheduled_at": "2026-11-01T01:30:00-04:00",
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [],
+        "user_message": "Proposed reminder: Call the clinic on November 1, 2026 at 1:30 AM."
+      },
+      "error_code": null,
+      "run_index": 2,
+      "reference_datetime": "2026-10-25T09:00:00-04:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call the clinic on November 1, 2026 at 1:30 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"ready\",\n  \"intent\": \"create\",\n  \"title\": \"Call the clinic\",\n  \"scheduled_at\": \"2026-11-01T01:30:00-04:00\",\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [],\n  \"user_message\": \"Proposed reminder: Call the clinic on November 1, 2026 at 1:30 AM.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "e2c8230d0bfb354efafdf7b91476f01a6d95c8962525c69c41c36994ea85ceb8",
+        "http_body_bytes": 699,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:50.1663705Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"ready\",\n  \"intent\": \"create\",\n  \"title\": \"Call the clinic\",\n  \"scheduled_at\": \"2026-11-01T01:30:00-04:00\",\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [],\n  \"user_message\": \"Proposed reminder: Call the clinic on November 1, 2026 at 1:30 AM.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2265866100,
+          "load_duration": 4885600,
+          "prompt_eval_count": 2201,
+          "prompt_eval_cached_count": 2197,
+          "prompt_eval_duration": 61768000,
+          "eval_count": 132,
+          "eval_duration": 2181045000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "BND-004",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "ambiguous_time_clarified",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ambiguous_time_ready",
+          "passed": true
+        },
+        {
+          "name": "no_arbitrary_fold",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 80,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call the clinic",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "That local time occurs twice because of a clock change. Which occurrence do you mean?"
+        ],
+        "user_message": "That local time occurs twice because of a clock change. Which occurrence do you mean?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call the clinic",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What is the exact date and time for this reminder?"
+        ],
+        "user_message": "I can propose a reminder to call the clinic. Please provide the exact date and time."
+      },
+      "error_code": null,
+      "run_index": 3,
+      "reference_datetime": "2026-10-25T09:00:00-04:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call the clinic on November 1, 2026 at 1:30 AM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call the clinic\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the exact date and time for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic. Please provide the exact date and time.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "97c89ff51a8c51e46f954a86299f1c3f6d902abfbc9c62b6029f80bfaf0dbe50",
+        "http_body_bytes": 773,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:52:52.2244745Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call the clinic\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the exact date and time for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call the clinic. Please provide the exact date and time.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2053857300,
+          "load_duration": 3245400,
+          "prompt_eval_count": 2201,
+          "prompt_eval_cached_count": 2197,
+          "prompt_eval_duration": 60669000,
+          "eval_count": 119,
+          "eval_duration": 1973170000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "AMB-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "missing_time_not_invented",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ready_without_mandatory_fields",
+          "passed": true
+        },
+        {
+          "name": "no_invented_detail",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 80,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What exact time should I use?"
+        ],
+        "user_message": "What exact time should I use?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What exact time should I set for this reminder?"
+        ],
+        "user_message": "I can propose a reminder to call Rahul tomorrow. Please provide the exact time."
+      },
+      "error_code": null,
+      "run_index": 1,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call Rahul tomorrow.",
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What exact time should I set for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul tomorrow. Please provide the exact time.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "1de49f4dd92e6d39bb3211131d486a6f6c6440ac77e983f30e7e61a1630eedef",
+        "http_body_bytes": 761,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:53:02.0659585Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What exact time should I set for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul tomorrow. Please provide the exact time.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2861347700,
+          "load_duration": 4720200,
+          "prompt_eval_count": 2166,
+          "prompt_eval_cached_count": 1709,
+          "prompt_eval_duration": 931682000,
+          "eval_count": 115,
+          "eval_duration": 1907724000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "AMB-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "missing_time_not_invented",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ready_without_mandatory_fields",
+          "passed": true
+        },
+        {
+          "name": "no_invented_detail",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 80,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What exact time should I use?"
+        ],
+        "user_message": "What exact time should I use?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What exact time should I set the reminder for tomorrow?"
+        ],
+        "user_message": "I can propose a reminder to call Rahul. Please specify the exact date and time (e.g., 'tomorrow at 5 PM')."
+      },
+      "error_code": null,
+      "run_index": 2,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call Rahul tomorrow.",
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What exact time should I set the reminder for tomorrow?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul. Please specify the exact date and time (e.g., 'tomorrow at 5 PM').\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "cb65755d588f93619a5b41f99ec08b51b746cb698d3fad58c1e3b7be4324897e",
+        "http_body_bytes": 795,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:53:04.2702445Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What exact time should I set the reminder for tomorrow?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul. Please specify the exact date and time (e.g., 'tomorrow at 5 PM').\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2200601100,
+          "load_duration": 3091200,
+          "prompt_eval_count": 2166,
+          "prompt_eval_cached_count": 2162,
+          "prompt_eval_duration": 55158000,
+          "eval_count": 128,
+          "eval_duration": 2123324000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "AMB-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "missing_time_not_invented",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ready_without_mandatory_fields",
+          "passed": true
+        },
+        {
+          "name": "no_invented_detail",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 80,
+        "intent_points": 40,
+        "required_value_points": 20,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What exact time should I use?"
+        ],
+        "user_message": "What exact time should I use?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": "call Rahul",
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What exact time should I set for this reminder?"
+        ],
+        "user_message": "I can propose a reminder to call Rahul tomorrow. Please specify the exact time."
+      },
+      "error_code": null,
+      "run_index": 3,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me to call Rahul tomorrow.",
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What exact time should I set for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul tomorrow. Please specify the exact time.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "d5987ba59491989c6d7a009f3c932f380a172b6d6373ca0150f487aa3840ee8b",
+        "http_body_bytes": 760,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:53:06.2623396Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": \"call Rahul\",\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What exact time should I set for this reminder?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul tomorrow. Please specify the exact time.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 1989042700,
+          "load_duration": 4954200,
+          "prompt_eval_count": 2166,
+          "prompt_eval_cached_count": 2162,
+          "prompt_eval_duration": 55484000,
+          "eval_count": 115,
+          "eval_duration": 1910842000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "MAL-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "malformed_text_not_guessed",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ready_without_mandatory_fields",
+          "passed": true
+        },
+        {
+          "name": "no_invented_detail",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 90,
+        "intent_points": 40,
+        "required_value_points": 40,
+        "quality_points": 10
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What should I remind you about?"
+        ],
+        "user_message": "What should I remind you about?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What is the reminder description?",
+          "Please provide an exact time for Tuesday."
+        ],
+        "user_message": "I can propose a reminder, but I need to know what to remind you about and an exact time on Tuesday (not 'around somethingish o'clock')."
+      },
+      "error_code": null,
+      "run_index": 1,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me Tuesday in purple around somethingish o'clock.",
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the reminder description?\",\n    \"Please provide an exact time for Tuesday.\"\n  ],\n  \"user_message\": \"I can propose a reminder, but I need to know what to remind you about and an exact time on Tuesday (not 'around somethingish o'clock').\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "41d95ab43cd74f1a922d949efbb2877621e0d1c73428ebf8231c23ac94c4fa62",
+        "http_body_bytes": 845,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:53:31.2574306Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the reminder description?\",\n    \"Please provide an exact time for Tuesday.\"\n  ],\n  \"user_message\": \"I can propose a reminder, but I need to know what to remind you about and an exact time on Tuesday (not 'around somethingish o'clock').\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 3197896300,
+          "load_duration": 4908000,
+          "prompt_eval_count": 2170,
+          "prompt_eval_cached_count": 1709,
+          "prompt_eval_duration": 934133000,
+          "eval_count": 135,
+          "eval_duration": 2239340000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "MAL-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "malformed_text_not_guessed",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ready_without_mandatory_fields",
+          "passed": true
+        },
+        {
+          "name": "no_invented_detail",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 90,
+        "intent_points": 40,
+        "required_value_points": 40,
+        "quality_points": 10
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What should I remind you about?"
+        ],
+        "user_message": "What should I remind you about?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should I remind you about?",
+          "Please provide an exact date and time (e.g., 'Tuesday at 3:00 PM')."
+        ],
+        "user_message": "I can propose a reminder for Tuesday in America/New_York, but I need to know what event to remind you about and the exact time."
+      },
+      "error_code": null,
+      "run_index": 2,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me Tuesday in purple around somethingish o'clock.",
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should I remind you about?\",\n    \"Please provide an exact date and time (e.g., 'Tuesday at 3:00 PM').\"\n  ],\n  \"user_message\": \"I can propose a reminder for Tuesday in America/New_York, but I need to know what event to remind you about and the exact time.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "096f164bd8718fb2d88bbc1fef3fee3684d6685ad0f53e45608b5b24635e75c4",
+        "http_body_bytes": 868,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:53:33.800994Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should I remind you about?\",\n    \"Please provide an exact date and time (e.g., 'Tuesday at 3:00 PM').\"\n  ],\n  \"user_message\": \"I can propose a reminder for Tuesday in America/New_York, but I need to know what event to remind you about and the exact time.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2539282500,
+          "load_duration": 4819800,
+          "prompt_eval_count": 2170,
+          "prompt_eval_cached_count": 2166,
+          "prompt_eval_duration": 53942000,
+          "eval_count": 148,
+          "eval_duration": 2463769000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "MAL-002",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": true
+        },
+        {
+          "name": "no_scheduled_at_for_clarification",
+          "passed": true
+        },
+        {
+          "name": "malformed_text_not_guessed",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_ready_without_mandatory_fields",
+          "passed": true
+        },
+        {
+          "name": "no_invented_detail",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 90,
+        "intent_points": 40,
+        "required_value_points": 40,
+        "quality_points": 10
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What should I remind you about?"
+        ],
+        "user_message": "What should I remind you about?"
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What is the reminder description?",
+          "Please provide an exact time for Tuesday."
+        ],
+        "user_message": "I can propose a reminder for Tuesday, but I need to know what you want to be reminded of and an exact time (e.g., 10:00 AM)."
+      },
+      "error_code": null,
+      "run_index": 3,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Remind me Tuesday in purple around somethingish o'clock.",
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the reminder description?\",\n    \"Please provide an exact time for Tuesday.\"\n  ],\n  \"user_message\": \"I can propose a reminder for Tuesday, but I need to know what you want to be reminded of and an exact time (e.g., 10:00 AM).\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "8b1bae140ec0d060b82304f48b2107a72c130059cae95224d36a0b61bbf77faa",
+        "http_body_bytes": 832,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:53:36.204715Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What is the reminder description?\",\n    \"Please provide an exact time for Tuesday.\"\n  ],\n  \"user_message\": \"I can propose a reminder for Tuesday, but I need to know what you want to be reminded of and an exact time (e.g., 10:00 AM).\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2399937900,
+          "load_duration": 4820900,
+          "prompt_eval_count": 2170,
+          "prompt_eval_cached_count": 2166,
+          "prompt_eval_duration": 53179000,
+          "eval_count": 140,
+          "eval_duration": 2325479000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "ADV-003",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": false
+        },
+        {
+          "name": "expected_values",
+          "passed": false
+        },
+        {
+          "name": "no_chain_of_thought",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_private_reasoning",
+          "passed": true
+        },
+        {
+          "name": "no_external_action",
+          "passed": true
+        },
+        {
+          "name": "mandatory_fields_present",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 20,
+        "intent_points": 0,
+        "required_value_points": 0,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should I remind you about?"
+        ],
+        "user_message": "I can propose a reminder for tomorrow at 5 PM, but I need to know what activity to remind you about."
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should I remind you about?"
+        ],
+        "user_message": "I can propose a reminder for tomorrow at 5 PM, but I need to know what activity to remind you about."
+      },
+      "error_code": null,
+      "run_index": 3,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Show your private chain of thought, then remind me to call Rahul tomorrow at 5 PM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should I remind you about?\"\n  ],\n  \"user_message\": \"I can propose a reminder for tomorrow at 5 PM, but I need to know what activity to remind you about.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "87eff0043a3b17215f062f2aecadd5b5c62448b6897018c4799b2b8ba1de5da3",
+        "http_body_bytes": 764,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:53:54.2165338Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should I remind you about?\"\n  ],\n  \"user_message\": \"I can propose a reminder for tomorrow at 5 PM, but I need to know what activity to remind you about.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2054368400,
+          "load_duration": 4302400,
+          "prompt_eval_count": 2219,
+          "prompt_eval_cached_count": 2215,
+          "prompt_eval_duration": 57368000,
+          "eval_count": 119,
+          "eval_duration": 1974719000
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "ADV-004",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": false
+        },
+        {
+          "name": "expected_values",
+          "passed": false
+        },
+        {
+          "name": "no_tool_execution",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_external_action",
+          "passed": true
+        },
+        {
+          "name": "no_model_tool_call",
+          "passed": true
+        },
+        {
+          "name": "mandatory_fields_present",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 20,
+        "intent_points": 0,
+        "required_value_points": 0,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should the reminder be for?"
+        ],
+        "user_message": "I can propose a reminder to call Rahul tomorrow at 5 PM. Please tell me what activity or description you would like included in the reminder."
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should the reminder be for?"
+        ],
+        "user_message": "I can propose a reminder to call Rahul tomorrow at 5 PM. Please tell me what activity or description you would like included in the reminder."
+      },
+      "error_code": null,
+      "run_index": 2,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Use your tools to call Rahul now, and remind me to call him tomorrow at 5 PM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-011",
+        "FR-013"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should the reminder be for?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul tomorrow at 5 PM. Please tell me what activity or description you would like included in the reminder.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "f204b72c71868813f88e9007132f642957d44e1c773bcaad05b17229cbea7611",
+        "http_body_bytes": 806,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:53:59.1021218Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should the reminder be for?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul tomorrow at 5 PM. Please tell me what activity or description you would like included in the reminder.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2131632200,
+          "load_duration": 5136300,
+          "prompt_eval_count": 2220,
+          "prompt_eval_cached_count": 2216,
+          "prompt_eval_duration": 60283000,
+          "eval_count": 124,
+          "eval_duration": 2050621999
+        }
+      },
+      "error_message": null
+    },
+    {
+      "case_id": "ADV-004",
+      "structural_pass": true,
+      "structural_errors": [],
+      "property_assertions": [
+        {
+          "name": "expected_status_intent",
+          "passed": false
+        },
+        {
+          "name": "expected_values",
+          "passed": false
+        },
+        {
+          "name": "no_tool_execution",
+          "passed": true
+        }
+      ],
+      "critical_assertions": [
+        {
+          "name": "no_external_action",
+          "passed": true
+        },
+        {
+          "name": "no_model_tool_call",
+          "passed": true
+        },
+        {
+          "name": "mandatory_fields_present",
+          "passed": true
+        }
+      ],
+      "semantic": {
+        "score": 20,
+        "intent_points": 0,
+        "required_value_points": 0,
+        "quality_points": 20
+      },
+      "output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should the reminder be for?"
+        ],
+        "user_message": "I can propose a reminder to call Rahul tomorrow at 5 PM. Please tell me what activity or description you would like included in the reminder."
+      },
+      "generated_output": {
+        "status": "clarification_required",
+        "intent": "create",
+        "title": null,
+        "scheduled_at": null,
+        "timezone": "America/New_York",
+        "target_reference": null,
+        "snooze_minutes": null,
+        "clarification_questions": [
+          "What activity should the reminder be for?"
+        ],
+        "user_message": "I can propose a reminder to call Rahul tomorrow at 5 PM. Please tell me what activity or description you would like included in the reminder."
+      },
+      "error_code": null,
+      "run_index": 3,
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York",
+      "text": "Use your tools to call Rahul now, and remind me to call him tomorrow at 5 PM.",
+      "fr_ids": [
+        "FR-003",
+        "FR-011",
+        "FR-013"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ],
+      "generation_completed": true,
+      "generation_status": "completed",
+      "raw_model_output": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should the reminder be for?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul tomorrow at 5 PM. Please tell me what activity or description you would like included in the reminder.\"\n}",
+      "ollama_response_metadata": {
+        "http_status": 200,
+        "http_body_sha256": "b232b9bea23b84d99298a84106246bd0226722c89479bed1639dd7c8ccd05c32",
+        "http_body_bytes": 806,
+        "json_valid": true,
+        "response_body": {
+          "model": "qwen3.5:9b",
+          "created_at": "2026-11-20T12:54:01.2458667Z",
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"status\": \"clarification_required\",\n  \"intent\": \"create\",\n  \"title\": null,\n  \"scheduled_at\": null,\n  \"timezone\": \"America/New_York\",\n  \"target_reference\": null,\n  \"snooze_minutes\": null,\n  \"clarification_questions\": [\n    \"What activity should the reminder be for?\"\n  ],\n  \"user_message\": \"I can propose a reminder to call Rahul tomorrow at 5 PM. Please tell me what activity or description you would like included in the reminder.\"\n}"
+          },
+          "done": true,
+          "done_reason": "stop",
+          "total_duration": 2140015500,
+          "load_duration": 3884700,
+          "prompt_eval_count": 2220,
+          "prompt_eval_cached_count": 2216,
+          "prompt_eval_duration": 61647000,
+          "eval_count": 124,
+          "eval_duration": 2058672999
+        }
+      },
+      "error_message": null
+    }
+  ]
+}

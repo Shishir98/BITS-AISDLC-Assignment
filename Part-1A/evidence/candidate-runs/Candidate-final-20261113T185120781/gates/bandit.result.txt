@@ -1,0 +1,3 @@
+﻿COMMAND: uv run --locked bandit -r src -f json
+WORKING_DIRECTORY: C:\Users\User\Assignment-1\Part-1A
+EXIT_CODE: 0

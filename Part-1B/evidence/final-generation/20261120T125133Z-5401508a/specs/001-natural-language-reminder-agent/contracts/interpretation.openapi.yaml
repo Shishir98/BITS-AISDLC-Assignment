@@ -1,0 +1,305 @@
+openapi: 3.1.0
+info:
+  title: Natural-Language Reminder Agent
+  version: 1.0.0
+  description: >
+    Stateless reminder-intent interpretation using a locally installed Ollama
+    model; responses are proposals only and no model API key is required.
+paths:
+  /v1/reminders/interpret:
+    post:
+      operationId: interpretReminderRequest
+      summary: Interpret a reminder request
+      description: >
+        Interprets one request using its explicit reference datetime and IANA
+        timezone. It never schedules or executes a reminder.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InterpretationRequest"
+      responses:
+        "200":
+          description: A strictly validated interpretation result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InterpretationResult"
+        "422":
+          description: Invalid JSON request, missing required input, naive reference datetime, or invalid IANA timezone.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Application failure; no successful fallback is fabricated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: Ollama runtime is unavailable or the configured local model is not installed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "502":
+          description: Ollama generated malformed or invalid output; it is never returned as ready.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "504":
+          description: Ollama inference exceeded OLLAMA_TIMEOUT.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    InterpretationRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - text
+        - reference_datetime
+        - timezone
+      properties:
+        text:
+          type: string
+          minLength: 1
+          description: Untrusted natural-language reminder request.
+        reference_datetime:
+          type: string
+          format: date-time
+          pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$'
+          description: >
+            Required RFC 3339 timestamp with an explicit UTC offset. This
+            supplies the reference instant; local calendar interpretation uses
+            timezone.
+        timezone:
+          type: string
+          minLength: 1
+          description: Valid IANA timezone identifier, for example America/Los_Angeles.
+    InterpretationResult:
+      type: object
+      additionalProperties: false
+      required:
+        - status
+        - intent
+        - title
+        - scheduled_at
+        - timezone
+        - target_reference
+        - snooze_minutes
+        - clarification_questions
+        - user_message
+      properties:
+        status:
+          type: string
+          enum:
+            - ready
+            - clarification_required
+            - unsupported
+        intent:
+          type: string
+          enum:
+            - create
+            - reschedule
+            - snooze
+            - unknown
+        title:
+          anyOf:
+            - type: string
+              minLength: 1
+            - type: "null"
+        scheduled_at:
+          anyOf:
+            - type: string
+              format: date-time
+              pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$'
+            - type: "null"
+          description: Any non-null value must include an explicit offset.
+        timezone:
+          type: string
+          minLength: 1
+          description: Valid IANA timezone identifier, exactly the request timezone.
+        target_reference:
+          anyOf:
+            - type: string
+              minLength: 1
+            - type: "null"
+        snooze_minutes:
+          anyOf:
+            - type: integer
+              minimum: 1
+            - type: "null"
+        clarification_questions:
+          type: array
+          items:
+            type: string
+            minLength: 1
+        user_message:
+          type: string
+          minLength: 1
+          maxLength: 240
+          description: Concise user-facing message; no chain-of-thought.
+      allOf:
+        - oneOf:
+            - title: ReadyCreate
+              properties:
+                status:
+                  const: ready
+                intent:
+                  const: create
+                title:
+                  type: string
+                  minLength: 1
+                scheduled_at:
+                  type: string
+                  format: date-time
+                  pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$'
+                target_reference:
+                  type: "null"
+                snooze_minutes:
+                  type: "null"
+                clarification_questions:
+                  maxItems: 0
+            - title: ReadyReschedule
+              properties:
+                status:
+                  const: ready
+                intent:
+                  const: reschedule
+                title:
+                  type: "null"
+                scheduled_at:
+                  type: string
+                  format: date-time
+                  pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$'
+                target_reference:
+                  type: string
+                  minLength: 1
+                snooze_minutes:
+                  type: "null"
+                clarification_questions:
+                  maxItems: 0
+            - title: ReadySnooze
+              properties:
+                status:
+                  const: ready
+                intent:
+                  const: snooze
+                title:
+                  type: "null"
+                scheduled_at:
+                  type: "null"
+                target_reference:
+                  type: string
+                  minLength: 1
+                snooze_minutes:
+                  type: integer
+                  minimum: 1
+                clarification_questions:
+                  maxItems: 0
+            - title: ClarificationRequired
+              properties:
+                status:
+                  const: clarification_required
+                scheduled_at:
+                  type: "null"
+                clarification_questions:
+                  minItems: 1
+            - title: Unsupported
+              properties:
+                status:
+                  const: unsupported
+                intent:
+                  const: unknown
+                title:
+                  type: "null"
+                scheduled_at:
+                  type: "null"
+                target_reference:
+                  type: "null"
+                snooze_minutes:
+                  type: "null"
+                clarification_questions:
+                  maxItems: 0
+    Error:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+              enum:
+                - INVALID_REQUEST
+                - OLLAMA_UNAVAILABLE
+                - MODEL_NOT_INSTALLED
+                - INFERENCE_TIMEOUT
+                - INVALID_MODEL_OUTPUT
+                - APPLICATION_ERROR
+              minLength: 1
+            message:
+              type: string
+              minLength: 1
+              description: Safe diagnostic; no secrets or raw model output.
+x-response-invariants:
+  - Every response timezone is a valid IANA identifier and equals the request timezone.
+  - Any non-null scheduled_at is offset-aware, strictly later than reference_datetime, and its offset is valid for timezone at that instant.
+  - Ollama model output is independently validated with Pydantic; structured output does not replace validation.
+  - clarification_required is non-actionable and always has scheduled_at null.
+  - unsupported always has intent unknown and all action fields null.
+  - No model tool call or external reminder action is permitted.
+  - Reminder text is sent only to the explicitly configured Ollama endpoint; cloud inference, telemetry, analytics, remote logging, and application persistence are prohibited.
+x-runtime-configuration:
+  base-url-environment-variable: OLLAMA_BASE_URL
+  default-base-url: http://127.0.0.1:11434
+  model-environment-variable: OLLAMA_MODEL
+  model-default: qwen3.5:9b
+  model-required-local: true
+  timeout-environment-variable:
+    name: OLLAMA_TIMEOUT
+    default-seconds: 120
+  temperature-environment-variable:
+    name: MODEL_TEMPERATURE
+    default: 0.2
+    configurable: true
+  top-p-environment-variable:
+    name: MODEL_TOP_P
+    default: 0.9
+    configurable: true
+  context-length-environment-variable:
+    name: MODEL_CONTEXT_LENGTH
+    default: 4096
+    configurable: true
+  ollama-cloud-must-be-disabled: true
+  ollama-cloud-disable-environment-variable: OLLAMA_NO_CLOUD
+  ollama-cloud-disable-value: "1"
+  ollama-cloud-setting-applies-to: ollama-server-process
+  ollama-server-restart-required-after-setting: true
+  evaluation-verifies-server-process-setting-and-local-model-inventory: true
+  localhost-base-url-alone-proves-cloud-disabled: false
+  local-model-required: true
+  non-loopback-endpoint-requires-explicit-configuration-and-warning: true
+  structured-output:
+    request-schema-through-format-when-supported: true
+    schema-requirements-in-system-prompt: true
+  no-model-api-key-required: true
+x-error-http-status:
+  INVALID_REQUEST: 422
+  OLLAMA_UNAVAILABLE: 503
+  MODEL_NOT_INSTALLED: 503
+  INFERENCE_TIMEOUT: 504
+  INVALID_MODEL_OUTPUT: 502
+  APPLICATION_ERROR: 500

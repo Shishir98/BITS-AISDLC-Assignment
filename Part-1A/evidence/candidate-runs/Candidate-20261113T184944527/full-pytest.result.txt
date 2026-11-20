@@ -1,0 +1,3 @@
+﻿COMMAND: uv run --locked python -m pytest -q tests --junitxml=C:\Users\User\Assignment-1\Part-1A\evidence\candidate-runs\Candidate-20261113T184944527\full-pytest.junit.xml
+WORKING_DIRECTORY: C:\Users\User\Assignment-1\Part-1A
+EXIT_CODE: 0

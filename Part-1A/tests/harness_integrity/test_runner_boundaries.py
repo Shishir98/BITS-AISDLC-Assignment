@@ -21,11 +21,13 @@ def test_at022_required_checks_and_in_process_test_client_are_network_independen
     config = json.loads((PROJECT_ROOT / ".harness" / "mandatory-checks.json").read_text(encoding="utf-8"))
     assert config["authority"]["trustedRunnerPresent"] is False
     assert config["authority"]["d01Status"] == "BLOCKED"
+    assert config["authority"]["githubWorkflowCandidatePresent"] is True
+    assert config["authority"]["githubWorkflowRunVerified"] is False
     assert config["executionSequence"] == [
         "candidate-integrity-before",
         "instruction-inventory",
         "governance-boundary",
-        "windows-persistence-readiness",
+        "persistence-contract-readiness",
         "ruff",
         "bandit",
         "pytest-and-traceability",

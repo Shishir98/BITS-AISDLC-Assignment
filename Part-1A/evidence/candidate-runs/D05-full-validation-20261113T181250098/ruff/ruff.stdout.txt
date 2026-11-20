@@ -1,0 +1,53 @@
+BLE001 Do not catch blind exception: `Exception`
+   --> src\smart_todo\persistence\json_repository.py:124:20
+    |
+122 |             try:
+123 |                 self.path.unlink(missing_ok=True)
+124 |             except Exception:
+    |                    ^^^^^^^^^
+125 |                 return self._is_absent()
+126 |             return self._is_absent()
+    |
+
+BLE001 Do not catch blind exception: `Exception`
+   --> src\smart_todo\persistence\json_repository.py:142:16
+    |
+140 |             artifacts.remove(restore_path)
+141 |             return self.path.read_bytes() == original_bytes
+142 |         except Exception:
+    |                ^^^^^^^^^
+143 |             return self._matches_primary(original_bytes)
+    |
+
+BLE001 Do not catch blind exception: `Exception`
+   --> src\smart_todo\persistence\json_repository.py:148:16
+    |
+146 |         try:
+147 |             return self.path.read_bytes() == expected
+148 |         except Exception:
+    |                ^^^^^^^^^
+149 |             return False
+    |
+
+BLE001 Do not catch blind exception: `Exception`
+   --> src\smart_todo\persistence\json_repository.py:156:16
+    |
+154 |         except FileNotFoundError:
+155 |             return True
+156 |         except Exception:
+    |                ^^^^^^^^^
+157 |             return False
+158 |         return False
+    |
+
+BLE001 Do not catch blind exception: `Exception`
+   --> src\smart_todo\persistence\json_repository.py:165:20
+    |
+163 |             try:
+164 |                 artifact.unlink(missing_ok=True)
+165 |             except Exception:
+    |                    ^^^^^^^^^
+166 |                 _LOGGER.warning("Could not clean up a task store transaction artifact")
+    |
+
+Found 5 errors.

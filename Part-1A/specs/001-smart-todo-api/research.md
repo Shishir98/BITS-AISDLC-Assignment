@@ -5,45 +5,51 @@ documentation plus a local uv resolver run. Recommendations below are
 constrained to the feature specification; they do not add application
 capabilities.
 
-## R-01: JSON Replacement and Windows Behavior
+## R-01: Application-Level JSON Backup and Recovery
 
-**Provisional strategy**: Use a temporary file created in the destination
-directory, write the complete candidate JSON, flush and close the handle, then
-call `os.replace(temp_path, target_path)`. Keep the prior in-memory state until
-replacement succeeds. Remove an uncommitted temporary file after failure,
-closing its handle before cleanup.
+**Approved strategy (D-05 amendment, human-approved 2026-11-13)**: Retain the
+JSON store and serialize the complete candidate document to bytes before
+touching the primary. For an existing store, capture its exact bytes, write
+them to a uniquely named same-directory backup, close the file, and verify
+those bytes before attempting replacement. Write and close the candidate in a
+uniquely named same-directory temporary file, then use the existing
+`os.replace` operation as a best-effort replacement mechanism. Read the primary
+back and compare it byte-for-byte with the candidate before committing memory.
+On an application-handled failure, restore from the verified backup using a
+same-directory temporary file and verify the restored bytes. If the original
+store was absent, remove a partially installed primary and verify absence. If
+recovery cannot be verified, retain recovery material and fail closed. Cleanup
+is permitted only after a verified transaction; cleanup failure does not undo
+an already verified commit.
 
-**Rationale**: `tempfile.mkstemp(dir=target.parent)` keeps the temporary file on
-the same filesystem, and `os.replace` replaces an existing destination when
-permitted. Closing handles before replacement/cleanup is important for Windows
-file-sharing behavior. The prior state is not published when a write or replace
-operation fails.
+**Technical rationale**: Python documents `os.replace` as a replacement
+operation, but its documented atomicity qualification does not establish
+atomic visibility on Windows. The reviewed Microsoft `ReplaceFileW` and
+`MoveFileExW` documentation likewise does not establish the former Windows
+atomic-visibility requirement for all supported filesystem conditions. The
+approved change therefore removes that guarantee rather than
+claiming undocumented behavior. Same-directory files and closed handles follow
+Python's documented temporary-file and Windows handling guidance. Byte
+verification and a uniquely named backup provide the narrower application
+recovery behavior required by the approved specification. Each transaction
+uses the backup it just created and verifies it before relying on it; older
+leftover backups are never selected.
 
-**Alternatives considered**: Write directly to the target (rejected because a
-partial write could corrupt the previous document); use a temporary file in a
-different directory (rejected because a cross-filesystem replace may fail).
+**Failure boundary and explicit limitations**: These operations address
+application-handled exceptions while the process can execute recovery code.
+They do not guarantee OS-level atomic visibility during Windows replacement,
+crash durability across sudden power loss, recovery after abrupt process
+termination or OS failure during replacement, or hardware-level persistence
+beyond documented application operations. `os.fsync` is retained for completed
+file writes, but it does not extend the approved guarantee into those excluded
+failure classes. No Win32 replacement API is substituted for `os.replace`.
 
-**Windows limitation / blocker**: Python 3.12 documents atomic replacement with
-the qualification that atomicity is a POSIX requirement; it does not establish
-an atomic-visibility guarantee for `os.replace` on Windows. The reviewed Win32
-alternatives do not close this evidence gap:
-
-- `ReplaceFileW` is explicitly designed to replace one file with another and
-  combines operations that otherwise require several calls. Its Microsoft
-  documentation describes failure outcomes where the replaced file may no
-  longer exist at its original path or may be moved to another name. It does not
-  formally promise atomic visibility for every supported filesystem/failure
-  condition.
-- `MoveFileExW` supports `MOVEFILE_REPLACE_EXISTING`, but its documentation
-  does not state an atomic-visibility guarantee. `MOVEFILE_WRITE_THROUGH` does
-  not establish atomic visibility; the documented flush guarantee is limited to
-  the cross-volume copy/delete path.
-
-Atomic visibility and crash durability are separate properties. None of these
-documents proves both for the assignment's Windows setup. Keep the existing
-data-integrity requirement unchanged and D-05 blocked. Do not select either
-Win32 API as compliant without additional platform-specific evidence and a
-reviewed recovery design; do not make a crash-durability claim.
+**Alternatives considered**: Directly write the primary (rejected because a
+partial write could damage prior contents); create transaction files in another
+directory (rejected because same-directory placement avoids a cross-filesystem
+replacement); select a Win32 API to claim atomicity or durability (rejected
+because the reviewed official documentation does not substantiate those
+claims).
 
 Sources:
 
@@ -51,21 +57,23 @@ Sources:
 - [Python 3.12 `NamedTemporaryFile` and Windows behavior](https://docs.python.org/3.12/library/tempfile.html#tempfile.NamedTemporaryFile)
 - [Python 3.12 `os.replace`](https://docs.python.org/3.12/library/os.html#os.replace)
 - [Python 3.12 `os.remove`](https://docs.python.org/3.12/library/os.html#os.remove)
+- [Python 3.12 `os.fsync`](https://docs.python.org/3.12/library/os.html#os.fsync)
 - [Microsoft `ReplaceFileW`](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-replacefilew)
 - [Microsoft `MoveFileExW`](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-movefileexw)
 
 ## R-02: Single-Process Mutation Coordination
 
 **Decision**: Use one shared standard-library `threading.Lock` around the full
-read/modify/persist/publish operation. Keep candidate state separate until the
-atomic replacement reports success. Use synchronous FastAPI route functions for
-the synchronous repository; FastAPI dispatches normal `def` operations through
-its worker thread pool.
+read/modify/persist/publish operation. Keep candidate state separate until
+primary-file verification succeeds. Use synchronous FastAPI route functions
+for the synchronous repository; FastAPI dispatches normal `def` operations
+through its worker thread pool.
 
 **Rationale**: The lock provides mutual exclusion across request threads and the
 specified feature excludes independent process writers. It does not impose FIFO
 ordering, which agrees with the specification's statement that request-to-ID
-assignment among concurrent requests is unspecified.
+assignment among concurrent requests is unspecified. The service publishes a
+candidate only after the repository has verified persisted candidate bytes.
 
 **Alternatives considered**: An `asyncio.Lock` (not needed for synchronous file
 operations); no lock (would allow colliding IDs and lost updates); a
@@ -79,14 +87,16 @@ Sources:
 ## R-03: API and Persistence Testing
 
 **Decision**: Use pytest with FastAPI's in-process `TestClient`, isolated store
-paths via pytest's `tmp_path`, and `monkeypatch` for controlled write/replace
-failures. Parametrize stored-data validation cases. Run the authoritative tests
-from the independent protected harness, not from an agent-writable copy.
+paths via pytest's `tmp_path`, and `monkeypatch` for controlled serialization,
+write, backup, replacement, recovery, and cleanup failures. Parametrize
+stored-data validation cases. Local candidate tests are diagnostic; authoritative
+execution still requires the independent protected harness.
 
 **Rationale**: Passing the app directly to `TestClient` exercises the HTTP
 contract without launching a separate server or relying on external network
 services. Temporary directories isolate test data; controlled failures verify
-rollback and preservation behavior.
+the application-handled restoration/absence and fail-closed paths. These tests
+do not establish atomic visibility or crash durability.
 
 **Dependency note**: FastAPI documents that HTTPX is required to use
 `TestClient`; the user-approved planning set includes HTTPX and Uvicorn.
@@ -125,31 +135,35 @@ Generate and commit the project lockfile with uv before implementation; use
 `uv sync --locked` and `uv run --locked` thereafter. Re-resolve only through an
 approved dependency change and review the resulting lock diff.
 
-## R-05: Trusted Harness Boundary
+## R-05: GitHub Validation Boundary
 
 Part-1A must contain `src/`, `tests/`, `.harness/`, and `evidence/`. The
 repository copies of mandatory tests, expected results, scripts, and configs
-remain agent-editable; their presence outside `src/` or outside VS Code does not
-make them trusted. The authoritative runner, baseline manifest, approval
-records, verified staging, and evidence archive must be controlled by a
-separately administered Windows identity/ACL or protected CI permissions.
+remain candidate-controlled; their location does not make them trusted. The
+selected D-01 implementation is a manually dispatched GitHub Actions workflow
+from protected `main`. It checks out the trusted workflow and explicit
+candidate commit separately, uses `contents: read`, does not pass secrets to
+candidate code, verifies approved digests, creates run-specific staging, and
+checks integrity before and after execution. Logs and evidence are retained as
+workflow artifacts.
 
-The runner verifies repository-file digests against that protected baseline
-before execution, stages the verified bytes, and runs the staged snapshot.
-Legitimate changes are accepted only after a human approval record with change
-scope and old/new digests is stored through the protected channel. Local
-`evidence/` files are runner-generated mirrors; the protected archive is
-authoritative. If the coding agent shares the trusted identity, has admin
-rights, or can change CI controls, the boundary fails. D-01 remains an
-implementation blocker until the actual assignment environment demonstrates
-separation.
+The consolidated approval register remains pending until a human records the
+approval details for the exact initial baseline and ten inventoried instruction
+files. A branch ruleset by itself does not prove that the workflow is canonical
+or independently administered. D-01 remains an implementation blocker until
+the protected workflow and approval prerequisite are present on `main`, the
+runner's trust boundary is verified, and an actual protected run succeeds.
+Local `evidence/` files and candidate workflow runs are not independently
+authoritative.
 
 ## Unresolved Research Constraints
 
-- No reviewed Windows replacement API documents the required atomic-visibility
-  guarantee under the target conditions; D-05 remains blocked.
-- The protected runner's actual host, separate identity, and permissions must be
-  established by the human/assignment owner; D-01 remains blocked.
+- D-05 is resolved by the human-approved 2026-11-13 specification amendment;
+  no Windows atomic-visibility or crash-durability guarantee is claimed.
+- The protected GitHub workflow, exact branch ruleset controls, approval
+  register, and trusted execution boundary must be verified by the
+  human/assignment owner; no additional Windows account is part of the selected
+  design and D-01 remains blocked.
 - Resolved package versions and the generated `pyproject.toml`/`uv.lock` are
   ready for human review and must be committed together before application
   implementation.

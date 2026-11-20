@@ -381,45 +381,42 @@ else {
 }
 
 $allGates += Add-InternalGate -Name "governance-boundary" -Status "BLOCKED" -ExitCode 2 `
-    -Command "Verify separately administered identity/ACL or protected CI and canonical baseline" `
-    -Message "D-01 remains blocked: this repository has no independently verified canonical runner, protected baseline, approval register, or separate execution boundary. Local gate output is diagnostic only."
+    -Command "Verify protected GitHub main workflow, human-approved baseline, and successful protected run" `
+    -Message "D-01 design direction is closed on GitHub, but the workflow remains a repository candidate; its baseline is pending approval and no protected workflow run has been verified. Local gate output is diagnostic only."
 
-$windowsReadiness = $mandatoryChecks.windowsPersistenceReadiness
-$d05ConfigValid = $null -ne $windowsReadiness -and
-    [string]$windowsReadiness.d05Status -ceq "BLOCKED" -and
-    $windowsReadiness.approvedWindowsAtomicVisibilityStrategyPresent -eq $false -and
-    $windowsReadiness.supportedFilesystemAtomicVisibilityEvidencePresent -eq $false -and
-    $windowsReadiness.rollbackTestsEstablishAtomicVisibility -eq $false -and
-    @($windowsReadiness.evidenceReferences).Count -eq 0
-$d05Message = [string]$windowsReadiness.blockingReason
-if (-not $d05Message) {
-    $d05Message = "No approved Windows atomic-visibility strategy or supported-filesystem evidence was supplied."
-}
+$persistenceReadiness = $mandatoryChecks.persistenceContractReadiness
+$d05ConfigValid = $null -ne $persistenceReadiness -and
+    [string]$persistenceReadiness.d05Status -ceq "RESOLVED_BY_APPROVED_SPEC_AMENDMENT" -and
+    [string]$persistenceReadiness.approvedSpecVersion -ceq "1.4.0" -and
+    [string]$persistenceReadiness.humanApprovalDate -ceq "2026-11-13" -and
+    $persistenceReadiness.applicationHandledRecoveryContractApproved -eq $true -and
+    $persistenceReadiness.atomicVisibilityGuaranteed -eq $false -and
+    $persistenceReadiness.crashDurabilityGuaranteed -eq $false -and
+    $persistenceReadiness.rollbackTestsEstablishAtomicVisibility -eq $false -and
+    @($persistenceReadiness.evidenceReferences).Count -eq 0
 if ($d05ConfigValid) {
-    $d05Gate = Add-InternalGate -Name "windows-persistence-readiness" -Status "BLOCKED" -ExitCode 2 `
-        -Command "Verify approved Windows atomic-visibility strategy and supported-filesystem evidence" `
-        -Message "D-05 remains BLOCKED. $d05Message"
+    $d05Gate = Add-InternalGate -Name "persistence-contract-readiness" -Status "PASS" -ExitCode 0 `
+        -Command "Verify approved v1.4.0 application-level persistence contract" `
+        -Message "D-05 resolved by human approval dated 2026-11-13. This gate asserts no Windows atomic-visibility or crash-durability guarantee."
 }
 else {
-    $d05Gate = Add-InternalGate -Name "windows-persistence-readiness" -Status "FAIL" -ExitCode 1 `
-        -Command "Verify approved Windows atomic-visibility strategy and supported-filesystem evidence" `
-        -Message "D-05 controls are missing or inconsistent; no readiness claim is permitted."
+    $d05Gate = Add-InternalGate -Name "persistence-contract-readiness" -Status "FAIL" -ExitCode 1 `
+        -Command "Verify approved v1.4.0 application-level persistence contract" `
+        -Message "D-05 amendment controls are missing or inconsistent; no platform-guarantee claim is permitted."
+    $d05FailurePath = Join-Path $failureRoot "persistence-contract-readiness.txt"
+    $d05FailureReport = @(
+        "Gate: persistence-contract-readiness"
+        "Requirement: D-05 was resolved by the human-approved v1.4.0 application-level backup and recovery amendment."
+        "Expected: Approval date 2026-11-13; no Windows atomic-visibility or crash-durability guarantee."
+        "Observed status: $([string]$persistenceReadiness.d05Status)"
+        "AT-014 tests establish application-handled persistence behavior only."
+        "No Windows atomic-visibility or crash-durability evidence is claimed."
+    ) -join "`r`n"
+    [System.IO.File]::WriteAllText($d05FailurePath, $d05FailureReport, [System.Text.UTF8Encoding]::new($false))
+    $d05Gate.outputReferences = @("failures/persistence-contract-readiness.txt")
+    $d05Gate | Add-Member -NotePropertyName failureReportReference `
+        -NotePropertyValue "failures/persistence-contract-readiness.txt"
 }
-$d05FailurePath = Join-Path $failureRoot "windows-persistence-readiness.txt"
-$d05FailureReport = @(
-    "Gate: windows-persistence-readiness"
-    "Requirement: D-05 requires a supported Windows atomic-visibility strategy with approved evidence."
-    "Expected: Demonstrated atomic visibility on the supported Windows filesystem, backed by an approved strategy and relevant evidence."
-    "Observed: $([string]$windowsReadiness.observedImplementation)"
-    "AT-014 evidence scope: Injected write/replacement failures verify rollback behavior only; they do not establish atomic visibility."
-    "D-05 status: $($d05Gate.status)"
-    "Blocking reason: $d05Message"
-    "Approved evidence references: $(@($windowsReadiness.evidenceReferences) -join ';')"
-) -join "`r`n"
-[System.IO.File]::WriteAllText($d05FailurePath, $d05FailureReport, [System.Text.UTF8Encoding]::new($false))
-$d05Gate.outputReferences = @("failures/windows-persistence-readiness.txt")
-$d05Gate | Add-Member -NotePropertyName failureReportReference `
-    -NotePropertyValue "failures/windows-persistence-readiness.txt"
 $allGates += $d05Gate
 
 if ($stageManifest.digest -eq $initialManifest.digest) {

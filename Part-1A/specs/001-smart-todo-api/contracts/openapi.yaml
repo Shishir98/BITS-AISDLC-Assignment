@@ -1,10 +1,10 @@
 openapi: 3.1.0
 info:
   title: Smart Todo & Task Management API
-  version: 1.2.2
+  version: 1.4.0
   description: >-
-    API contract includes the proposed v1.2.2 error-detail amendment, which is
-    pending human review and is not approved.
+    API contract for approved feature specification v1.4.0. Errors use the
+    approved stable envelope and exact field-detail schema.
 paths:
   /tasks:
     post:
@@ -270,8 +270,8 @@ components:
     ErrorDetail:
       type: object
       description: >-
-        Proposed field-level error detail. All members are required strings;
-        objects with the same field path are ordered by code and then message.
+        Field-level error detail. All members are required strings; objects
+        with the same field path are ordered by code and then message.
       additionalProperties: false
       required: [field, code, message]
       properties:

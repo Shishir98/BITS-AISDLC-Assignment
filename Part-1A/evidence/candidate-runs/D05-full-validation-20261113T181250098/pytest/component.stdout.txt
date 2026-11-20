@@ -1,0 +1,7 @@
+Command: "C:\Users\User\.local\bin\uv.exe" run --active --locked --no-sync --directory "C:\Users\User\Assignment-1\Part-1A" pytest -q -p no:cacheprovider tests --junitxml="C:\Users\User\Assignment-1\Part-1A\evidence\candidate-runs\D05-full-validation-20261113T181250098\pytest\junit.xml"
+Pytest exit code: 1
+Pytest collection exit code: 0
+JUnit test cases: 44
+Acceptance criteria without full executable coverage: 6
+Missing mandatory suite directories: 0
+AC-to-AT mapping issues: 1

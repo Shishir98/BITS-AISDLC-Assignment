@@ -1,0 +1,270 @@
+{
+  "run_id": "20261119T140750Z-9d449348",
+  "execution_timestamp_utc": "2026-11-19T14:07:52.379301+00:00",
+  "status": "INCOMPLETE",
+  "reason": "BLOCKED_INFRASTRUCTURE",
+  "dataset_version": "1.0.0",
+  "dataset_path": "evals/dataset.json",
+  "dataset_sha256": "aaec4699c10bf7dea51ce101a60a604f3f8c6b7a80cfd1cfe95158ee15d50fd3",
+  "case_count": 19,
+  "expected_generation_count": 57,
+  "attempted_generation_count": 0,
+  "completed_generation_count": 0,
+  "successful_output_count": 0,
+  "ollama_cli": {
+    "available": true,
+    "executable": "C:\\Users\\User\\AppData\\Local\\Programs\\Ollama\\ollama.EXE",
+    "version": "ollama version is 0.40.16",
+    "return_code": 0,
+    "error": null
+  },
+  "ollama_runtime": {
+    "version": "0.40.16",
+    "model": {
+      "name": "qwen3.5:9b",
+      "model": "qwen3.5:9b",
+      "modified_at": "2026-11-19T19:14:23.3081714+05:30",
+      "size": 6550825550,
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "details": {
+        "parent_model": "model.gguf",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 4096,
+        "runner": "llamacpp"
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ]
+    },
+    "inventory": [
+      {
+        "name": "qwen3.5:9b",
+        "model": "qwen3.5:9b",
+        "modified_at": "2026-11-19T19:14:23.3081714+05:30",
+        "size": 6550825550,
+        "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+        "details": {
+          "parent_model": "model.gguf",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "9.0B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 262144,
+          "embedding_length": 4096,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ]
+      }
+    ],
+    "endpoint_mode": "loopback"
+  },
+  "ollama_server_process_evidence": null,
+  "endpoint": {
+    "base_url": "http://127.0.0.1:11434",
+    "mode": "loopback"
+  },
+  "selected_model": "qwen3.5:9b",
+  "installed_model": {
+    "name": "qwen3.5:9b",
+    "model": "qwen3.5:9b",
+    "modified_at": "2026-11-19T19:14:23.3081714+05:30",
+    "size": 6550825550,
+    "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "details": {
+      "parent_model": "model.gguf",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "9.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 4096,
+      "runner": "llamacpp"
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ]
+  },
+  "local_model_inventory": [
+    {
+      "name": "qwen3.5:9b",
+      "model": "qwen3.5:9b",
+      "modified_at": "2026-11-19T19:14:23.3081714+05:30",
+      "size": 6550825550,
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "details": {
+        "parent_model": "model.gguf",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 4096,
+        "runner": "llamacpp"
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ]
+    }
+  ],
+  "ollama_ps": {
+    "available": true,
+    "return_code": 0,
+    "output": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL",
+    "error": null,
+    "offload_observation": "unavailable"
+  },
+  "prompt_version": "1.0.0",
+  "prompt_sha256": "87a1184235fac92f7dafb5bebe0c6acb6db4ba5157518286d4990227fbc470bc",
+  "generation_parameters": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "top_p_applied": true,
+    "context_length": 4096,
+    "timeout_seconds": 120,
+    "options_sent": {
+      "temperature": 0.2,
+      "top_p": 0.9,
+      "num_ctx": 4096
+    },
+    "tools_enabled": false
+  },
+  "per_case_temporal_context": [
+    {
+      "case_id": "REP-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "REP-002",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "REP-003",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "REP-004",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "REP-005",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "BND-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "BND-002",
+      "reference_datetime": "2026-12-31T23:30:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "BND-003",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "BND-004",
+      "reference_datetime": "2026-10-25T09:00:00-04:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "AMB-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "AMB-002",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "AMB-003",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "AMB-004",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "MAL-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "MAL-002",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "ADV-001",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "ADV-002",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "ADV-003",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    },
+    {
+      "case_id": "ADV-004",
+      "reference_datetime": "2026-03-01T09:00:00-05:00",
+      "timezone": "America/New_York"
+    }
+  ],
+  "scores": null,
+  "observed_output_variation": [],
+  "failed_case_ids": [],
+  "errors": [
+    {
+      "code": "OLLAMA_CLOUD_CONFIGURATION_UNVERIFIED",
+      "message": "OLLAMA_NO_CLOUD=1 is not verified for the Ollama server process."
+    }
+  ],
+  "final_source_snapshot": "evidence/final-generation/20261119T140750Z-9d449348",
+  "case_runs_path": "case-runs.json",
+  "evaluation_results_path": "eval-results.json"
+}

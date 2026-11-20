@@ -1,0 +1,11 @@
+{
+  "run_id": "20261119T140750Z-9d449348",
+  "status": "INCOMPLETE",
+  "reason": "BLOCKED_INFRASTRUCTURE",
+  "errors": [
+    {
+      "code": "OLLAMA_CLOUD_CONFIGURATION_UNVERIFIED",
+      "message": "OLLAMA_NO_CLOUD=1 is not verified for the Ollama server process."
+    }
+  ]
+}

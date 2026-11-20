@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="11" time="5.365" timestamp="2026-11-13T18:45:02.904767+05:30" hostname="Shishir-PC"><testcase classname="tests.harness_integrity.test_repository_hygiene" name="test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files" time="0.552" /><testcase classname="tests.harness_integrity.test_repository_hygiene" name="test_at026_current_publication_candidate_has_no_hygiene_findings" time="2.738"><failure message="AssertionError: Tracked files inspected: 1345&#10;  Publication-candidate text files inspected: 81&#10;  Synthetic scanner fixtures passed: True&#10;  Hygiene findings: 1&#10;  Hygiene report: C:\Users\User\AppData\Local\Temp\pytest-of-User\pytest-38\test_at026_current_publication0\publication-scan\hygiene.json&#10;  &#10;assert 1 == 0&#10;[+1 more line; full report in element text]">tmp_path = WindowsPath('C:/Users/User/AppData/Local/Temp/pytest-of-User/pytest-38/test_at026_current_publication0')
+
+    def test_at026_current_publication_candidate_has_no_hygiene_findings(tmp_path: Path) -&gt; None:
+        result = _run_hygiene(PROJECT_ROOT, tmp_path / "publication-scan")
+&gt;       assert result.returncode == 0, result.stdout + result.stderr
+E       AssertionError: Tracked files inspected: 1345
+E         Publication-candidate text files inspected: 81
+E         Synthetic scanner fixtures passed: True
+E         Hygiene findings: 1
+E         Hygiene report: C:\Users\User\AppData\Local\Temp\pytest-of-User\pytest-38\test_at026_current_publication0\publication-scan\hygiene.json
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', 'C:\\Users\\User\\Assign...\Local\\Temp\\pytest-of-User\\pytest-38\\test_at026_current_publication0\\publication-scan\\hygiene.json\n', stderr='').returncode
+
+tests\harness_integrity\test_repository_hygiene.py:64: AssertionError</failure></testcase><testcase classname="tests.harness_integrity.test_repository_hygiene" name="test_at026_historical_synthetic_scanner_fixtures_are_not_publication_findings" time="0.500" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at022_workflow_uses_protected_main_read_only_checkout_and_sha" time="0.000" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at023_pending_bootstrap_fails_before_candidate_staging" time="0.005" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at023_synthetic_tampered_test_file_is_rejected_before_staging" time="0.302"><failure message="NameError: name 'trusted_project' is not defined">tmp_path = WindowsPath('C:/Users/User/AppData/Local/Temp/pytest-of-User/pytest-38/test_at023_synthetic_tampered_0')
+
+    def test_at023_synthetic_tampered_test_file_is_rejected_before_staging(tmp_path: Path) -&gt; None:
+        script = _load_module(PREPARE_SCRIPT, "prepare_candidate_tamper")
+        _trusted_repo, _trusted_project, candidate_project, commit = _make_approved_fixture(tmp_path)
+        test_file = candidate_project / "tests" / "test_control.py"
+        test_file.write_text("raise RuntimeError('must not execute')\n", encoding="utf-8")
+        stage = tmp_path / "tampered-stage"
+        evidence = tmp_path / "tampered-evidence"
+        args = SimpleNamespace(
+            candidate_sha=commit,
+&gt;           trusted_root=str(trusted_project),
+                             ^^^^^^^^^^^^^^^
+            trusted_repo_root=str(trusted_repo),
+            candidate_root=str(candidate_project),
+            stage=str(stage),
+            evidence=str(evidence),
+            github_output=None,
+        )
+E       NameError: name 'trusted_project' is not defined
+
+tests\harness_integrity\test_github_trust_bootstrap.py:190: NameError</failure></testcase><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at023_unapproved_changes_to_controls_inventory_instructions_and_dependencies_are_rejected" time="0.315"><failure message="NameError: name 'trusted_project' is not defined">tmp_path = WindowsPath('C:/Users/User/AppData/Local/Temp/pytest-of-User/pytest-38/test_at023_unapproved_changes_0')
+
+    def test_at023_unapproved_changes_to_controls_inventory_instructions_and_dependencies_are_rejected(
+        tmp_path: Path,
+    ) -&gt; None:
+        script = _load_module(PREPARE_SCRIPT, "prepare_candidate_multiple_tamper")
+        _trusted_repo, _trusted_project, candidate_project, commit = _make_approved_fixture(tmp_path)
+        paths = (
+            "tests/test_control.py",
+            ".harness/mandatory-checks.json",
+            ".harness/trust/prepare_candidate.py",
+            ".harness/instruction-files.json",
+            ".specify/instruction-00.md",
+            "pyproject.toml",
+            "uv.lock",
+        )
+        for index, relative in enumerate(paths):
+            candidate_file = candidate_project / relative
+            original = candidate_file.read_bytes()
+            candidate_file.write_bytes(original + b"\ntampered\n")
+            evidence = tmp_path / f"tampered-evidence-{index}"
+            stage = tmp_path / f"tampered-stage-{index}"
+            args = SimpleNamespace(
+                candidate_sha=commit,
+&gt;               trusted_root=str(trusted_project),
+                                 ^^^^^^^^^^^^^^^
+                trusted_repo_root=str(trusted_repo),
+                candidate_root=str(candidate_project),
+                stage=str(stage),
+                evidence=str(evidence),
+                github_output=None,
+            )
+E           NameError: name 'trusted_project' is not defined
+
+tests\harness_integrity\test_github_trust_bootstrap.py:226: NameError</failure></testcase><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at024_tampered_trusted_workflow_or_approval_register_is_rejected" time="0.337" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at023_verified_candidate_is_staged_and_manifest_tampering_is_detected" time="0.447" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals" time="0.001"><failure message="AssertionError: assert [{'path': '.g...c', ...}, ...] == [{'path': '.g...c', ...}, ...]&#10;  &#10;[+2 more lines; full report in element text]">def test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals() -&gt; None:
+        inventory = json.loads((PROJECT_ROOT / ".harness" / "instruction-files.json").read_text(encoding="utf-8"))
+        register = json.loads(
+            (PROJECT_ROOT / ".harness" / "trust" / "approval-register.json").read_text(encoding="utf-8")
+        )
+        baseline = json.loads(
+            (PROJECT_ROOT / ".harness" / "trust" / "bootstrap-baseline.json").read_text(encoding="utf-8")
+        )
+        assert register["status"] == "PENDING_HUMAN_REVIEW"
+&gt;       assert register["instruction_files"] == inventory
+E       AssertionError: assert [{'path': '.g...c', ...}, ...] == [{'path': '.g...c', ...}, ...]
+E         
+E         At index 7 diff: {'path': '.github/skills/speckit-specify/SKILL.md', 'purpose': 'Coding-agent and validation guidance for feature specification.', 'classification': 'instruction', 'sha256': 'f27c66b20968981c98ec65e67f279c3c5b3ac833016d0c3879b1e9aadc1361c9', 'approval_reference': ''} != {'path': '.github/skills/speckit-specify/SKILL.md', 'purpose': 'Coding-agent and validation guidance for feature specifications.', 'classification': 'instruction', 'sha256': 'f27c66b20968981c98ec65e67f279c3c5b3ac833016d0c3879b1e9aadc1361c9', 'approval_reference': ''}
+E         Use -v to get more diff
+
+tests\harness_integrity\test_github_trust_bootstrap.py:314: AssertionError</failure></testcase><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_supplemental_evidence_manifest_detects_bundle_tampering" time="0.006" /></testsuite></testsuites>

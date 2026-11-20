@@ -1,16 +1,17 @@
 # Test Strategy
 
 The acceptance tests below are mandatory tests represented in Part-1A `tests/`
-and executed only through the canonical trusted runner. Submitted repository
-copies of tests, `.harness/` scripts and controls, and evidence are untrusted
-candidates/evidence; repository location alone does not establish trust. The
-authoritative runner, canonical test/control baseline, approval records, and
-execution environment are separately protected. Before each run the canonical
-runner verifies exact SHA-256 digests against the protected baseline, stages
-only verified immutable bytes, and fails closed with a non-zero exit if
-verification fails. The trusted store must be protected by a different Windows
-identity/ACL or protected CI permissions. If that boundary cannot be
-demonstrated, D-01 remains blocked and no authoritative run is permitted.
+and intended to run through the selected GitHub Actions workflow dispatched
+from protected `main`. Submitted repository copies of tests, `.harness/` scripts
+and controls, and evidence remain untrusted candidates/evidence; repository
+location alone does not establish trust. The workflow must verify exact
+SHA-256 digests against a human-approved baseline, stage only verified
+run-specific bytes, verify integrity before and after execution, and fail
+closed with a non-zero exit if verification fails. The workflow uses a
+read-only token and provides no secrets to candidate code. A protected branch
+ruleset alone does not establish canonical runner independence; D-01 remains
+blocked until the workflow, approved baseline, execution boundary, and actual
+protected run are verified. No additional Windows account is required.
 
 Use pytest and an in-process ASGI client for API contract tests so application
 tests do not contact external network services. Unit tests cover business rules;
@@ -67,7 +68,7 @@ the file set it hashes.
 | AC-011 | Service/API: both allowed transitions persist; same-status transition is an idempotent no-op. |
 | AC-012 | Service/API: all prohibited transitions return `409` and preserve task state. |
 | AC-013 | Persistence/API: restart against the same file and verify task data and next ID. |
-| AC-014 | Persistence/API: successful complete replacement; inject write and replace failures; assert `500`, byte-identical old file, unchanged in-memory reads, and unchanged next ID. These rollback tests do not establish Windows atomic visibility; D-05 remains an independent blocker. |
+| AC-014 | Persistence/API: verify complete candidate serialization and backup bytes before best-effort replacement; inject candidate/backup write failures, replacement failure before and after primary change, recovery/cleanup failures, and absent-store creation failure. Assert `500 persistence_error`, byte-exact restored bytes or verified absence, unchanged in-memory state, fail-closed behavior with preserved recovery material, and a successful next mutation after verified recovery. These tests cover application-handled failures only and do not establish Windows atomic visibility, crash durability, or abrupt-process/OS recovery. |
 | AC-015 | Persistence/API: start successfully with each malformed fixture; on every store access assert `500 malformed_stored_data`, no stack trace, and byte-identical source file. |
 | AC-016 | API/domain: title and description types, null handling, trimming, and exact lower/upper boundaries. |
 | AC-017 | API/domain: tag list count, type, normalized length, empty values, and case-variant deduplication. |
@@ -125,7 +126,7 @@ constitute an authoritative acceptance result.
 | AC-011 | AT-011 | `tests/api_contract/test_status_transitions.py` | `test_at011_only_forward_transitions_are_allowed_and_same_status_is_idempotent` | FULL |
 | AC-012 | AT-012 | `tests/api_contract/test_status_transitions.py` | `test_at012_prohibited_transitions_leave_persisted_status_unchanged` | FULL |
 | AC-013 | AT-013 | `tests/persistence/test_json_repository.py` | `test_at013_restart_restores_tasks_and_continues_monotonic_ids` | FULL |
-| AC-014 | AT-014 | `tests/persistence/test_json_repository.py` | `test_at014_failed_atomic_write_preserves_file_and_in_memory_state` | PARTIAL |
+| AC-014 | AT-014 | `tests/persistence/test_json_repository.py` | `test_at014_successful_write_verifies_backup_and_complete_candidate`; `test_at014_candidate_serialization_failure_does_not_touch_store_or_memory`; `test_at014_candidate_temporary_write_failure_recovers_and_allows_next_write`; `test_at014_backup_write_failure_leaves_verified_original_and_memory_unchanged`; `test_at014_replacement_failure_restores_exact_bytes_and_allows_next_write`; `test_at014_replacement_failure_after_install_restores_from_verified_backup`; `test_at014_failed_creation_restores_original_absence`; `test_at014_recovery_failure_preserves_backup_and_fails_closed`; `test_at014_cleanup_failure_does_not_undo_verified_commit` | FULL (local candidate validation; not authoritative) |
 | AC-015 | AT-015 | `tests/persistence/test_json_repository.py` | `test_at015_table_driven_malformed_store_fixtures_fail_closed_without_rewriting` | FULL |
 | AC-016 | AT-016 | `tests/error_handling/test_request_validation.py` | `test_at016_title_and_description_boundary_values_and_invalid_values` | FULL |
 | AC-017 | AT-017 | `tests/error_handling/test_request_validation.py` | `test_at017_tag_count_length_and_normalization_boundaries` | FULL |
@@ -133,11 +134,11 @@ constitute an authoritative acceptance result.
 | AC-019 | AT-019 | `tests/api_contract/test_endpoint_contract.py` | `test_at019_success_and_applicable_error_statuses_for_every_endpoint` | FULL |
 | AC-020 | AT-020 | `tests/error_handling/test_request_validation.py` | `test_at020_validation_errors_have_stable_sanitized_envelope` | FULL |
 | AC-021 | AT-021 | `tests/api_contract/test_determinism.py` | `test_at021_identical_initial_state_and_request_sequence_produce_identical_results` | FULL |
-| AC-022 | AT-022 | `tests/harness_integrity/test_runner_boundaries.py`; `tests/harness_integrity/test_architecture.py` | `test_at022_required_checks_and_in_process_test_client_are_network_independent`; `test_candidate_controls_keep_protected_trust_and_human_records_unavailable` | PARTIAL |
-| AC-023 | AT-023 | `tests/harness_integrity/test_runner_boundaries.py` | `test_at023_untrusted_repository_runner_refuses_authoritative_mode` | PARTIAL |
-| AC-024 | AT-024 | `tests/harness_integrity/test_runner_boundaries.py` | `test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked` | PARTIAL |
+| AC-022 | AT-022 | `tests/harness_integrity/test_github_trust_bootstrap.py`; `tests/harness_integrity/test_runner_boundaries.py`; `tests/harness_integrity/test_architecture.py` | `test_at022_workflow_uses_protected_main_read_only_checkout_and_sha`; `test_at022_required_checks_and_in_process_test_client_are_network_independent`; `test_candidate_controls_keep_protected_trust_and_human_records_unavailable` | PARTIAL: workflow is not deployed/verified on protected main; external-network isolation remains unverified. |
+| AC-023 | AT-023 | `tests/harness_integrity/test_github_trust_bootstrap.py`; `tests/harness_integrity/test_runner_boundaries.py` | `test_at023_pending_bootstrap_fails_before_candidate_staging`; `test_at023_synthetic_tampered_test_file_is_rejected_before_staging`; `test_at023_verified_candidate_is_staged_and_manifest_tampering_is_detected`; `test_at023_untrusted_repository_runner_refuses_authoritative_mode` | PARTIAL: synthetic tamper detection passes; actual protected runner and GitHub ruleset are unverified. |
+| AC-024 | AT-024 | `tests/harness_integrity/test_github_trust_bootstrap.py`; `tests/harness_integrity/test_runner_boundaries.py` | `test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals`; `test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked` | PARTIAL: synthetic approval flow is tested; real approval data remains blank and pending. |
 | AC-025 | AT-025 | `tests/harness_integrity/test_architecture.py` | `test_at025_runtime_versions_repository_port_and_layer_boundaries` | FULL |
-| AC-026 | AT-026 | `tests/harness_integrity/test_repository_hygiene.py` | `test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files` | PARTIAL |
+| AC-026 | AT-026 | `tests/harness_integrity/test_repository_hygiene.py` | `test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files`; `test_at026_current_publication_candidate_has_no_hygiene_findings` | FULL (local candidate scan; not authoritative) |
 | AC-027 | AT-027 | `tests/harness_integrity/test_runner_boundaries.py` | `test_at027_human_security_review_is_a_separate_blocked_gate` | PARTIAL |
 | AC-028 | AT-028 | `tests/harness_integrity/test_runner_boundaries.py` | `test_at028_runner_does_not_create_or_infer_acceptance_decisions` | PARTIAL |
 | AC-029 | AT-029 | `tests/concurrency/test_concurrent_mutations.py` | `test_at029_concurrent_creates_have_unique_monotonic_ids_and_survive_restart` | FULL |

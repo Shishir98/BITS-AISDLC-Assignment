@@ -94,3 +94,14 @@ def test_at020_validation_errors_have_stable_sanitized_envelope(client: TestClie
     assert "do not echo" not in serialized
     assert "traceback" not in serialized
     assert "c:\\users\\" not in serialized
+
+
+def test_at018_update_with_null_title_is_rejected_without_mutation(client: TestClient) -> None:
+    created = client.post("/tasks", json={"title": "Original"})
+    assert created.status_code == 201
+    before = created.json()
+
+    response = client.patch("/tasks/1", json={"title": None})
+    assert response.status_code == 422
+    assert response.json()["error"]["code"] == "validation_error"
+    assert client.get("/tasks/1").json() == before

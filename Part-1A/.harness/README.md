@@ -4,17 +4,22 @@
 
 The scripts and controls in this directory are **untrusted repository
 candidates**. They are not a canonical runner, do not verify themselves against
-a separately protected baseline, and do not establish an independent Windows
-identity/ACL or protected-CI boundary. D-01 therefore remains blocked. An
-ordinary local run is not an authoritative validation and must not be used as
-an acceptance, security-review, or publication decision.
+a separately protected baseline, and do not establish an independent
+canonical-runner boundary. The selected D-01 approach is the root-level
+GitHub Actions workflow dispatched from protected `main`. The local workflow,
+bootstrap baseline, and approval register remain candidate files; D-01 is
+blocked until the approval prerequisite and an actual protected run are
+verified. A protected branch flag alone does not establish runner
+independence. An ordinary local run is not authoritative and must not be used
+as an acceptance, security-review, or publication decision.
 
 The `instruction-files.json` entries record the current file paths and digests.
 Their empty `approval_reference` values explicitly mean that no human approval
 record was supplied. Do not invent references or treat those digests as a
 trusted baseline. A human administrator must review and approve the exact
-candidate out of band, then enroll it through the protected canonical-runner
-process before any authoritative execution.
+candidate in one consolidated approval-register action, then merge the reviewed
+baseline through the protected `main` process before any protected workflow run.
+All ten per-file approval references remain blank until that human review.
 
 ## Local diagnostic run
 
@@ -56,11 +61,12 @@ The fixed sequence is:
 1. Compare source and staged candidate manifests.
 2. Verify instruction inventory paths, exact keys, current SHA-256 values, and
    approval references.
-3. Record the protected-runner/identity boundary as blocked when it is not
-   independently demonstrated.
-4. Record Windows persistence readiness as D-05 `BLOCKED` until an approved
-   Windows atomic-visibility strategy and supported-filesystem evidence exist.
-   The AT-014 rollback fault-injection tests do not establish atomic visibility.
+3. Record the protected GitHub workflow and approved-baseline boundary as
+   blocked until an actual protected run is verified.
+4. Verify that D-05 is recorded as resolved by the human-approved v1.4.0
+   application-level backup and recovery amendment dated 2026-11-13. This check
+   does not assert Windows atomic visibility or crash durability; AT-014 tests
+   cover application-handled persistence behavior only.
 5. Run Ruff against `src/` and `tests/`.
 6. Run Bandit against `src/`; preserve raw stdout, stderr, exit code, and a
    separate JSON copy when stdout is valid JSON. Findings are never suppressed
@@ -97,12 +103,14 @@ Tests are organized under `tests/unit/`, `tests/api_contract/`,
 the exact AT-001 through AT-029 node mappings in `mandatory-checks.json`.
 Coverage and execution are distinct: a mapped case can still fail, and
 criteria involving protected baselines, approval workflows, publication
-integrity, or human records remain explicitly partial because those trusted
-resources are unavailable here.
+integrity, or human records remain explicitly partial until their GitHub
+approval and workflow-run evidence exists.
 
 AT-008 verifies that omitted creation priority defaults to `Medium`, explicit
 null is rejected for create and PATCH, valid priorities are accepted, invalid
 values return `422`, and rejected or omitted PATCH values do not mutate stored
-state. AT-014 is assessed as partial: rollback fault-injection tests verify
-failure handling but do not establish Windows atomic visibility. D-01 and
-D-05 remain unresolved regardless of local test results.
+state. AC-014 / AT-014 maps to candidate serialization, backup verification,
+application-handled recovery, original absence, fail-closed behavior, and
+cleanup tests. Those tests do not establish Windows atomic visibility or crash
+durability. D-05 is resolved by the approved specification amendment; D-01 and
+the human security-review/final-decision gates remain unresolved.

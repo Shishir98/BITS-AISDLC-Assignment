@@ -1,0 +1,3 @@
+Command: "C:\Users\User\.local\bin\uv.exe" run --active --locked --no-sync --directory "C:\Users\User\Assignment-1\Part-1A" bandit -r src -f json
+Bandit exit code: 0
+Machine-readable JSON valid: True

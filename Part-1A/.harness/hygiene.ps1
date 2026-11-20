@@ -85,6 +85,9 @@ foreach ($trackedPath in $trackedOutput) {
     if ($normalized.StartsWith($projectPrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
         $normalized = $normalized.Substring($projectPrefix.Length)
     }
+    if ($normalized -match "^evidence/(?:.*/)?synthetic-scanner-fixtures/") {
+        continue
+    }
     $trackedSourcePath = Join-Path $trackedRoot ($normalized.Replace("/", "\"))
     if (Test-Path -LiteralPath $trackedSourcePath -PathType Leaf) {
         $trackedPaths += $normalized

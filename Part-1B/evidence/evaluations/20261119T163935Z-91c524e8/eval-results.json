@@ -1,0 +1,815 @@
+{
+  "run_id": "20261119T163935Z-91c524e8",
+  "status": "FAIL",
+  "reason": null,
+  "expected_generation_count": 57,
+  "attempted_generation_count": 57,
+  "completed_generation_count": 57,
+  "successful_output_count": 33,
+  "scores": {
+    "structural": 50.87719298245614,
+    "critical_invariants": 45.77114427860697,
+    "property_invariant": 43.9766081871345,
+    "semantic_quality": 41.40350877192982,
+    "aggregate": 45.146198830409354,
+    "gates": {
+      "structural_100": false,
+      "critical_invariants_100": false,
+      "property_invariant_at_least_95": false,
+      "semantic_quality_at_least_85": false,
+      "aggregate_at_least_90": false
+    },
+    "passed": false
+  },
+  "failed_case_ids": [
+    {
+      "case_id": "REP-001",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-002",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-001",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-002",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-001",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-002",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-002",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-002",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-002",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-002",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-002",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-002",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-003",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-004",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-004",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-003",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-004",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-004",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-003",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-004",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-004",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-004",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-004",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-004",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-004",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-004",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-004",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-004",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-004",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-001",
+        "AC-004",
+        "AC-008",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "REP-005",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-005"
+      ],
+      "ac_ids": [
+        "AC-005",
+        "AC-008",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "REP-005",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-005"
+      ],
+      "ac_ids": [
+        "AC-005",
+        "AC-008",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "REP-005",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-001",
+        "FR-002",
+        "FR-005"
+      ],
+      "ac_ids": [
+        "AC-005",
+        "AC-008",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "BND-001",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-010",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-009",
+        "AC-010"
+      ]
+    },
+    {
+      "case_id": "BND-003",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-003",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-009"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-009",
+        "AC-011"
+      ]
+    },
+    {
+      "case_id": "AMB-001",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "AMB-001",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "MAL-001",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-002",
+        "FR-006",
+        "FR-007"
+      ],
+      "ac_ids": [
+        "AC-007",
+        "AC-008"
+      ]
+    },
+    {
+      "case_id": "MAL-002",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "MAL-002",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-006"
+      ],
+      "ac_ids": [
+        "AC-003",
+        "AC-006",
+        "AC-013"
+      ]
+    },
+    {
+      "case_id": "ADV-001",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-007",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-007",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-002",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-002",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-002",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-003",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-003",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-003",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-011"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-004",
+      "run_index": 1,
+      "fr_ids": [
+        "FR-003",
+        "FR-011",
+        "FR-013"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-004",
+      "run_index": 2,
+      "fr_ids": [
+        "FR-003",
+        "FR-011",
+        "FR-013"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    },
+    {
+      "case_id": "ADV-004",
+      "run_index": 3,
+      "fr_ids": [
+        "FR-003",
+        "FR-011",
+        "FR-013"
+      ],
+      "ac_ids": [
+        "AC-002",
+        "AC-013",
+        "AC-014"
+      ]
+    }
+  ],
+  "equivalence_groups": {
+    "REP-001#1": false,
+    "REP-002#1": false,
+    "REP-001#2": false,
+    "REP-002#2": false,
+    "REP-001#3": false,
+    "REP-002#3": false,
+    "REP-003#1": false,
+    "REP-004#1": false,
+    "REP-003#2": false,
+    "REP-004#2": false,
+    "REP-003#3": false,
+    "REP-004#3": false
+  },
+  "observed_output_variation": [
+    {
+      "case_id": "REP-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "REP-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "REP-005",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "BND-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "BND-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 2,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "AMB-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "MAL-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "MAL-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "ADV-001",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "case_id": "ADV-002",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "ADV-003",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 1,
+      "differing_run_indexes": []
+    },
+    {
+      "case_id": "ADV-004",
+      "completed_raw_output_count": 3,
+      "distinct_output_count": 3,
+      "differing_run_indexes": [
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

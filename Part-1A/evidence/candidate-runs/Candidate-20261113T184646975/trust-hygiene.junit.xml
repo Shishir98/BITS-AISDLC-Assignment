@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="11" time="5.659" timestamp="2026-11-13T18:46:47.980584+05:30" hostname="Shishir-PC"><testcase classname="tests.harness_integrity.test_repository_hygiene" name="test_at026_synthetic_scanner_fixtures_detect_tracked_secret_like_files" time="0.548" /><testcase classname="tests.harness_integrity.test_repository_hygiene" name="test_at026_current_publication_candidate_has_no_hygiene_findings" time="2.738" /><testcase classname="tests.harness_integrity.test_repository_hygiene" name="test_at026_historical_synthetic_scanner_fixtures_are_not_publication_findings" time="0.502" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at022_workflow_uses_protected_main_read_only_checkout_and_sha" time="0.000" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at023_pending_bootstrap_fails_before_candidate_staging" time="0.006" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at023_synthetic_tampered_test_file_is_rejected_before_staging" time="0.382" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at023_unapproved_changes_to_controls_inventory_instructions_and_dependencies_are_rejected" time="0.487" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at024_tampered_trusted_workflow_or_approval_register_is_rejected" time="0.338" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at023_verified_candidate_is_staged_and_manifest_tampering_is_detected" time="0.485" /><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals" time="0.014"><failure message="AssertionError: assert 'efdfc92147be...7208a9d3b7df8' == 'd918e241eb73...f476f1b2a1e55'&#10;  &#10;  - d918e241eb7312796f2a0f2a32e07eae22b1be4e1c837c41ac4f476f1b2a1e55&#10;  + efdfc92147be6a85903da83a01195945559c86b2cba60e749527208a9d3b7df8">def test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals() -&gt; None:
+        inventory = json.loads((PROJECT_ROOT / ".harness" / "instruction-files.json").read_text(encoding="utf-8"))
+        register = json.loads(
+            (PROJECT_ROOT / ".harness" / "trust" / "approval-register.json").read_text(encoding="utf-8")
+        )
+        baseline = json.loads(
+            (PROJECT_ROOT / ".harness" / "trust" / "bootstrap-baseline.json").read_text(encoding="utf-8")
+        )
+        assert register["status"] == "PENDING_HUMAN_REVIEW"
+        assert register["instruction_files"] == inventory
+        assert len(register["instruction_files"]) == 10
+        assert register["baseline_sha256"] == _sha256(
+            PROJECT_ROOT / ".harness" / "trust" / "bootstrap-baseline.json"
+        )
+        assert baseline["status"] == "BOOTSTRAP_PENDING_HUMAN_REVIEW"
+        baseline_files = {entry["path"]: entry["sha256"] for entry in baseline["files"]}
+        prepare_module = _load_module(PREPARE_SCRIPT, "prepare_candidate_inventory")
+        assert set(baseline_files) == prepare_module._scoped_files(PROJECT_ROOT)
+        assert {entry["path"] for entry in inventory} &lt;= set(baseline_files)
+        for relative, digest in baseline_files.items():
+            assert digest == _sha256(PROJECT_ROOT / relative)
+        trusted_files = {entry["path"]: entry["sha256"] for entry in baseline["trusted_files"]}
+        assert set(trusted_files) == {
+            ".github/workflows/part-1a-candidate-validation.yml",
+            "Part-1A/.harness/trust/prepare_candidate.py",
+            "Part-1A/.harness/trust/run_validation.py",
+            "Part-1A/.harness/trust/seal_evidence.py",
+        }
+        for relative, digest in trusted_files.items():
+            assert digest == _sha256(REPOSITORY_ROOT / relative)
+        assert all(not entry["approval_reference"] for entry in inventory)
+        assert all(not value for value in register["approval"].values())
+        for entry in register["instruction_files"]:
+&gt;           assert entry["sha256"] == _sha256(PROJECT_ROOT / entry["path"])
+E           AssertionError: assert 'efdfc92147be...7208a9d3b7df8' == 'd918e241eb73...f476f1b2a1e55'
+E             
+E             - d918e241eb7312796f2a0f2a32e07eae22b1be4e1c837c41ac4f476f1b2a1e55
+E             + efdfc92147be6a85903da83a01195945559c86b2cba60e749527208a9d3b7df8
+
+tests\harness_integrity\test_github_trust_bootstrap.py:357: AssertionError</failure></testcase><testcase classname="tests.harness_integrity.test_github_trust_bootstrap" name="test_supplemental_evidence_manifest_detects_bundle_tampering" time="0.006" /></testsuite></testsuites>
