@@ -1,0 +1,5 @@
+Gate: protected-workflow-verification
+Status: NOT VERIFIED
+Command: Verify protected GitHub workflow run and independent execution boundary
+Exit code: 2
+Observed: The root workflow was snapshotted and hashed, but it remains a repository candidate; no protected workflow run or independent execution boundary was verified.

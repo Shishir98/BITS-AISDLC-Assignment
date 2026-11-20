@@ -38,6 +38,25 @@ APPROVAL_FIELDS = {
     "source_commit",
     "approval_reference",
 }
+INVENTORY_FIELDS = {
+    "path",
+    "purpose",
+    "classification",
+    "sha256",
+    "approval_reference",
+}
+REQUIRED_GOVERNING_SPEC_PATHS = {
+    "specs/001-smart-todo-api/checklists/requirements.md",
+    "specs/001-smart-todo-api/contracts/openapi.yaml",
+    "specs/001-smart-todo-api/data-model.md",
+    "specs/001-smart-todo-api/plan.md",
+    "specs/001-smart-todo-api/quickstart.md",
+    "specs/001-smart-todo-api/research.md",
+    "specs/001-smart-todo-api/spec.md",
+    "specs/001-smart-todo-api/tasks.md",
+    "specs/001-smart-todo-api/test-strategy.md",
+}
+_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def sha256_bytes(value: bytes) -> str:
@@ -127,19 +146,62 @@ def _write_json(path: Path, value: Any) -> None:
     path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def _safe_file(root: Path, relative: str) -> Path:
+def _validate_relative_path(relative: Any, label: str) -> str:
+    if not isinstance(relative, str) or not relative.strip():
+        raise ValueError(f"{label} contains an empty or non-string path.")
+    if "*" in relative or "?" in relative or "\\" in relative or relative.startswith("/"):
+        raise ValueError(f"{label} contains a wildcard or unsafe path: {relative}")
     candidate = Path(relative)
-    if candidate.is_absolute() or ".." in candidate.parts or "\\" in relative or "*" in relative or "?" in relative:
-        raise ValueError(f"Baseline contains an unsafe path: {relative}")
-    path = root / candidate
+    if candidate.is_absolute() or ".." in candidate.parts:
+        raise ValueError(f"{label} contains an unsafe path: {relative}")
+    return relative
+
+
+def _safe_file(root: Path, relative: str) -> Path:
+    _validate_relative_path(relative, "Baseline")
+    path = root / Path(relative)
     if not path.is_file() or path.is_symlink():
         raise ValueError(f"Baseline file is missing or unsafe: {relative}")
     return path
 
 
+def _validate_inventory_entries(inventory: Any, label: str) -> list[dict[str, str]]:
+    if not isinstance(inventory, list) or not inventory:
+        raise TypeError(f"{label} must be a non-empty JSON array.")
+    seen_paths: set[str] = set()
+    validated: list[dict[str, str]] = []
+    for entry in inventory:
+        if not isinstance(entry, dict) or set(entry.keys()) != INVENTORY_FIELDS:
+            raise TypeError(f"{label} entry is malformed.")
+        path_val = _validate_relative_path(entry.get("path"), label)
+        normalized = path_val.lower()
+        if normalized in seen_paths:
+            raise ValueError(f"{label} contains duplicate path: {path_val}")
+        seen_paths.add(normalized)
+        for text_field in ("purpose", "classification"):
+            val = entry.get(text_field)
+            if not isinstance(val, str) or not val.strip():
+                raise ValueError(f"{label} field '{text_field}' must be a non-empty string for {path_val}.")
+        digest = entry.get("sha256")
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise ValueError(f"{label} sha256 is invalid for {path_val}.")
+        approval_ref = entry.get("approval_reference")
+        if not isinstance(approval_ref, str):
+            raise TypeError(f"{label} approval_reference must be a string for {path_val}.")
+        validated.append(entry)
+    inventory_paths = {entry["path"] for entry in validated}
+    missing_governing_specs = sorted(REQUIRED_GOVERNING_SPEC_PATHS - inventory_paths)
+    if missing_governing_specs:
+        raise ValueError(
+            f"{label} is missing required governing specification file(s): {missing_governing_specs}"
+        )
+    return validated
+
+
 def _scoped_files(project_root: Path) -> set[str]:
     result: set[str] = set()
-    for directory in ("tests", ".harness", ".github/workflows"):
+    spec_files_on_disk: set[str] = set()
+    for directory in ("tests", ".harness", "specs"):
         root = project_root / directory
         if not root.exists():
             continue
@@ -150,14 +212,18 @@ def _scoped_files(project_root: Path) -> set[str]:
                 relative = path.relative_to(project_root).as_posix()
                 if _included(relative) and relative not in TRUST_METADATA:
                     result.add(relative)
+                    if directory == "specs":
+                        spec_files_on_disk.add(relative)
     result.update(("pyproject.toml", "uv.lock"))
-    inventory = _load_json(project_root / ".harness" / "instruction-files.json")
-    if not isinstance(inventory, list):
-        raise TypeError("Instruction inventory must be a JSON array")
-    for entry in inventory:
-        if not isinstance(entry, dict) or not isinstance(entry.get("path"), str):
-            raise TypeError("Instruction inventory entry is malformed")
-        result.add(entry["path"])
+    inventory = _validate_inventory_entries(
+        _load_json(project_root / ".harness" / "instruction-files.json"),
+        "Instruction inventory",
+    )
+    inventoried_paths = {entry["path"] for entry in inventory}
+    unlisted_specs = sorted(spec_files_on_disk - inventoried_paths)
+    if unlisted_specs:
+        raise ValueError(f"Unlisted governing specification file(s) found under specs/: {unlisted_specs}")
+    result.update(inventoried_paths)
     return result
 
 
@@ -184,19 +250,54 @@ def _check_approval(register: dict[str, Any], baseline: dict[str, Any], baseline
         raise ValueError("Human approval date must be an ISO-8601 timestamp.") from exc
 
     files = baseline.get("files")
-    if not isinstance(files, list):
-        raise TypeError("Bootstrap baseline files must be a list.")
-    expected = {entry.get("path") for entry in files if isinstance(entry, dict)}
-    if len(expected) != len(files) or None in expected:
-        raise ValueError("Bootstrap baseline contains malformed or duplicate files.")
-    instruction_files = register.get("instruction_files")
-    if not isinstance(instruction_files, list) or len(instruction_files) != 10:
-        raise ValueError("The consolidated register must contain exactly ten instruction files.")
+    if not isinstance(files, list) or not files:
+        raise TypeError("Bootstrap baseline files must be a non-empty list.")
+    baseline_map: dict[str, str] = {}
+    seen_baseline_lower: set[str] = set()
+    for entry in files:
+        if not isinstance(entry, dict) or set(entry.keys()) != {"path", "sha256"}:
+            raise ValueError("Bootstrap baseline contains malformed file entries.")
+        path_val = _validate_relative_path(entry.get("path"), "Bootstrap baseline")
+        digest = entry.get("sha256")
+        if not isinstance(digest, str) or not _SHA256_RE.fullmatch(digest):
+            raise ValueError(f"Bootstrap baseline contains an invalid sha256 for {path_val}.")
+        norm = path_val.lower()
+        if norm in seen_baseline_lower:
+            raise ValueError("Bootstrap baseline contains malformed or duplicate files.")
+        seen_baseline_lower.add(norm)
+        baseline_map[path_val] = digest
+
+    missing_baseline_specs = sorted(REQUIRED_GOVERNING_SPEC_PATHS - set(baseline_map))
+    if missing_baseline_specs:
+        raise ValueError(
+            f"Bootstrap baseline is missing required governing specification file(s): {missing_baseline_specs}"
+        )
+
+    instruction_files = _validate_inventory_entries(
+        register.get("instruction_files"),
+        "Consolidated approval register instruction_files",
+    )
+    if len(instruction_files) != 19:
+        raise ValueError(
+            "The consolidated register must contain all 19 governing instruction and specification files."
+        )
+    register_paths = {entry["path"] for entry in instruction_files}
+    unlisted_baseline_specs = sorted(
+        path for path in baseline_map if path.startswith("specs/") and path not in register_paths
+    )
+    if unlisted_baseline_specs:
+        raise ValueError(
+            f"Governing specification file(s) in baseline lack approval register entries: {unlisted_baseline_specs}"
+        )
     for entry in instruction_files:
-        if not isinstance(entry, dict) or not entry.get("approval_reference"):
-            raise ValueError("Every inventoried instruction file needs its human approval reference.")
+        if not entry.get("approval_reference") or not entry["approval_reference"].strip():
+            raise ValueError("Every inventoried instruction/specification file needs its human approval reference.")
         if entry["approval_reference"] != approval["approval_reference"]:
             raise ValueError("Instruction approval references must match the consolidated approval.")
+        if baseline_map.get(entry["path"]) != entry["sha256"]:
+            raise ValueError(
+                f"Consolidated register digest does not match bootstrap baseline for {entry['path']}."
+            )
 
 
 def _write_github_output(path: str | None, ready: bool) -> None:
@@ -240,9 +341,16 @@ def prepare(args: argparse.Namespace) -> int:
             if sha256_file(path) != entry["sha256"]:
                 raise ValueError(f"Candidate control/test digest mismatch: {entry['path']}")
 
-        inventory = _load_json(candidate_root / ".harness" / "instruction-files.json")
+        inventory = _validate_inventory_entries(
+            _load_json(candidate_root / ".harness" / "instruction-files.json"),
+            "Candidate instruction inventory",
+        )
         if inventory != register["instruction_files"]:
             raise ValueError("Candidate instruction inventory differs from the approved consolidated register.")
+        for entry in inventory:
+            inst_path = _safe_file(candidate_root, entry["path"])
+            if sha256_file(inst_path) != entry["sha256"]:
+                raise ValueError(f"Inventoried instruction digest mismatch: {entry['path']}")
         commit = subprocess.run(
             ["git", "-C", str(candidate_root), "rev-parse", "HEAD"],
             check=True,

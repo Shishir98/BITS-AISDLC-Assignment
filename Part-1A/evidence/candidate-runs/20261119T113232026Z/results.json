@@ -1,0 +1,218 @@
+﻿{
+    "schemaVersion":  1,
+    "runId":  "20261119T113232026Z",
+    "validationMode":  "repository-candidate-diagnostic-only",
+    "authoritative":  false,
+    "decision":  null,
+    "candidateDigest":  "fb7a5d9c970d1a8f8a2f370f0ded4275eb6ebacc902f1ac4ff2d84f4b1a251b2",
+    "finalCandidateDigest":  "fb7a5d9c970d1a8f8a2f370f0ded4275eb6ebacc902f1ac4ff2d84f4b1a251b2",
+    "rootWorkflowPath":  ".github/workflows/part-1a-candidate-validation.yml",
+    "rootWorkflowSha256":  "2eb6196c333c2539de4a06bb36fceff0342526a6a52cf9642f881d0019580797",
+    "finalRootWorkflowSha256":  "2eb6196c333c2539de4a06bb36fceff0342526a6a52cf9642f881d0019580797",
+    "rootWorkflowSnapshotReference":  "root-controls/.github/workflows/part-1a-candidate-validation.yml",
+    "candidateFileCount":  86,
+    "initialSnapshotReference":  "initial-snapshot",
+    "stagedSnapshotReference":  "staged-candidate",
+    "finalSnapshotReference":  "final-snapshot",
+    "candidateManifestReference":  "candidate-manifest.json",
+    "evidenceManifestReference":  "20261119T113232026Z.evidence-manifest.json",
+    "startedAt":  "2026-11-19T11:32:32.0371273+00:00",
+    "finishedAt":  "2026-11-19T11:32:55.4614180+00:00",
+    "status":  "NOT VERIFIED",
+    "gates":  [
+                  {
+                      "name":  "candidate-integrity-before",
+                      "status":  "PASS",
+                      "command":  "SHA-256 candidate manifest comparison (source to staged snapshot)",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:33.5454013+00:00",
+                      "finishedAt":  "2026-11-19T11:32:33.5454013+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "The staged bytes match the source candidate manifest."
+                  },
+                  {
+                      "name":  "instruction-inventory",
+                      "status":  "PASS",
+                      "command":  "Validate exact instruction inventory entries and listed-file SHA-256 values",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:33.5954037+00:00",
+                      "finishedAt":  "2026-11-19T11:32:33.5954037+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "All inventoried paths, files, and SHA-256 values verified; no approval claim is made."
+                  },
+                  {
+                      "name":  "d01-owner-disposition",
+                      "status":  "WAIVED",
+                      "command":  "Validate the owner-directed D-01 waiver scope",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:33.6024024+00:00",
+                      "finishedAt":  "2026-11-19T11:32:33.6024024+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "Only the custom-bootstrap portions of AC-023 and AC-024 are waived; no approval record is inferred.",
+                      "failureReportReference":  "failures/d01-owner-disposition.txt"
+                  },
+                  {
+                      "name":  "protected-workflow-verification",
+                      "status":  "NOT VERIFIED",
+                      "command":  "Verify protected GitHub workflow run and independent execution boundary",
+                      "exitCode":  2,
+                      "startedAt":  "2026-11-19T11:32:33.6034020+00:00",
+                      "finishedAt":  "2026-11-19T11:32:33.6034020+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "The root workflow was snapshotted and hashed, but it remains a repository candidate; no protected workflow run or independent execution boundary was verified.",
+                      "failureReportReference":  "failures/protected-workflow-verification.txt"
+                  },
+                  {
+                      "name":  "persistence-contract-readiness",
+                      "status":  "PASS",
+                      "command":  "Verify approved v1.4.0 application-level persistence contract",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:33.6124032+00:00",
+                      "finishedAt":  "2026-11-19T11:32:33.6124032+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "D-05 resolved by human approval dated 2026-11-13. This gate asserts no Windows atomic-visibility or crash-durability guarantee."
+                  },
+                  {
+                      "name":  "ruff",
+                      "status":  "PASS",
+                      "command":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\\.harness\\lint.ps1\" -ProjectRoot \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\" -OutputDirectory \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\gates\\ruff\"",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:33.6284060+00:00",
+                      "finishedAt":  "2026-11-19T11:32:35.6582903+00:00",
+                      "stdoutReference":  "gates/ruff/ruff.stdout.txt",
+                      "stderrReference":  "gates/ruff/ruff.stderr.txt",
+                      "outputReferences":  [
+                                               "gates/ruff/ruff.stdout.txt",
+                                               "gates/ruff/ruff.stderr.txt"
+                                           ]
+                  },
+                  {
+                      "name":  "bandit",
+                      "status":  "PASS",
+                      "command":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\\.harness\\security.ps1\" -ProjectRoot \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\" -OutputDirectory \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\gates\\bandit\"",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:35.6682896+00:00",
+                      "finishedAt":  "2026-11-19T11:32:37.6954218+00:00",
+                      "stdoutReference":  "gates/bandit/security.stdout.txt",
+                      "stderrReference":  "gates/bandit/security.stderr.txt",
+                      "outputReferences":  [
+                                               "gates/bandit/security.stdout.txt",
+                                               "gates/bandit/security.stderr.txt",
+                                               "gates/bandit/bandit.stdout.txt",
+                                               "gates/bandit/bandit.stderr.txt",
+                                               "gates/bandit/bandit.json"
+                                           ]
+                  },
+                  {
+                      "name":  "pytest-and-traceability",
+                      "status":  "PASS",
+                      "command":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\\.harness\\test.ps1\" -ProjectRoot \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\" -OutputDirectory \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\gates\\pytest-and-traceability\" -ConfigurationPath \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\\.harness\\mandatory-checks.json\"",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:37.7034239+00:00",
+                      "finishedAt":  "2026-11-19T11:32:52.8362683+00:00",
+                      "stdoutReference":  "gates/pytest-and-traceability/tests.stdout.txt",
+                      "stderrReference":  "gates/pytest-and-traceability/tests.stderr.txt",
+                      "outputReferences":  [
+                                               "gates/pytest-and-traceability/tests.stdout.txt",
+                                               "gates/pytest-and-traceability/tests.stderr.txt",
+                                               "gates/pytest-and-traceability/junit.xml",
+                                               "gates/pytest-and-traceability/traceability.json",
+                                               "gates/pytest-and-traceability/traceability.csv"
+                                           ]
+                  },
+                  {
+                      "name":  "repository-hygiene",
+                      "status":  "PASS",
+                      "command":  "\"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\\.harness\\hygiene.ps1\" -ProjectRoot \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\staged-candidate\" -OutputDirectory \"C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z\\gates\\repository-hygiene\" -TrackedRoot \"C:\\Users\\User\\Assignment-1\\Part-1A\"",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:52.8422725+00:00",
+                      "finishedAt":  "2026-11-19T11:32:54.8655059+00:00",
+                      "stdoutReference":  "gates/repository-hygiene/hygiene.stdout.txt",
+                      "stderrReference":  "gates/repository-hygiene/hygiene.stderr.txt",
+                      "outputReferences":  [
+                                               "gates/repository-hygiene/hygiene.stdout.txt",
+                                               "gates/repository-hygiene/hygiene.stderr.txt",
+                                               "gates/repository-hygiene/hygiene.json"
+                                           ]
+                  },
+                  {
+                      "name":  "human-security-review",
+                      "status":  "NOT VERIFIED",
+                      "command":  "Verify a separately recorded human Bandit and hygiene review",
+                      "exitCode":  2,
+                      "startedAt":  "2026-11-19T11:32:54.8665073+00:00",
+                      "finishedAt":  "2026-11-19T11:32:54.8665073+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "Human security-review action T044 remains for the student. The runner does not create, infer, or impersonate these records.",
+                      "failureReportReference":  "failures/human-security-review.txt"
+                  },
+                  {
+                      "name":  "human-final-decision",
+                      "status":  "NOT VERIFIED",
+                      "command":  "Verify a separately recorded human ACCEPT/REJECT decision",
+                      "exitCode":  2,
+                      "startedAt":  "2026-11-19T11:32:54.8665073+00:00",
+                      "finishedAt":  "2026-11-19T11:32:54.8665073+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "Human final-decision action T045 remains for the student. The runner does not create, infer, or impersonate these records.",
+                      "failureReportReference":  "failures/human-final-decision.txt"
+                  },
+                  {
+                      "name":  "root-workflow-integrity-after",
+                      "status":  "PASS",
+                      "command":  "Compare root workflow source and immutable test snapshot before and after diagnostics",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:54.8685059+00:00",
+                      "finishedAt":  "2026-11-19T11:32:54.8685059+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "The tested root workflow snapshot and source bytes match the recorded SHA-256."
+                  },
+                  {
+                      "name":  "candidate-integrity-after",
+                      "status":  "PASS",
+                      "command":  "SHA-256 candidate manifest comparison (initial to final source)",
+                      "exitCode":  0,
+                      "startedAt":  "2026-11-19T11:32:55.4614180+00:00",
+                      "finishedAt":  "2026-11-19T11:32:55.4614180+00:00",
+                      "stdoutReference":  "",
+                      "stderrReference":  "",
+                      "outputReferences":  [
+
+                                           ],
+                      "message":  "The source candidate remained unchanged during diagnostics."
+                  }
+              ],
+    "outputDirectory":  "C:\\Users\\User\\AppData\\Local\\SmartTodoValidation\\Part-1A\\20261119T113232026Z"
+}

@@ -94,6 +94,66 @@
 
 ## 7. Security Review and Human Decision
 
+> Historical status recorded before the 2026-11-13 D-05 amendment. The current status is in Section 8.
+
 - Student-authored security review: No independent security-review artifact is recorded for this diagnostic run. Local review indicates no direct vulnerability in the validation fix itself; the project remains blocked on the required protected-runner and persistence-readiness governance gates.
 - Human ACCEPT/REJECT decision: **No human ACCEPT or REJECT decision is recorded by this harness.**
 - Date and supporting evidence references: **Not recorded. The repository remains in a blocked, diagnostic-only state pending the human review and protected approval flow described by D-01, D-05, T037, T038, and T039.**
+
+## 8. Current Candidate Diagnostic and Protected-Workflow Status
+
+### Local diagnostic run (2026-11-20)
+
+- Run ID: `20261120T162355030Z`; mode: repository-candidate diagnostic only; status: **NOT VERIFIED**, not authoritative.
+- Candidate digest: `fb7a5d9c970d1a8f8a2f370f0ded4275eb6ebacc902f1ac4ff2d84f4b1a251b2`, matching the 2026-11-19 candidate digest.
+- Pytest/traceability: 60 tests passed, zero failures; 29 acceptance criteria; five lack full coverage; zero mapping issues.
+- Ruff: PASS. Bandit: PASS, zero findings. Repository hygiene: PASS. Candidate integrity before and after: PASS.
+- Protected workflow, human security review, and final human decision: **NOT VERIFIED**. One D-01 custom-bootstrap portion remains waived; the waiver does not establish protected execution.
+- Run output and detached evidence manifest are on the local machine at `%LOCALAPPDATA%\SmartTodoValidation\Part-1A\20261120T162355030Z` and `%LOCALAPPDATA%\SmartTodoValidation\Part-1A\20261120T162355030Z.evidence-manifest.json`; bundle digest: `75c85e373aaf54a40367cd386f52b44c0690eafda4d3831f2141a85b9f681490`. They are not included in this repository. The repository retains the 2026-11-19 candidate bundle for the same candidate digest.
+
+### Follow-up local diagnostic after fail-closed dispatch guard (2026-11-20)
+
+- Run ID: `20261120T163316692Z`; mode: repository-candidate diagnostic only; status: **NOT VERIFIED**, not authoritative.
+- Candidate digest: `1c9d3bbb36c8ec4fd20b06a2d773ed335773f83aaae4f6baca3fcc27f6cc70bd`; root workflow SHA-256: `795aeb80ab5bfc7be5da5da541609c3a5c1d89f8718cafc7519f9949fffff2bb`.
+- Pytest/traceability: 60 tests passed, zero failures; 29 acceptance criteria; five lack full coverage; zero mapping issues. Ruff, Bandit (zero findings), repository hygiene, and before/after candidate integrity: PASS.
+- The workflow now lets the ref-validation step run for manual dispatches so a dispatch from a ref other than `main` fails explicitly rather than leaving the validation job skipped. Focused workflow/trust tests passed (3 passed); harness-integrity tests passed (24 passed).
+- The candidate workflow and test digests match the local pending bootstrap baseline; the approval register still has blank approval fields and both records remain pending human review.
+- Run output and detached evidence manifest are on the local machine at `%LOCALAPPDATA%\SmartTodoValidation\Part-1A\20261120T163316692Z` and `%LOCALAPPDATA%\SmartTodoValidation\Part-1A\20261120T163316692Z.evidence-manifest.json`; bundle digest: `6ed9b3fe25edf038193b748efb4fc58daf180d883eba1ad8fcd179a701d243ce`. They are not included in this repository.
+
+### Public GitHub configuration observed
+
+- On 2026-11-20, the public repository API reported an active [`Part-1A Main Branch Protection` ruleset](https://github.com/Shishir98/BITS-AISDLC-Assignment/rules/27149048) (`27149048`) targeting the default branch. It prevents branch deletion and non-fast-forward updates and requires pull requests, but its public configuration requires zero approvals and lists no required status checks.
+- The authenticated branch-protection endpoint returned HTTP 401. Ruleset bypass/admin actors and effective permissions therefore remain **NOT VERIFIED**.
+- The [public Actions page](https://github.com/Shishir98/BITS-AISDLC-Assignment/actions) and API reported zero workflows and zero workflow runs. The candidate workflow at `.github/workflows/part-1a-candidate-validation.yml` is present only in the dirty local worktree, not the public default branch.
+- The local checkout is on `development`, has uncommitted/untracked changes, and `gh auth status` reports no authenticated GitHub host. No commit, push, dispatch, or protected-run evidence was created.
+
+### Current blockers and corrected status
+
+- D-05 was resolved by the human-approved feature specification v1.4.0 and Constitution v2.0.0 amendment dated 2026-11-13. The approved contract covers application-handled backup, byte verification, restoration, and fail-closed recovery; it does not claim Windows atomic visibility or crash durability. Earlier D-05-blocked statements above describe historical runs and are superseded.
+- Active protected execution (D-01 / AC-022), the protected initial validation and final validation (T041 and T043), and the actual human security review and decision (T044 and T045) remain incomplete.
+- The student must review and approve the intended candidate, establish/verify the required protected workflow and execution boundary, and perform the human-only review and final ACCEPT/REJECT after final automated validation. No human disposition or decision is recorded by this update.
+
+### Fresh local diagnostic rerun (2026-11-20)
+
+- Run ID: `20261120T164903620Z`; mode: repository-candidate diagnostic only;
+  status: **NOT VERIFIED**, not authoritative.
+- Candidate digest:
+  `1c9d3bbb36c8ec4fd20b06a2d773ed335773f83aaae4f6baca3fcc27f6cc70bd`.
+  Root workflow SHA-256:
+  `795aeb80ab5bfc7be5da5da541609c3a5c1d89f8718cafc7519f9949fffff2bb`.
+- Automated result: 60 tests passed, zero failures; Ruff PASS; Bandit PASS
+  with zero findings; repository hygiene PASS; candidate and root-workflow
+  integrity PASS. The local harness reported zero failed gates, one waived
+  gate, and three `NOT VERIFIED` gates.
+- Traceability: all 29 acceptance criteria mapped with zero mapping errors.
+  AC-022 remains `NOT VERIFIED` for protected execution; AC-023 and AC-024
+  retain only the documented custom-bootstrap waiver; AC-027 and AC-028
+  remain `NOT VERIFIED` pending the actual human records.
+- Results and detached evidence manifest are on the local machine at
+  `%LOCALAPPDATA%\SmartTodoValidation\Part-1A\20261120T164903620Z` and
+  `%LOCALAPPDATA%\SmartTodoValidation\Part-1A\20261120T164903620Z.evidence-manifest.json`.
+  Evidence bundle digest:
+  `b36471018723512737904d73b26f91476a7d31c6d679be3dccbec2e4fea03135`.
+  These local outputs are not copied into the repository because they are
+  diagnostic-only; the repository retains the dated candidate bundle linked
+  from [final-generation](./final-generation/).

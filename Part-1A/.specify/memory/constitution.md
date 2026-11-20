@@ -1,13 +1,15 @@
 <!--
 Sync Impact Report
-Version change: 1.0.0 -> 1.1.0 (MINOR: materially strengthened data integrity,
-testing, code quality, harness governance, and validation requirements)
-Modified principles: V. Data Integrity; VII. Requirement-Driven Testing;
-VIII. Code Quality; IX. Independent Validation Harness.
-Modified sections: Lifecycle, Validation and Evidence.
+Version change: 1.1.0 -> 2.0.0 (MAJOR: replaced unconditional atomic-replacement
+persistence requirement in Principle V with the human-approved D-05 application-level
+backup, byte-verification, restoration, and fail-closed recovery contract, and
+explicitly documented Windows replacement and crash-durability limitations)
+Modified principles: V. Data Integrity.
+Modified sections: none.
 Added sections: none.
 Removed sections: none.
-Status: ACCEPTED; human ratification recorded 2026-11-12.
+Status: ACCEPTED; original human ratification recorded 2026-11-12; D-05 amendment
+approved 2026-11-13.
 -->
 
 # Smart Todo & Task Management API Constitution
@@ -38,11 +40,30 @@ MUST NOT expose internal stack traces or implementation details.
 
 ### V. Data Integrity
 Persist application data as JSON and isolate persistence behind testable interfaces.
-Writes MUST serialize to a temporary file in the same directory and atomically
-replace the stored file only after the new data is complete. Malformed JSON MUST
-raise a testable `MalformedStoredDataError` with the stable identifier
-`malformed_stored_data`; it MUST NOT silently reset, replace, or overwrite the
-stored data. Tests MUST verify the error and preservation of the original file.
+
+Writes MUST serialize a complete candidate to a same-directory temporary file and
+preserve the previous valid store contents in a verified backup before attempting
+replacement.
+
+In-memory state MUST NOT be committed until the candidate is verified on disk.
+
+If an application-handled persistence failure occurs, the implementation MUST
+attempt restoration from the verified backup and verify that the previous bytes
+have been restored. If recovery fails, recovery materials MUST be retained and the
+repository MUST fail closed.
+
+When no store existed before the operation, failure recovery MUST restore that
+absence.
+
+These guarantees cover application-handled failures only. The system does NOT
+guarantee atomic visibility during Windows replacement, crash durability across
+power loss or OS failure, or automatic recovery following abrupt process
+termination.
+
+Malformed JSON MUST continue to raise `MalformedStoredDataError` with the stable
+identifier `malformed_stored_data` and MUST NOT silently reset, replace, or
+overwrite the stored data. Tests MUST verify the error and preservation of the
+original file.
 
 ### VI. Security
 Never commit secrets, credentials, or local environment files. Validate untrusted
@@ -122,4 +143,4 @@ MUST be resolved through an approved amendment or by bringing the work into
 compliance; automated validation does not replace human review or the explicit
 final decision.
 
-**Version**: 1.1.0 | **Ratified**: 2026-11-12 | **Last Amended**: 2026-11-11
+**Version**: 2.0.0 | **Ratified**: 2026-11-12 | **Last Amended**: 2026-11-13

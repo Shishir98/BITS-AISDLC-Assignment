@@ -2,9 +2,10 @@
 
 This quickstart describes the implemented Smart Todo API and local diagnostic
 commands. Local runs are not authoritative. The GitHub Actions workflow and
-bootstrap approval register are candidate implementations; D-01 remains blocked
-until their review, approval, protected-main deployment, and actual workflow
-run are verified.
+bootstrap files are repository candidates. The owner waived only the
+custom-bootstrap portions of AC-023 and AC-024. The independent AC-022
+protected-execution requirements remain `NOT VERIFIED`; the waiver does not
+establish a protected workflow run or make a local run authoritative.
 
 ## Prerequisites
 
@@ -69,30 +70,25 @@ network requests. For a local demonstration:
 uv run --locked uvicorn smart_todo.app:app --app-dir src --reload
 ```
 
-## GitHub Candidate Validation and Acceptance
+## Candidate Validation and Acceptance
 
-1. After the workflow and bootstrap baseline have been reviewed and approved
-   through the protected `main` process, dispatch
-   `.github/workflows/part-1a-candidate-validation.yml` from `main`. Supply the
-   exact 40-character candidate commit SHA; branch names and tags are rejected.
-2. The workflow checks out trusted `main` controls separately from the
-   candidate, uses read-only repository permission, passes no secrets to
-   candidate code, verifies approved digests, and creates a run-specific staged
-   snapshot. It runs the locked tests, Ruff, and Bandit from staging and checks
-   both staging and publication-candidate equality before and after execution.
-   Logs and evidence are retained as a workflow artifact.
-3. Review Bandit and repository-hygiene findings, then record the actual human
-   security review and final ACCEPT/REJECT decision. Automated PASS never
-   decides acceptance; publication remains blocked until human records are
-   present and an ACCEPT is recorded.
-
-The workflow and main-branch ruleset are not yet verified as an independent
-canonical runner. Do not treat a local harness run or an unapproved workflow
-run as authoritative. The following candidate diagnostic command is optional:
+Run the local candidate harness from the Part-1A root:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\.harness\run.ps1 -LocalDevelopment
 ```
 
-This command intentionally reports local diagnostic status and does not
-establish an independent trust boundary.
+It stages Part-1A, snapshots and hashes the root workflow used by harness tests,
+and runs Ruff, Bandit, pytest/traceability, and repository hygiene. The output
+reports each criterion/portion as `PASS`, `WAIVED`, or `NOT VERIFIED`; the
+overall result remains `NOT VERIFIED` while protected workflow execution or
+human-only actions are outstanding. Exit code 0 means no local automated gate
+failed; it does not mean the assignment was accepted or validated by a trusted
+runner.
+
+The owner waiver covers only the custom-bootstrap portions of AC-023 and
+AC-024. It does not waive AC-022 protected execution. Do not claim that the
+repository workflow or an ordinary local run is an independently verified
+canonical runner. The student must still perform T044's human security review
+and T045's human ACCEPT/REJECT decision after the required final automated
+evidence is available. Automated checks never create or infer either record.

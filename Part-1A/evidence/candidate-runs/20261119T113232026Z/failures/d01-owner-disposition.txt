@@ -1,0 +1,5 @@
+Gate: d01-owner-disposition
+Status: WAIVED
+Command: Validate the owner-directed D-01 waiver scope
+Exit code: 0
+Observed: Only the custom-bootstrap portions of AC-023 and AC-024 are waived; no approval record is inferred.

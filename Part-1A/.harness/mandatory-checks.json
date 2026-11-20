@@ -7,7 +7,19 @@
     "separateIdentityOrProtectedCiDemonstrated": false,
     "githubWorkflowCandidatePresent": true,
     "githubWorkflowRunVerified": false,
-    "d01Status": "BLOCKED"
+    "d01Status": "SCOPED_WAIVER"
+  },
+  "ownerDisposition": {
+    "source": "User-directed waiver scoped only to the custom-bootstrap portions of AC-023 and AC-024; no separate approval metadata was supplied.",
+    "customBootstrapStatus": "WAIVED",
+    "waivedPortions": [
+      "AC-023.canonical-protected-runner-and-baseline",
+      "AC-024.actual-protected-approval-register"
+    ],
+    "protectedWorkflowRunVerified": false
+  },
+  "rootControls": {
+    "workflowPath": ".github/workflows/part-1a-candidate-validation.yml"
   },
   "persistenceContractReadiness": {
     "d05Status": "RESOLVED_BY_APPROVED_SPEC_AMENDMENT",
@@ -24,14 +36,17 @@
   "executionSequence": [
     "candidate-integrity-before",
     "instruction-inventory",
-    "governance-boundary",
+    "d01-owner-disposition",
+    "protected-workflow-verification",
     "persistence-contract-readiness",
     "ruff",
     "bandit",
     "pytest-and-traceability",
     "repository-hygiene",
-    "human-review-and-decision",
-    "candidate-integrity-after"
+    "human-security-review",
+    "human-final-decision",
+    "candidate-integrity-after",
+    "root-workflow-integrity-after"
   ],
   "candidate": {
     "includeRootFiles": true,
@@ -464,6 +479,20 @@
       "ac": "AC-022",
       "at": "AT-022",
       "assessment": "partial",
+      "requirementPortions": [
+        {
+          "id": "automated-validation-gates",
+          "description": "Lint, Bandit execution, complete test execution, AC traceability, hygiene, network isolation, and evidence capture.",
+          "status": "PASS",
+          "testIds": ["AT-022"]
+        },
+        {
+          "id": "protected-workflow-execution",
+          "description": "A successful protected workflow run and verified independent execution boundary for the active AC-022 requirements.",
+          "status": "NOT VERIFIED",
+          "basis": "The workflow is a repository candidate; no protected workflow run or independent execution boundary was verified."
+        }
+      ],
       "tests": [
         {
           "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
@@ -499,6 +528,32 @@
       "ac": "AC-023",
       "at": "AT-023",
       "assessment": "partial",
+      "requirementPortions": [
+        {
+          "id": "submitted-copies-and-untrusted-boundary",
+          "description": "Part-1A contains the submitted tests and harness; the repository runner does not claim authoritative trust.",
+          "status": "PASS",
+          "testIds": ["AT-023"]
+        },
+        {
+          "id": "inventory-structure-and-current-digests",
+          "description": "The instruction inventory has exact keys, explicit non-wildcard paths, and current per-file SHA-256 values.",
+          "status": "PASS",
+          "testIds": ["AT-024"]
+        },
+        {
+          "id": "synthetic-tamper-and-staging-integrity",
+          "description": "Disposable tests reject tampered candidates and verify immutable staged bytes.",
+          "status": "PASS",
+          "testIds": ["AT-023"]
+        },
+        {
+          "id": "canonical-protected-runner-and-baseline",
+          "description": "Protected canonical execution and a separately enrolled human-approved baseline.",
+          "status": "WAIVED",
+          "basis": "D-01 custom bootstrap infrastructure is owner-waived."
+        }
+      ],
       "tests": [
         {
           "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
@@ -539,12 +594,26 @@
       "ac": "AC-024",
       "at": "AT-024",
       "assessment": "partial",
+      "requirementPortions": [
+        {
+          "id": "disposable-approval-and-tamper-behavior",
+          "description": "Synthetic fixtures verify rejection of mismatched approval data and candidate digests.",
+          "status": "PASS",
+          "testIds": ["AT-024"]
+        },
+        {
+          "id": "actual-protected-approval-register",
+          "description": "A human approval register and protected-main baseline update.",
+          "status": "WAIVED",
+          "basis": "D-01 custom bootstrap and approval-register operations are owner-waived."
+        }
+      ],
       "tests": [
         {
           "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
           "className": "tests.harness_integrity.test_github_trust_bootstrap",
-          "name": "test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals",
-          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at024_consolidated_register_has_exact_ten_pending_instruction_approvals"
+          "name": "test_at024_instruction_inventory_paths_and_digests_are_current",
+          "nodeId": "tests/harness_integrity/test_github_trust_bootstrap.py::test_at024_instruction_inventory_paths_and_digests_are_current"
         },
         {
           "file": "tests/harness_integrity/test_github_trust_bootstrap.py",
@@ -555,8 +624,8 @@
         {
           "file": "tests/harness_integrity/test_runner_boundaries.py",
           "className": "tests.harness_integrity.test_runner_boundaries",
-          "name": "test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked",
-          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at024_instruction_inventory_is_exact_and_unapproved_changes_remain_blocked"
+          "name": "test_at024_instruction_inventory_is_exact_and_current",
+          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at024_instruction_inventory_is_exact_and_current"
         }
       ],
       "gaps": [
@@ -607,12 +676,38 @@
       "ac": "AC-027",
       "at": "AT-027",
       "assessment": "partial",
+      "requirementPortions": [
+        {
+          "id": "automated-security-review-gate",
+          "description": "The human-review gate validates exact Bandit finding identities and digest-bound dispositions.",
+          "status": "PASS",
+          "testIds": ["AT-027"]
+        },
+        {
+          "id": "actual-human-security-review",
+          "description": "A human reviews the final Bandit and hygiene findings and records their disposition.",
+          "status": "NOT VERIFIED",
+          "basis": "Human-only action T044 remains for the student."
+        }
+      ],
       "tests": [
         {
           "file": "tests/harness_integrity/test_runner_boundaries.py",
           "className": "tests.harness_integrity.test_runner_boundaries",
-          "name": "test_at027_human_security_review_is_a_separate_blocked_gate",
-          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at027_human_security_review_is_a_separate_blocked_gate"
+          "name": "test_at027_human_security_review_is_a_separate_unverified_gate",
+          "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at027_human_security_review_is_a_separate_unverified_gate"
+        },
+        {
+          "file": "tests/harness_integrity/test_security_review_gate.py",
+          "className": "tests.harness_integrity.test_security_review_gate",
+          "name": "test_at027_security_review_verifies_exact_bandit_finding_identities_and_dispositions",
+          "nodeId": "tests/harness_integrity/test_security_review_gate.py::test_at027_security_review_verifies_exact_bandit_finding_identities_and_dispositions"
+        },
+        {
+          "file": "tests/harness_integrity/test_security_review_gate.py",
+          "className": "tests.harness_integrity.test_security_review_gate",
+          "name": "test_at027_security_review_rejects_count_only_duplicate_fabricated_missing_and_mismatched_findings",
+          "nodeId": "tests/harness_integrity/test_security_review_gate.py::test_at027_security_review_rejects_count_only_duplicate_fabricated_missing_and_mismatched_findings"
         }
       ],
       "gaps": [
@@ -623,12 +718,38 @@
       "ac": "AC-028",
       "at": "AT-028",
       "assessment": "partial",
+      "requirementPortions": [
+        {
+          "id": "automated-decision-gate",
+          "description": "Automated validation never creates a human decision; the publication gate validates human ACCEPT/REJECT records.",
+          "status": "PASS",
+          "testIds": ["AT-028"]
+        },
+        {
+          "id": "actual-human-final-decision",
+          "description": "A human records the final ACCEPT or REJECT after automated validation and security review.",
+          "status": "NOT VERIFIED",
+          "basis": "Human-only action T045 remains for the student."
+        }
+      ],
       "tests": [
         {
           "file": "tests/harness_integrity/test_runner_boundaries.py",
           "className": "tests.harness_integrity.test_runner_boundaries",
           "name": "test_at028_runner_does_not_create_or_infer_acceptance_decisions",
           "nodeId": "tests/harness_integrity/test_runner_boundaries.py::test_at028_runner_does_not_create_or_infer_acceptance_decisions"
+        },
+        {
+          "file": "tests/harness_integrity/test_human_decision.py",
+          "className": "tests.harness_integrity.test_human_decision",
+          "name": "test_at028_human_decision_gate_reconstructs_pre_decision_digest_and_verifies_acceptance",
+          "nodeId": "tests/harness_integrity/test_human_decision.py::test_at028_human_decision_gate_reconstructs_pre_decision_digest_and_verifies_acceptance"
+        },
+        {
+          "file": "tests/harness_integrity/test_human_decision.py",
+          "className": "tests.harness_integrity.test_human_decision",
+          "name": "test_at028_human_decision_gate_rejects_pre_decision_tampering_missing_or_unexpected_files_and_reject_decisions",
+          "nodeId": "tests/harness_integrity/test_human_decision.py::test_at028_human_decision_gate_rejects_pre_decision_tampering_missing_or_unexpected_files_and_reject_decisions"
         }
       ],
       "gaps": [

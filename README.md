@@ -54,8 +54,16 @@ The local candidate harness can be run with:
 powershell -NoProfile -ExecutionPolicy Bypass -File .\.harness\run.ps1 -LocalDevelopment
 ```
 
-That runner is diagnostic-only. D-01 remains blocked because an independently
-protected canonical runner and execution boundary have not been demonstrated.
-D-05 remains blocked because an approved Windows atomic-visibility strategy
-and supporting evidence have not been demonstrated. Local test results do not
-resolve either governance or persistence-readiness gate.
+That runner is diagnostic-only. D-05 was resolved on 2026-11-13 by the
+human-approved feature specification v1.4.0 and Constitution v2.0.0 amendments,
+which retain JSON persistence and replace the unsupported Windows
+atomic-visibility and crash-durability guarantee with an application-level
+backup, byte-verification, restoration, and fail-closed recovery contract.
+D-01's custom-bootstrap-only portions of AC-023 and AC-024 are waived by the
+owner. That waiver does not establish a protected workflow run or waive the
+independent AC-022 execution requirements; protected execution remains
+`NOT VERIFIED`. The local harness reports automated results separately from
+`WAIVED` and `NOT VERIFIED` portions. Local test results and candidate runs are
+diagnostic only and do not constitute authoritative validation or human
+acceptance. Human security review (T044) and the final decision (T045) remain
+open for the student.

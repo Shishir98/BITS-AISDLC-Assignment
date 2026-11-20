@@ -1,0 +1,5 @@
+Gate: human-security-review
+Status: NOT VERIFIED
+Command: Verify a separately recorded human Bandit and hygiene review
+Exit code: 2
+Observed: Human security-review action T044 remains for the student. The runner does not create, infer, or impersonate these records.

@@ -44,11 +44,17 @@ def _candidate_environment(
     environment = {key: source[key] for key in WINDOWS_ENVIRONMENT_ALLOWLIST if key in source}
     environment.update(
         {
+            "NO_PROXY": "127.0.0.1,localhost,::1",
+            "HTTP_PROXY": "http://127.0.0.1:9",
+            "HTTPS_PROXY": "http://127.0.0.1:9",
+            "ALL_PROXY": "http://127.0.0.1:9",
+            "PIP_NO_INDEX": "1",
+            "UV_OFFLINE": "1",
             "PYTHONDONTWRITEBYTECODE": "1",
             "PYTHONNOUSERSITE": "1",
             "PYTHONPATH": str(stage / "src"),
             "PYTEST_ADDOPTS": "-p no:cacheprovider",
-            "RUFF_CACHE_DIR": str(evidence / "ruff-cache"),
+            "RUFF_CACHE_DIR": str(uv_cache.resolve().parent / "ruff-cache"),
             "UV_CACHE_DIR": str(uv_cache.resolve()),
             "UV_NO_CONFIG": "1",
             "UV_PROJECT_ENVIRONMENT": str(environment_directory.resolve()),
@@ -93,6 +99,7 @@ def _run_gate(
             parsed = json.loads(stdout)
         except json.JSONDecodeError:
             gate["machineReadableFindings"] = "unavailable"
+            gate["exitCode"] = 2
         else:
             findings_path = output_directory / "bandit.json"
             findings_path.write_text(json.dumps(parsed, indent=2) + "\n", encoding="utf-8")
@@ -105,6 +112,7 @@ def _run_gate(
             except ET.ParseError:
                 gate["testCount"] = 0
                 gate["failureCount"] = 1
+                gate["exitCode"] = 1
             else:
                 test_cases = root.findall(".//testcase")
                 gate["testCount"] = len(test_cases)
@@ -114,6 +122,12 @@ def _run_gate(
                     or case.find("skipped") is not None
                     for case in test_cases
                 )
+                if gate["testCount"] == 0 or gate["failureCount"] > 0:
+                    gate["exitCode"] = max(gate["exitCode"], 1)
+        else:
+            gate["testCount"] = 0
+            gate["failureCount"] = 1
+            gate["exitCode"] = 1
     return gate
 
 
@@ -246,6 +260,13 @@ def run_validation(args: argparse.Namespace) -> int:
     )
     (evidence / "gates").mkdir(exist_ok=True)
 
+    dependency_environment = dict(environment)
+    for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY", "PIP_NO_INDEX", "UV_OFFLINE"):
+        dependency_environment.pop(key, None)
+
+    powershell_exe = os.environ.get("POWERSHELL_EXE", "powershell.exe")
+    hygiene_output = evidence / "gates" / "repository-hygiene"
+
     commands = [
         ("dependency-sync", ["uv", "sync", "--project", str(stage), "--locked", "--python", "3.12"]),
         ("python-version", ["python", "--version"]),
@@ -294,19 +315,51 @@ def run_validation(args: argparse.Namespace) -> int:
                 "json",
             ],
         ),
+        (
+            "repository-hygiene",
+            [
+                powershell_exe,
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                str(stage / ".harness" / "hygiene.ps1"),
+                "-ProjectRoot",
+                str(stage),
+                "-TrackedRoot",
+                str(source),
+                "-OutputDirectory",
+                str(hygiene_output),
+            ],
+        ),
     ]
     for name, command in commands:
-        gates.append(_run_gate(name, command, stage, environment, evidence / "gates"))
+        gate_env = dependency_environment if name == "dependency-sync" else environment
+        gate = _run_gate(name, command, stage, gate_env, evidence / "gates")
+        if name == "repository-hygiene":
+            report_path = hygiene_output / "hygiene.json"
+            if report_path.is_file():
+                gate["report"] = "gates/repository-hygiene/hygiene.json"
+        gates.append(gate)
         if name == "pytest":
             gates.append(_verify_traceability(stage, evidence))
 
     integrity_matches = verify_manifest(source, entries) and verify_manifest(stage, entries)
     publication_matches = build_manifest(source) == build_manifest(stage)
+    all_gates_passed = (
+        integrity_matches
+        and publication_matches
+        and bool(gates)
+        and all(gate["exitCode"] == 0 for gate in gates)
+    )
     results = {
         "schemaVersion": 1,
         "validationMode": "protected-main-candidate-validation",
         "authoritative": False,
+        "status": "PASS_AUTOMATED_CHECKS_ONLY" if all_gates_passed else "FAILED",
+        "humanSecurityReview": None,
         "humanDecision": None,
+        "publicationPermitted": False,
         "candidateCommit": manifest["candidateCommit"],
         "candidateDigest": candidate_digest,
         "startedAt": start,
@@ -321,11 +374,7 @@ def run_validation(args: argparse.Namespace) -> int:
             "Staged files differ from the pre-execution candidate manifest.\n",
             encoding="utf-8",
         )
-    return (
-        0
-        if integrity_matches and publication_matches and all(gate["exitCode"] == 0 for gate in gates)
-        else 1
-    )
+    return 0 if all_gates_passed else 1
 
 
 def main() -> int:

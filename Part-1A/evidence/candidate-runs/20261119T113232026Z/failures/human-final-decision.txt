@@ -1,0 +1,5 @@
+Gate: human-final-decision
+Status: NOT VERIFIED
+Command: Verify a separately recorded human ACCEPT/REJECT decision
+Exit code: 2
+Observed: Human final-decision action T045 remains for the student. The runner does not create, infer, or impersonate these records.

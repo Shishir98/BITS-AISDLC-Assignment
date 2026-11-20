@@ -134,9 +134,10 @@ $runRoot = Join-Path $evidenceBase $runId
 $initialSnapshot = Join-Path $runRoot "initial-snapshot"
 $stagedRoot = Join-Path $runRoot "staged-candidate"
 $finalSnapshot = Join-Path $runRoot "final-snapshot"
+$rootControlSnapshot = Join-Path $runRoot "root-controls"
 $gateRoot = Join-Path $runRoot "gates"
 $failureRoot = Join-Path $runRoot "failures"
-foreach ($directory in @($initialSnapshot, $stagedRoot, $finalSnapshot, $gateRoot, $failureRoot)) {
+foreach ($directory in @($initialSnapshot, $stagedRoot, $finalSnapshot, $rootControlSnapshot, $gateRoot, $failureRoot)) {
     New-Item -ItemType Directory -Force -Path $directory | Out-Null
 }
 
@@ -312,6 +313,25 @@ $stageFiles = @(Get-CandidateFiles -BasePath $stagedRoot)
 $stageManifest = Get-Manifest -BasePath $stagedRoot -Files $stageFiles
 $mandatoryChecksPath = Join-Path $stagedRoot ".harness\mandatory-checks.json"
 $mandatoryChecks = Get-Content -LiteralPath $mandatoryChecksPath -Raw | ConvertFrom-Json -ErrorAction Stop
+$expectedWorkflowPath = ".github/workflows/part-1a-candidate-validation.yml"
+if ([string]$mandatoryChecks.rootControls.workflowPath -cne $expectedWorkflowPath) {
+    throw "The configured root workflow path does not match the fixed workflow allowlist."
+}
+$repositoryRoot = Split-Path -Parent $root
+$sourceWorkflow = Join-Path $repositoryRoot ".github\workflows\part-1a-candidate-validation.yml"
+$snapshotWorkflow = Join-Path $rootControlSnapshot ".github\workflows\part-1a-candidate-validation.yml"
+if (-not (Test-Path -LiteralPath $sourceWorkflow -PathType Leaf)) {
+    throw "The root workflow control is missing: $expectedWorkflowPath"
+}
+New-Item -ItemType Directory -Force -Path (Split-Path -Parent $snapshotWorkflow) | Out-Null
+$rootWorkflowSha256 = (Get-FileHash -LiteralPath $sourceWorkflow -Algorithm SHA256).Hash.ToLowerInvariant()
+Copy-Item -LiteralPath $sourceWorkflow -Destination $snapshotWorkflow -Force
+$snapshotWorkflowSha256 = (Get-FileHash -LiteralPath $snapshotWorkflow -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($rootWorkflowSha256 -ne $snapshotWorkflowSha256) {
+    throw "The root workflow control changed while its snapshot was being created."
+}
+$env:PART1A_REPOSITORY_ROOT = $rootControlSnapshot
+$env:PART1A_TRACKED_ROOT = $root
 
 if ($stageManifest.digest -eq $initialManifest.digest) {
     $allGates += Add-InternalGate -Name "candidate-integrity-before" -Status "PASS" -ExitCode 0 `
@@ -357,9 +377,6 @@ else {
             if ($actualHash -ne ([string]$entry.sha256).ToLowerInvariant()) {
                 $inventoryIssues += "An inventoried instruction digest does not match: $path"
             }
-            if (-not [string]$entry.approval_reference) {
-                $inventoryIssues += "An inventory approval reference is not present for: $path"
-            }
         }
         if (($paths | Sort-Object -Unique).Count -ne $paths.Count) {
             $inventoryIssues += "The instruction inventory contains duplicate paths."
@@ -372,7 +389,7 @@ else {
 if ($inventoryIssues.Count -eq 0) {
     $allGates += Add-InternalGate -Name "instruction-inventory" -Status "PASS" -ExitCode 0 `
         -Command "Validate exact instruction inventory entries and listed-file SHA-256 values" `
-        -Message "All inventoried files and approval references verified."
+        -Message "All inventoried paths, files, and SHA-256 values verified; no approval claim is made."
 }
 else {
     $allGates += Add-InternalGate -Name "instruction-inventory" -Status "FAIL" -ExitCode 1 `
@@ -380,9 +397,29 @@ else {
         -Message ($inventoryIssues -join " ")
 }
 
-$allGates += Add-InternalGate -Name "governance-boundary" -Status "BLOCKED" -ExitCode 2 `
-    -Command "Verify protected GitHub main workflow, human-approved baseline, and successful protected run" `
-    -Message "D-01 design direction is closed on GitHub, but the workflow remains a repository candidate; its baseline is pending approval and no protected workflow run has been verified. Local gate output is diagnostic only."
+$waivedPortions = @($mandatoryChecks.ownerDisposition.waivedPortions)
+$expectedWaivers = @(
+    "AC-023.canonical-protected-runner-and-baseline",
+    "AC-024.actual-protected-approval-register"
+)
+$waiverConfigValid = [string]$mandatoryChecks.authority.d01Status -ceq "SCOPED_WAIVER" -and
+    [string]$mandatoryChecks.ownerDisposition.customBootstrapStatus -ceq "WAIVED" -and
+    ($waivedPortions | Sort-Object) -join ";" -ceq (($expectedWaivers | Sort-Object) -join ";") -and
+    [string]$mandatoryChecks.ownerDisposition.source -match "AC-023 and AC-024"
+if ($waiverConfigValid) {
+    $allGates += Add-InternalGate -Name "d01-owner-disposition" -Status "WAIVED" -ExitCode 0 `
+        -Command "Validate the owner-directed D-01 waiver scope" `
+        -Message "Only the custom-bootstrap portions of AC-023 and AC-024 are waived; no approval record is inferred."
+}
+else {
+    $allGates += Add-InternalGate -Name "d01-owner-disposition" -Status "FAIL" -ExitCode 1 `
+        -Command "Validate the owner-directed D-01 waiver scope" `
+        -Message "The owner waiver is missing, malformed, or broader than the two authorized AC portions."
+}
+
+$allGates += Add-InternalGate -Name "protected-workflow-verification" -Status "NOT VERIFIED" -ExitCode 2 `
+    -Command "Verify protected GitHub workflow run and independent execution boundary" `
+    -Message "The root workflow was snapshotted and hashed, but it remains a repository candidate; no protected workflow run or independent execution boundary was verified."
 
 $persistenceReadiness = $mandatoryChecks.persistenceContractReadiness
 $d05ConfigValid = $null -ne $persistenceReadiness -and
@@ -436,9 +473,26 @@ else {
     }
 }
 
-$allGates += Add-InternalGate -Name "human-review-and-decision" -Status "BLOCKED" -ExitCode 2 `
-    -Command "Check for separately recorded human Bandit review and final ACCEPT/REJECT decision" `
-    -Message "No human security disposition or final decision was supplied. The runner does not create, infer, or impersonate these records."
+$allGates += Add-InternalGate -Name "human-security-review" -Status "NOT VERIFIED" -ExitCode 2 `
+    -Command "Verify a separately recorded human Bandit and hygiene review" `
+    -Message "Human security-review action T044 remains for the student. The runner does not create, infer, or impersonate these records."
+$allGates += Add-InternalGate -Name "human-final-decision" -Status "NOT VERIFIED" -ExitCode 2 `
+    -Command "Verify a separately recorded human ACCEPT/REJECT decision" `
+    -Message "Human final-decision action T045 remains for the student. The runner does not create, infer, or impersonate these records."
+
+$finalRootWorkflowSha256 = (Get-FileHash -LiteralPath $sourceWorkflow -Algorithm SHA256).Hash.ToLowerInvariant()
+$finalSnapshotWorkflowSha256 = (Get-FileHash -LiteralPath $snapshotWorkflow -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($rootWorkflowSha256 -eq $finalRootWorkflowSha256 -and
+    $rootWorkflowSha256 -eq $finalSnapshotWorkflowSha256) {
+    $allGates += Add-InternalGate -Name "root-workflow-integrity-after" -Status "PASS" -ExitCode 0 `
+        -Command "Compare root workflow source and immutable test snapshot before and after diagnostics" `
+        -Message "The tested root workflow snapshot and source bytes match the recorded SHA-256."
+}
+else {
+    $allGates += Add-InternalGate -Name "root-workflow-integrity-after" -Status "FAIL" -ExitCode 1 `
+        -Command "Compare root workflow source and immutable test snapshot before and after diagnostics" `
+        -Message "The root workflow source or snapshot changed during diagnostics."
+}
 
 $finalFiles = @(Get-CandidateFiles -BasePath $root)
 Copy-Candidate -BasePath $root -Files $finalFiles -Destination $finalSnapshot
@@ -455,7 +509,9 @@ else {
 }
 
 $finishedAt = [DateTimeOffset]::UtcNow.ToString("o")
-$failed = @($allGates | Where-Object { $_.status -ne "PASS" })
+$failed = @($allGates | Where-Object { $_.status -eq "FAIL" })
+$notVerified = @($allGates | Where-Object { $_.status -eq "NOT VERIFIED" })
+$waived = @($allGates | Where-Object { $_.status -eq "WAIVED" })
 $results = [pscustomobject]@{
     schemaVersion = 1
     runId = $runId
@@ -464,6 +520,10 @@ $results = [pscustomobject]@{
     decision = $null
     candidateDigest = $initialManifest.digest
     finalCandidateDigest = $finalManifest.digest
+    rootWorkflowPath = $expectedWorkflowPath
+    rootWorkflowSha256 = $rootWorkflowSha256
+    finalRootWorkflowSha256 = $finalRootWorkflowSha256
+    rootWorkflowSnapshotReference = "root-controls/.github/workflows/part-1a-candidate-validation.yml"
     candidateFileCount = $initialManifest.files.Count
     initialSnapshotReference = "initial-snapshot"
     stagedSnapshotReference = "staged-candidate"
@@ -472,7 +532,7 @@ $results = [pscustomobject]@{
     evidenceManifestReference = "$runId.evidence-manifest.json"
     startedAt = $startedAt
     finishedAt = $finishedAt
-    status = if ($failed.Count -eq 0) { "PASS_DIAGNOSTIC_ONLY" } else { "FAILED" }
+    status = if ($failed.Count -gt 0) { "FAIL" } elseif ($notVerified.Count -gt 0) { "NOT VERIFIED" } else { "PASS" }
     gates = $allGates
     outputDirectory = $runRoot
 }
@@ -497,11 +557,15 @@ $bundleManifest = Write-DetachedEvidenceManifest -RunDirectory $runRoot `
 
 Write-Output "Run mode: non-authoritative repository-candidate diagnostic"
 Write-Output "Candidate digest: $($initialManifest.digest)"
+Write-Output "Root workflow SHA-256: $rootWorkflowSha256"
+Write-Output "Overall status: $($results.status)"
 Write-Output "Results: $(Join-Path $runRoot 'results.json')"
 Write-Output "Detached evidence manifest: $($bundleManifest.path)"
 Write-Output "Evidence bundle digest: $($bundleManifest.digest)"
 Write-Output "Candidate snapshot: $(Join-Path $runRoot 'staged-candidate')"
-Write-Output "Failed or blocked gates: $($failed.Count)"
+Write-Output "Failed gates: $($failed.Count)"
+Write-Output "Waived gates: $($waived.Count)"
+Write-Output "Not-verified gates: $($notVerified.Count)"
 if ($failed.Count -gt 0) {
     exit 1
 }

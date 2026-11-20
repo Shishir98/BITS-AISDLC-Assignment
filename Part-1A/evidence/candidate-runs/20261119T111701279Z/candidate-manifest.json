@@ -1,0 +1,349 @@
+﻿{
+    "digest":  "54d1583b71eefbcc3b43880b57bcf92ea7936a59790cd75ef3ba9c23f62b8173",
+    "files":  [
+                  {
+                      "path":  ".github/skills/speckit-analyze/SKILL.md",
+                      "sha256":  "bc5c24e6bbadf90f58e52d351c9ea22d502257ffb584694a9a46cf592dd78033"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-checklist/SKILL.md",
+                      "sha256":  "f846c702c2a83777ab6806decbfaecb9d7f48b15f48bebb2db1d5f06bc6775dc"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-clarify/SKILL.md",
+                      "sha256":  "c0ab0a24043c37e03db3251a261d9250da95bb1ab5f69b51f6beedf009900c48"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-constitution/SKILL.md",
+                      "sha256":  "9ba37cfc2ad0d64dcaf4816f85405376f9e671ef485220dbcbb8ed002aa93036"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-converge/SKILL.md",
+                      "sha256":  "c73faaef7cd7cbf8b5f5b3a378f5b583b4b878fa6add039d0dc30f5617baa5ef"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-implement/SKILL.md",
+                      "sha256":  "47bfb14d191d970e63b1acd362a9570baadea947daa1b3b747c3305aa0bd85cc"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-plan/SKILL.md",
+                      "sha256":  "cef8c4f2cdecc92b2069ba9e0cc3f921d0f87915caa1d8bc023dbc665e02904f"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-specify/SKILL.md",
+                      "sha256":  "f27c66b20968981c98ec65e67f279c3c5b3ac833016d0c3879b1e9aadc1361c9"
+                  },
+                  {
+                      "path":  ".github/skills/speckit-tasks/SKILL.md",
+                      "sha256":  "2236ce1193fc122ee791c4f646aac11a341096670f1ea9aa5424b78148d9b44a"
+                  },
+                  {
+                      "path":  ".gitignore",
+                      "sha256":  "d9503c3a13ddeb02b2ab9f2477be8a7a7c38e9f2bc698850960bdfd31a893fa9"
+                  },
+                  {
+                      "path":  ".harness/hygiene.ps1",
+                      "sha256":  "e327d617108a216f3dc1bba73e2f42441e3d57767d3c01c86d514f73a2ee303e"
+                  },
+                  {
+                      "path":  ".harness/instruction-files.json",
+                      "sha256":  "783c7dfdd43acafaf510ef0c40b19113355c55a55ccd250b54bf6d7edfa400c2"
+                  },
+                  {
+                      "path":  ".harness/lint.ps1",
+                      "sha256":  "92aac6050d34a4a9c6989b45e167eac68c24d4baae0133ae7cfd3c4c3002d8b5"
+                  },
+                  {
+                      "path":  ".harness/mandatory-checks.json",
+                      "sha256":  "bc86c443b4ce1f8e0fd48c70df8ef83baca06b792d4b7338b643eb0c671a0d8c"
+                  },
+                  {
+                      "path":  ".harness/README.md",
+                      "sha256":  "16f25474a94809273dcfee3b5622e5c02efd117d491f238e94ede17e62e365a5"
+                  },
+                  {
+                      "path":  ".harness/run.ps1",
+                      "sha256":  "de33ceb4c4be3427fc1b48f4b6c157b4d2e97814b4f88de870fcabe244a15669"
+                  },
+                  {
+                      "path":  ".harness/security.ps1",
+                      "sha256":  "f04e4b23169a46f2fe032e99d5aea4ba9b606deedb9b45d4344ec8febd588bdc"
+                  },
+                  {
+                      "path":  ".harness/test.ps1",
+                      "sha256":  "a51c986ae98fa1992d1aa66aec58715d06f1430939aa53ed9af25fa586aa4874"
+                  },
+                  {
+                      "path":  ".harness/trust/approval-register.json",
+                      "sha256":  "e460def512f8ceeeb79cf5cc4682342729e4daa95e7f4ababdb26b1c11088e6f"
+                  },
+                  {
+                      "path":  ".harness/trust/bootstrap-baseline.json",
+                      "sha256":  "35044c360e918c29cd5277ae647365a9a2f27de44d5ccf9254b8e331e7eb0dde"
+                  },
+                  {
+                      "path":  ".harness/trust/prepare_candidate.py",
+                      "sha256":  "e4b37f4cc8bcdd65dff73ae907d272e60cb7ccd1cef42b0d8d343b9bd02702d6"
+                  },
+                  {
+                      "path":  ".harness/trust/run_validation.py",
+                      "sha256":  "c9ecf49c5a7f23ed621d6ec3f96041311c69a4fb2df90574e0dc61fc706f9483"
+                  },
+                  {
+                      "path":  ".harness/trust/seal_evidence.py",
+                      "sha256":  "9b9416436bce286b0d4662a7ed055665412e6163cd6fb5c319b58e63236feb75"
+                  },
+                  {
+                      "path":  ".specify/.gitignore",
+                      "sha256":  "0a61c5378b0bb2e0f85babff99c8b166f2170a2c12378cd17d929aa19296ec88"
+                  },
+                  {
+                      "path":  ".specify/feature.json",
+                      "sha256":  "645ce2d99ee4ffad347cb2c6d0d454ee7b9d08b41204fd047dbf1290e8383b3e"
+                  },
+                  {
+                      "path":  ".specify/init-options.json",
+                      "sha256":  "b2b21d8acfd7684e17e5448f718d90be389f098e2c8ad9948812804765490a34"
+                  },
+                  {
+                      "path":  ".specify/integration.json",
+                      "sha256":  "be24ab7114874dda62954d35e9a32212ab96a0582cb1d5eb65fb7bfd5236addd"
+                  },
+                  {
+                      "path":  ".specify/integrations/copilot.manifest.json",
+                      "sha256":  "9860d552c293edfd5fd1f565eeaf44f6aeb98e35696e3b0aad360f6380b9e1ea"
+                  },
+                  {
+                      "path":  ".specify/integrations/speckit.manifest.json",
+                      "sha256":  "d56ea94e50785aedf4d2690c1a1466bf8e414bf243d87c5c714e29e15fb231c4"
+                  },
+                  {
+                      "path":  ".specify/memory/.constitution-template.json",
+                      "sha256":  "8fc4b39294bae0c10d59547ad7d415b6f0e890d656cbf7171dd567f4e9054711"
+                  },
+                  {
+                      "path":  ".specify/memory/constitution.md",
+                      "sha256":  "efef04e006a5b4b15880ab0ea5dc25977bec6b3e82005c2e6bdfb13ccfe4f72b"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/check-prerequisites.ps1",
+                      "sha256":  "b5b522bd3ee99a490903cc0acb2ded41c662c5f18b9b587f44755a883aeb90d2"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/common.ps1",
+                      "sha256":  "c4816519ffb0b930427559b3ec729ef04a56162f4ef334958c8c50a3f92def9d"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/create-new-feature.ps1",
+                      "sha256":  "481c7368541a816b1679e5ed65fa9e5aea84b09f8be3a02ff8a340e3b48dd58a"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/resolve-template.ps1",
+                      "sha256":  "e49c565a09902e4ebd4b5a51c4e014d5067fdee5b1592f15cb44ef31f430d745"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/setup-plan.ps1",
+                      "sha256":  "5939ef98418e8dc8cc722ef53ba359fc814f3d2a9fd7620f04e8d145a7041f1a"
+                  },
+                  {
+                      "path":  ".specify/scripts/powershell/setup-tasks.ps1",
+                      "sha256":  "d286da96d5b7e0075daa56e834fc1e1eb5beaddbc7e06d3ba898d0e9c071c50a"
+                  },
+                  {
+                      "path":  ".specify/templates/checklist-template.md",
+                      "sha256":  "856532b3cb66171c662cc16f16b31a5856e4655a8666aad1e545bbfc7f603ca1"
+                  },
+                  {
+                      "path":  ".specify/templates/constitution-template.md",
+                      "sha256":  "ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+                  },
+                  {
+                      "path":  ".specify/templates/plan-template.md",
+                      "sha256":  "7e637502d41eccf0ca672496636365691fdca62ef37b27ec07fcb412dbfa90d4"
+                  },
+                  {
+                      "path":  ".specify/templates/spec-template.md",
+                      "sha256":  "3945437fc35cd30a5b2bf7beea680337c3516826d3efa5a6b92c4a7eca1ba28e"
+                  },
+                  {
+                      "path":  ".specify/templates/tasks-template.md",
+                      "sha256":  "fc29a233f6f5a27ca31f1aa46b596af6500c627441c6e62b2bc4a1d721525842"
+                  },
+                  {
+                      "path":  ".specify/workflows/speckit/workflow.yml",
+                      "sha256":  "177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+                  },
+                  {
+                      "path":  ".specify/workflows/workflow-registry.json",
+                      "sha256":  "0fa48306db832e38d8cf1953d8efb1257189529a550284425fe95ff46783af45"
+                  },
+                  {
+                      "path":  "pyproject.toml",
+                      "sha256":  "cbaec1a90614ac701f4d0f72b9399fd79f52db85c2514618b821368930c81020"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/checklists/requirements.md",
+                      "sha256":  "73f9d2a695739799added2d90d556ad726da2df12dabafca287968e5df3cf77f"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/contracts/openapi.yaml",
+                      "sha256":  "873a1566d6ffb62e23bc05add4effd54a53ca01c0996c074c6045088992b6b69"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/data-model.md",
+                      "sha256":  "2293518d13c7d1acaa5e6395ad2fd067a39d0cf90dd58a133373b9acbd01143d"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/plan.md",
+                      "sha256":  "3091b6e5802e2946aeff63d61d153083614894bb90dfd652c3349249db102ab8"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/quickstart.md",
+                      "sha256":  "05aa84e982e596bd1988c4312b2d0ad90ff8a7799e6e3457dfd80bd03bd6eb3d"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/research.md",
+                      "sha256":  "b1bfbe8eef6fa2cabc67d4a21421cb9133b8f0323756e6f959a89e0b92ed6bbe"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/spec.md",
+                      "sha256":  "c803d80480cfd31247e153fb260b8fcb8f0b8d9e79aa70c07e803cc926525867"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/tasks.md",
+                      "sha256":  "d13244eb5d97702df39f7ac11213acee18e45073d9a7e5f84d35c281a2b9701b"
+                  },
+                  {
+                      "path":  "specs/001-smart-todo-api/test-strategy.md",
+                      "sha256":  "2bc536c39a43e8a3889c530b648046df7a110e964c3d66a71a22d1bd8b1b47a4"
+                  },
+                  {
+                      "path":  "src/smart_todo/__init__.py",
+                      "sha256":  "3aca91fe66697bd093ecfbc3480c8ec4ca38c27e083117ccbf887f9db6a0a169"
+                  },
+                  {
+                      "path":  "src/smart_todo/api/__init__.py",
+                      "sha256":  "d7604a3e8a4790d88d816f226170960c075a2200e3b9b73d2ca13de50e276b36"
+                  },
+                  {
+                      "path":  "src/smart_todo/api/errors.py",
+                      "sha256":  "ea85b466df460ee1c93b4e269a4d2033eddffd7ab70dace05854067a7423a538"
+                  },
+                  {
+                      "path":  "src/smart_todo/api/routes.py",
+                      "sha256":  "e4c077f433651f543ff7a6fcf3235dc6682759104abc98929cbd8b97cfe46bfe"
+                  },
+                  {
+                      "path":  "src/smart_todo/api/schemas.py",
+                      "sha256":  "d38a6fc20634a50b2461c49481f6347c221e74a00b4fda60c65de6499fec311c"
+                  },
+                  {
+                      "path":  "src/smart_todo/app.py",
+                      "sha256":  "bde3bbe5b38f84828d586337ddae67a006b854b24aedfd442107c56b52358d02"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/__init__.py",
+                      "sha256":  "e913b959fc438a83b6493087b4ac3725450790dc91323f08ee4de9dd2803329a"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/errors.py",
+                      "sha256":  "82d1abbc57f72adf0200a582d0ebc80e8a1abc026c8edf6a9745ff118d3f6ba1"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/models.py",
+                      "sha256":  "d08b848861ae0170f021d184e6115531dbc85cde29c20dcdb3c38fe2f248ff38"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/ports.py",
+                      "sha256":  "07b1b5162322627b7404cd6379ff89a20eccda1979e2626e68d82b0d125b0abd"
+                  },
+                  {
+                      "path":  "src/smart_todo/domain/service.py",
+                      "sha256":  "b369a1b9fb8fd63301d59ce91d70cb6706b177dc0a9508d9002751af46e6b792"
+                  },
+                  {
+                      "path":  "src/smart_todo/persistence/__init__.py",
+                      "sha256":  "7b73241347aa42d570333c6309b3f160e39e15f7afab450e8b4af7830f0d26e9"
+                  },
+                  {
+                      "path":  "src/smart_todo/persistence/errors.py",
+                      "sha256":  "70739a9abb82b3a36acf7c316ab4fe15e9ecdef76efa5373db2e6dba58b84a1a"
+                  },
+                  {
+                      "path":  "src/smart_todo/persistence/json_repository.py",
+                      "sha256":  "707991308ef47999d29ad2db13126a968ea349d5d4cf164ca02e88e4eb4f5d36"
+                  },
+                  {
+                      "path":  "tests/api_contract/test_determinism.py",
+                      "sha256":  "bad65f8b54b02d0d26b0597e819db65cc0e76d41b32851a6174d63a71bf77ef9"
+                  },
+                  {
+                      "path":  "tests/api_contract/test_endpoint_contract.py",
+                      "sha256":  "35525425f53b575879ce291b7a40d2afe9018f9f48f7aaf0d68caff529f83064"
+                  },
+                  {
+                      "path":  "tests/api_contract/test_legacy_api.py",
+                      "sha256":  "4b9b8bfe8ec9da3dba5c863c0a7ba714dbe52b9e46268746bbc0d339d8e3a314"
+                  },
+                  {
+                      "path":  "tests/api_contract/test_status_transitions.py",
+                      "sha256":  "8cce2f1c95b95cc1f56d5114614b6a2a5138f9bdc9a87b262e116d7f0e47092a"
+                  },
+                  {
+                      "path":  "tests/api_contract/test_task_crud.py",
+                      "sha256":  "e93c9304dd925389575a92ab9bf8964e1b61defc3c902c59767faeeb91f7b3d7"
+                  },
+                  {
+                      "path":  "tests/api_contract/test_task_queries.py",
+                      "sha256":  "4271b24059502aca1251db6be7be366f7208f05311d94f51fc05bbf1d611cb33"
+                  },
+                  {
+                      "path":  "tests/concurrency/test_concurrent_mutations.py",
+                      "sha256":  "1fa5fde569fbf1931dd64720046e6bb1b95f74313d4f604f0928b4baa5a12c1e"
+                  },
+                  {
+                      "path":  "tests/conftest.py",
+                      "sha256":  "3f4a96870ea7e9c381301be013c7db9572f371bf5bb763959efc6a2d5df37274"
+                  },
+                  {
+                      "path":  "tests/error_handling/test_request_validation.py",
+                      "sha256":  "73d6ea485401e59b2a98d7dd418fe2784d364b1f6ca74c5c9287d4c1e7614c7a"
+                  },
+                  {
+                      "path":  "tests/harness_integrity/test_architecture.py",
+                      "sha256":  "6c3a0db0349cad7fc8bb428eaf26ba46bdeaf85a016723a9ae6e3982033719d8"
+                  },
+                  {
+                      "path":  "tests/harness_integrity/test_github_trust_bootstrap.py",
+                      "sha256":  "4e5b3ed2803f4c381c94e1f44d77f3dc7bd031b0278639fe348849e8b7c14257"
+                  },
+                  {
+                      "path":  "tests/harness_integrity/test_human_decision.py",
+                      "sha256":  "24ac06256c40e9affd9169a4eaaa434b50a2f0ce49aa9a778145a5add30311a3"
+                  },
+                  {
+                      "path":  "tests/harness_integrity/test_repository_hygiene.py",
+                      "sha256":  "eb7726e298e2d4177fde594ade8268e498b41d6de8147fdb0afa09f80999b5ae"
+                  },
+                  {
+                      "path":  "tests/harness_integrity/test_runner_boundaries.py",
+                      "sha256":  "cce80c3488a162719eaebef808c7e0790b02b280a78fa4c99f32f5ca4a34b3ac"
+                  },
+                  {
+                      "path":  "tests/harness_integrity/test_security_review_gate.py",
+                      "sha256":  "fcc3eecdd678c9c6079694b789a74a0a9888f43e0b659a5681cde8cec8d8c136"
+                  },
+                  {
+                      "path":  "tests/persistence/test_json_repository.py",
+                      "sha256":  "a3dbf65131dc71a7b5fd4445561d694a6880e6cdffd82b34f09069202d6a94cb"
+                  },
+                  {
+                      "path":  "tests/unit/test_id_allocation.py",
+                      "sha256":  "9f10dce8f7b1fca2607ceddf58d11cc17b73f23a42db5e4a5cff718316570d1d"
+                  },
+                  {
+                      "path":  "uv.lock",
+                      "sha256":  "2a9762c545fa993622c3098b4590fa2c6cd27d15a095e149d023a50bb17da82e"
+                  }
+              ]
+}

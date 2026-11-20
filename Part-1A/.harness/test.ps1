@@ -38,6 +38,14 @@ $coverageJson = Join-Path $output "traceability.json"
 $coverageCsv = Join-Path $output "traceability.csv"
 $env:PYTHONDONTWRITEBYTECODE = "1"
 $env:PYTHONPYCACHEPREFIX = Join-Path $output "python-cache"
+$env:NO_PROXY = "127.0.0.1,localhost,::1"
+$env:HTTP_PROXY = "http://127.0.0.1:9"
+$env:HTTPS_PROXY = "http://127.0.0.1:9"
+$env:ALL_PROXY = "http://127.0.0.1:9"
+$env:PIP_NO_INDEX = "1"
+$env:UV_OFFLINE = "1"
+$env:PYTHONNOUSERSITE = "1"
+$env:UV_NO_CONFIG = "1"
 $uv = (Get-Command uv -ErrorAction Stop).Source
 $quotedRoot = '"' + $root + '"'
 $quotedJunit = '"' + $junit + '"'
@@ -83,8 +91,9 @@ else {
 }
 
 $traceabilityRows = @()
-$uncovered = 0
 $configuredNodeIds = @()
+$mappedByAt = @{}
+$criterionMappings = @()
 foreach ($criterion in $config.traceability) {
     $mapped = @()
     foreach ($test in $criterion.tests) {
@@ -138,26 +147,93 @@ foreach ($criterion in $config.traceability) {
         }
     }
 
-    $assessment = [string]$criterion.assessment
-    if ($mapped.Count -eq 0) {
-        $status = "MISSING"
+    $mappedByAt[[string]$criterion.at] = @($mapped)
+    $criterionMappings += [pscustomobject]@{ criterion = $criterion; mapped = @($mapped) }
+}
+
+$nonPassCriterionCount = 0
+foreach ($criterionMapping in $criterionMappings) {
+    $criterion = $criterionMapping.criterion
+    $mapped = @($criterionMapping.mapped)
+    $portions = @()
+    if ($criterion.requirementPortions) {
+        foreach ($portion in $criterion.requirementPortions) {
+            $portionStatus = [string]$portion.status
+            if ($portionStatus -notin @("PASS", "WAIVED", "NOT VERIFIED")) {
+                $mappingIssues += "Invalid requirement-portion status '$portionStatus' for $($criterion.ac)/$($portion.id)."
+                $portionStatus = "FAIL"
+            }
+            if ($portionStatus -eq "PASS") {
+                $portionTestIds = @($portion.testIds | ForEach-Object { [string]$_ })
+                if ($portionTestIds.Count -eq 0) {
+                    $mappingIssues += "Passing requirement portion $($criterion.ac)/$($portion.id) has no mapped AT test."
+                    $portionStatus = "FAIL"
+                }
+                foreach ($portionAt in $portionTestIds) {
+                    if (-not $mappedByAt.ContainsKey($portionAt)) {
+                        $mappingIssues += "Requirement portion $($criterion.ac)/$($portion.id) references unmapped test ID $portionAt."
+                        $portionStatus = "FAIL"
+                        continue
+                    }
+                    $portionMapped = @($mappedByAt[$portionAt])
+                    if ($portionMapped.Count -eq 0 -or
+                        @($portionMapped | Where-Object { $_.executionStatus -ne "PASS" }).Count -gt 0) {
+                        $mappingIssues += "Requirement portion $($criterion.ac)/$($portion.id) depends on a test ID that did not pass: $portionAt."
+                        $portionStatus = "FAIL"
+                    }
+                }
+            }
+            elseif (-not [string]$portion.basis) {
+                $mappingIssues += "Non-pass requirement portion $($criterion.ac)/$($portion.id) has no disposition basis."
+                $portionStatus = "FAIL"
+            }
+            $portions += [pscustomobject]@{
+                id = [string]$portion.id
+                status = $portionStatus
+                testIds = @($portion.testIds)
+                basis = [string]$portion.basis
+            }
+        }
     }
-    elseif (@($mapped | Where-Object { $_.executionStatus -ne "PASS" }).Count -gt 0) {
-        $status = "FAIL"
-    }
-    elseif ($assessment -eq "full") {
-        $status = "FULL"
+    elseif ([string]$criterion.assessment -eq "full" -and $mapped.Count -gt 0 -and
+        @($mapped | Where-Object { $_.executionStatus -ne "PASS" }).Count -eq 0) {
+        $portions += [pscustomobject]@{
+            id = "automated-acceptance-tests"
+            status = "PASS"
+            testIds = @([string]$criterion.at)
+            basis = ""
+        }
     }
     else {
-        $status = "PARTIAL"
+        $portions += [pscustomobject]@{
+            id = "automated-acceptance-tests"
+            status = if ($mapped.Count -eq 0 -or @($mapped | Where-Object { $_.executionStatus -ne "PASS" }).Count -gt 0) { "FAIL" } else { "NOT VERIFIED" }
+            testIds = @([string]$criterion.at)
+            basis = "No complete passing automated-coverage disposition is configured."
+        }
     }
-    if ($status -ne "FULL") {
-        $uncovered++
+
+    $portionStatuses = @($portions | ForEach-Object { [string]$_.status })
+    if ($portionStatuses -contains "FAIL") {
+        $status = "FAIL"
+    }
+    elseif ($portionStatuses -contains "NOT VERIFIED") {
+        $status = "NOT VERIFIED"
+    }
+    elseif ($portionStatuses -contains "WAIVED") {
+        $status = "WAIVED"
+    }
+    else {
+        $status = "PASS"
+    }
+    if ($status -ne "PASS") {
+        $nonPassCriterionCount++
     }
     $traceabilityRows += [pscustomobject]@{
         ac = $criterion.ac
         at = $criterion.at
         status = $status
+        requirementPortions = @($portions)
         executionStatus = (($mapped.executionStatus | Sort-Object -Unique) -join ";")
         testFile = if ($mapped.Count) { ($mapped.file -join ";") } else { "" }
         testName = if ($mapped.Count) { ($mapped.name -join ";") } else { "" }
@@ -187,7 +263,7 @@ $coverageRecord = [pscustomobject]@{
     junitParseError = $junitParseError
     testCaseCount = $testCases.Count
     acceptanceCriteriaCount = $traceabilityRows.Count
-    acceptanceCriteriaWithoutFullCoverageCount = $uncovered
+    acceptanceCriteriaWithoutFullCoverageCount = $nonPassCriterionCount
     missingSuiteDirectories = $missingSuites
     mappingIssues = $mappingIssues
     rows = $traceabilityRows
@@ -202,12 +278,13 @@ Write-Output "Command: $command"
 Write-Output "Pytest exit code: $($pytestProcess.ExitCode)"
 Write-Output "Pytest collection exit code: $($collectionProcess.ExitCode)"
 Write-Output "JUnit test cases: $($testCases.Count)"
-Write-Output "Acceptance criteria without full executable coverage: $uncovered"
+Write-Output "Acceptance criteria not fully PASS: $nonPassCriterionCount"
 Write-Output "Missing mandatory suite directories: $($missingSuites.Count)"
 Write-Output "AC-to-AT mapping issues: $($mappingIssues.Count)"
 
 if ($collectionProcess.ExitCode -ne 0 -or $pytestProcess.ExitCode -ne 0 -or
-    $uncovered -gt 0 -or $missingSuites.Count -gt 0 -or $mappingIssues.Count -gt 0) {
+    @($traceabilityRows | Where-Object { $_.status -eq "FAIL" }).Count -gt 0 -or
+    $missingSuites.Count -gt 0 -or $mappingIssues.Count -gt 0) {
     exit 1
 }
 exit 0

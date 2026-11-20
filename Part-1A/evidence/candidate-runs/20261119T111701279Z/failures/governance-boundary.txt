@@ -1,0 +1,5 @@
+Gate: governance-boundary
+Status: BLOCKED
+Command: Verify protected GitHub main workflow, human-approved baseline, and successful protected run
+Exit code: 2
+Observed: D-01 design direction is closed on GitHub, but the workflow remains a repository candidate; its baseline is pending approval and no protected workflow run has been verified. Local gate output is diagnostic only.
