@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "decision": "ACCEPT",
+  "reviewer": "Shishir98",
+  "decidedAt": "2026-11-21T20:47:52+05:30",
+  "rationale": "I have reviewed the Smart Todo API implementation and evidence. I accept this application for the assignment submission on the basis of the complete implementation, passing local tests and lint/security hygiene, preserved repair history, and disclosed protected-workflow limitation.",
+  "candidateDigest": "eed954fbe3f87a500d3171d6485f0e82a466f45d911a2c9d47e1a77187072eb7"
+}

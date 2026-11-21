@@ -8,6 +8,17 @@ This repository contains two assignment workspaces:
   artifacts, tests, local Ollama configuration, evaluation harness, and
   preserved evidence.
 
+## Submission status
+
+- Part 1B has completed its actual-local-model evaluation and human ACCEPT.
+- Part 1A has complete local candidate evidence (60 passing tests, Ruff PASS,
+  Bandit PASS with zero findings, and hygiene PASS), and a human ACCEPT is
+  recorded for the reviewed candidate. Protected workflow execution and
+  publication remain separate gates that require GitHub authentication and
+  branch/workflow verification.
+- The Part 2 reflection report is
+  [PART_1C_Reflection_Report.md](PART_1C_Reflection_Report.md).
+
 ## Part-1B setup and validation
 
 Part-1B interprets reminder requests as validated proposals. It does not store,

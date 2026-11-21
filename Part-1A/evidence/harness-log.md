@@ -157,3 +157,21 @@
   These local outputs are not copied into the repository because they are
   diagnostic-only; the repository retains the dated candidate bundle linked
   from [final-generation](./final-generation/).
+
+## Human security review and decision records
+
+- Human reviewer: `Shishir98`
+- Review date: `2026-11-21T20:47:52+05:30`
+- Reviewed candidate digest:
+  `eed954fbe3f87a500d3171d6485f0e82a466f45d911a2c9d47e1a77187072eb7`
+- Bandit review: zero findings; repository hygiene: zero findings.
+- Security review disposition: gate satisfied for the reviewed diagnostic
+  candidate.
+- Human decision: **ACCEPT**.
+- Rationale: “I have reviewed the Smart Todo API implementation and evidence.
+  I accept this application for the assignment submission on the basis of the
+  complete implementation, passing local tests and lint/security hygiene,
+  preserved repair history, and disclosed protected-workflow limitation.”
+- These records do not convert local diagnostics into protected-run authority.
+  Final GitHub protected-workflow execution (T043) remains NOT VERIFIED until
+  it is performed from protected `main`.
