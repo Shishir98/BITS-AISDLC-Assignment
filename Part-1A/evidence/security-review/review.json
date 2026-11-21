@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "candidateDigest": "eed954fbe3f87a500d3171d6485f0e82a466f45d911a2c9d47e1a77187072eb7",
+  "banditReportSha256": "b292cdd32c435d434a9f54216d2806bba517043d52a200e4dd89bfc9dd8f7c5a",
+  "reviewer": "Shishir98",
+  "reviewedAt": "2026-11-21T20:47:52+05:30",
+  "reviewedScope": "Part-1A source, Bandit machine-readable report, and repository hygiene report for the 2026-11-21 final local diagnostic candidate.",
+  "hygieneFindingCount": 0,
+  "hygieneDisposition": "No repository hygiene findings were present in the reviewed candidate.",
+  "banditFindings": [],
+  "gateSatisfied": true
+}

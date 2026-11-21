@@ -109,8 +109,8 @@ did not change the evaluated application, prompt, dataset, or scoring rules.
 ## Human review and residual risks
 
 - **Current human decision: ACCEPT.** After reviewing the selected run, the
-  student approved it with the rationale: “I approve this, rsults look good
-  overall and all gates are passing well above their set minimum pass lines.”
+  student approved it with the rationale: “I approve this. The results look good
+  overall, and all gates pass well above their stated minimum thresholds.”
   The harness does not generate or decide human review.
 - The earlier **REJECT** applied to run `20261119T142050Z-70312b5d`, which
   failed its gates; it is not a decision on the selected passing run.
