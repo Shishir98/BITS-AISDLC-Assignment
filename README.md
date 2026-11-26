@@ -16,8 +16,6 @@ This repository contains two assignment workspaces:
   recorded for the reviewed candidate. Protected workflow execution and
   publication remain separate gates that require GitHub authentication and
   branch/workflow verification.
-- The Part 2 reflection report is
-  [PART_1C_Reflection_Report.md](PART_1C_Reflection_Report.md).
 
 ## Part-1B setup and validation
 
